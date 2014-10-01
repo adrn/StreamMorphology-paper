@@ -10,6 +10,7 @@
 \newcommand{\transpose}[1]{{#1}^{\mathsf{T}}}
 \newcommand{\inverse}[1]{{#1}^{-1}}
 \newcommand{\msun}{\mathrm{M}_\odot}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
 
 \begin{document}
 
@@ -26,11 +27,23 @@
 \altaffiltext{\adrn}{To whom correspondence should be addressed: adrn@astro.columbia.edu}
 
 \begin{abstract}
-% Context
-% Aims
-% Methods
-% Results
-% Conclusions
+
+Tidal streams form from the steady disruption of stellar systems
+orbiting within the gravitational field of some parent galaxy. Many
+streams and debris structures have been discovered in the halo of the
+Milky Way and have been used to model the potential of the Galaxy. 
+However, few of these models have yet explored the properties of
+tidal debris in triaxial potentials.
+The existence of a variety of orbits, resonances, and chaotic regions in such potentials 
+suggest that the morphologies and dispersal timescales of
+debris could differ significantly from the simpler spherical and oblate cases.
+In this work we use a series of N-body simulations of stellar systems over a range 
+of masses of disruption in triaxial potentials to understand the influence of the nature 
+and types of orbits on debris morphologies.
+Our results suggest that the mere existence of the multitude of thin streams
+already known to orbit the Milky Way provides significant constraints on the
+classes of triaxial potentials that provide a good representation for its dark matter halo.
+
 \end{abstract}
 
 \keywords{
@@ -46,17 +59,74 @@
 \section{Introduction}\label{sec:introduction}
 
 The halos of galaxies are filled with substructure...
-
-As a satellite galaxy or globular cluster orbits within a parent galaxy, its mass is eroded due to the tidal forces of the host galaxy. For (typically) many orbits, these tidally stripped stars remain spatially coherent and
-
-Of particular interest are such cold, young dynamical structures --- ``tidal streams'' -- which provide useful information about the mass distributions at large distances in the galaxies within which they orbit. [At these distances, disk / classic baryonic components can't help you, mostly dark matter]
-
-The formation and morphology of tidal streams has been studied extensively in a variety of assumed potential forms. [Stream formation 
+As a satellite galaxy or globular cluster orbits within a parent galaxy, its mass is eroded due to the tidal forces of the host galaxy. For (typically) many orbits, these tidally stripped stars remain spatially coherent.
+Of particular interest are cold, young dynamical structures --- ``tidal streams'' -- which provide useful information about the mass distributions at large distances in the galaxies within which they orbit. [At these distances, disk / classic baryonic components can't help you, mostly dark matter]
+The formation and morphology of tidal streams has been studied extensively in a variety of assumed potential forms. [Stream formation in oblate, spherical potentials, action-angle, etc.]
 
 \section{Methods}\label{sec:methods}
 \subsection{Potential form}
 
+\subsection{Tidal disruption in action-angle coordinates}
+When a star is tidally stripped from a progenitor system, the difference in angle coordinates, relative to the progenitor, grows linearly with time according to
+\begin{equation}
+	\Delta\bs{\theta} = \Delta\bs{\theta}(t=0) + \Delta\bs{\Omega}t
+\end{equation}
+where $\Delta\bs{\theta}(t=0)$ is the initial offset (at time of stripping, $t=0$) between the star and progenitor, and $\Delta\bs{\Omega}$ is the corresponding difference in fundamental frequencies. Once a star has ``entered'' the stream, the constant offset becomes small compared to the term that depends on time, so that
+\begin{equation}
+	\Delta\bs{\theta} \approx \Delta\bs{\Omega}t.
+\end{equation}
+If the spread of actions of the progenitor is small enough --- corresponding to a mass [or mass ratio?] of XXX --- the frequency vector for a given star may be approximated by a Taylor expansion about the frequency vector of the progenitor,
+\begin{equation}
+	\Omega_i \approx \Omega_{0,i} + \frac{\partial^2 H}{\partial J_i J_j}\Delta J_j + \mathcal{O}(\Delta J^2)
+\end{equation}
+where we make use of the Einstein summation convention in the above expression. To first order in the difference in actions, the difference in frequencies between a star and the progenitor is approximated by
+\begin{equation}
+	\Delta\Omega_i \approx \frac{\partial^2 H}{\partial J_i J_j}\Delta J_j = D_{ij}\Delta J_j.\label{eq:deltafreq}
+\end{equation}
+where $D_{ij}$ is the Hessian of the potential in action-space. For a thin stream to form, the Hessian must be dominated by a single large eigenvalue, where the corresponding eigenvector determines the direction along which the debris will spread in the angles. If two or all of the largest eigenvalues are comparable in size, the debris will not form a thin stream and the observability (projected surface density) of the debris structure will be diminished. We would like to be able to predict the morphology of a debris structure formed from a disrupting progenitor on a given orbit in a specified potential using this fact.
+
+\subsection{Numerically computing the Hessian in action-space}
+The Hessian can be computed for an orbit in a given potential provided with a numerical scheme for computing the actions, angles, and frequencies of an orbit in an arbitrary potential. This is a non-trivial task, and we use a custom implementation of the method presented in \citep{sanders14} to compute these quantities. The procedure for computing the Hessian is as follows:
+\begin{enumerate}
+	\item numerically integrate the orbit of interest in the test potential;
+	\item fit a \emph{toy potential} \citep[see][]{sanders14} to the orbit, and create a 3D grid of actions in this toy potential;
+	\item transform the actions and angles of the grid from the toy potential to ordinary phase-space;
+	\item integrate the grid of initial conditions in the test potential;
+	\item solve for actions, angles, and frequencies of this grid;
+	\item use the (now deformed) grid in action-space to linearly interpolate a regular grid about the orbit of interest;
+	\item use a finite-difference scheme to compute first derivatives of the frequency vectors ($D_{ij} = \partial \Omega_i / \partial J_j$).
+\end{enumerate}
+Once we compute the Hessian, we may solve for the eigenvalues and eigenvectors of the matrix. 
+
+An alternate approach uses the debris particles themselves to solve for the components of the Hessian at position (in action-space) of the progenitor orbit. Equation \ref{eq:deltafreq} demonstrates the relationship between the components of the relative frequency vector to the components of the relative action vector (through the Hessian) for a single particle. We now consider a case where we have a set of $K$ particles that we know should obey the equations
+\begin{equation}
+	\Delta\Omega_i^{(k)} = D_{ij}\Delta J_j^{(k)}.
+\end{equation}
+This is analogous to the classic problem in linear algebra of solving an overconstrained set of linear equations, $\mathbf{y} = \mathbf{A}\mathbf{x}$. Here, $\mathbf{y}$ is the length-$3K$ (column) vector of frequencies for each star, $\mathbf{x}$ is a length-9 (column) vector containing the ``unravelled'' values of the Hessian, and $\mathbf{A}$ is a $3K\times 9$ matrix containing the relative actions for all stars:
+\begin{align}
+	\mathbf{y} &= \left[ \begin{array}{c} 
+					\Delta\Omega_1^{(1)} \\ \Delta\Omega_2^{(1)} \\ \Delta\Omega_3^{(1)} \\ \vdots \\ 
+					\Delta\Omega_1^{(K)} \\ \Delta\Omega_2^{(K)} \\ \Delta\Omega_3^{(K)}
+				\end{array} \right]\\
+	\mathbf{A} &= \begin{bmatrix} 
+					\Delta J_1^{(1)} & \Delta J_2^{(1)} & \Delta J_3^{(1)} & 0 & 0 & 0 & 0 & 0 & 0  \\
+					0 & 0 & 0 & \Delta J_1^{(1)} & \Delta J_2^{(1)} & \Delta J_3^{(1)} & 0 & 0 & 0  \\
+					0 & 0 & 0 & 0 & 0 & 0 & \Delta J_1^{(1)} & \Delta J_2^{(1)} & \Delta J_3^{(1)}  \\
+					&&&&\vdots \\
+					\Delta J_1^{(K)} & \Delta J_2^{(K)} & \Delta J_3^{(K)} & 0 & 0 & 0 & 0 & 0 & 0  \\
+					0 & 0 & 0 & \Delta J_1^{(K)} & \Delta J_2^{(K)} & \Delta J_3^{(K)} & 0 & 0 & 0  \\
+					0 & 0 & 0 & 0 & 0 & 0 & \Delta J_1^{(K)} & \Delta J_2^{(K)} & \Delta J_3^{(K)}  \\
+			       \end{bmatrix}\\
+	\mathbf{x} &= \left[ \begin{array}{c} D_{11} \\ D_{12} \\ \vdots \\ D_{33} \end{array} \right].
+\end{align}
+The parameter vector, $\mathbf{x}$, is found trivially with ordinary least squares.
+
+% \begin{bmatrix} xz & xw \\ yz & yw \end{bmatrix}
+
 \section{Experiments}\label{sec:experiments}
+
+\subsection{Comparing Hessian solvers}
+
 
 \section{Discussion}\label{sec:discussion}
 
