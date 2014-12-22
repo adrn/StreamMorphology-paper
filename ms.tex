@@ -15,16 +15,20 @@
 \begin{document}
 
 \title{Tidal streams in triaxial systems}
-\author{Adrian M. Price-Whelan\altaffilmark{\colum,\adrn}}
+\author{Adrian M. Price-Whelan\altaffilmark{\colum,\adrn},
+	    Kathryn V. Johnston\altaffilmark{\colum},
+	    Monica Valluri\altaffilmark{\mich}}
 
 % Affiliations
 \newcommand{\colum}{1}
 \newcommand{\adrn}{2}
+\newcommand{\mich}{3}
 \altaffiltext{\colum}{Department of Astronomy, 
 		              Columbia University, 
 		              550 W 120th St., 
 		              New York, NY 10027, USA}
 \altaffiltext{\adrn}{To whom correspondence should be addressed: adrn@astro.columbia.edu}
+\altaffiltext{\mich}{ }
 
 \begin{abstract}
 
@@ -65,7 +69,21 @@ As a satellite galaxy or globular cluster orbits within a parent galaxy, its mas
 Of particular interest are cold, young dynamical structures --- ``tidal streams'' -- which provide useful information about the mass distributions at large distances in the galaxies within which they orbit. [At these distances, disk / classic baryonic components can't help you, mostly dark matter]
 The formation and morphology of tidal streams has been studied extensively in a variety of assumed potential forms. [Stream formation in oblate, spherical potentials, action-angle, etc.]
 
+\section{Outline}
+\begin{itemize}
+\item Start by choosing a potential and generating a frequency map for grids of loop orbits in this potential. We will use two potentials: a triaxial, NFW halo and a three-component sum of a triaxial NFW halo + disk + bulge. We will use the loop orbits to analyze properties of tidal streams along different orbits in these potentials.
+\item Similar to Valluri \& Merritt (1998), we'll generate initial conditions in the $x-z$ plane with $v_x = v_z = y=0$. We'll use fixed energies (from pre-chosen energy shells) to get $v_y$. 
+\item After classifying orbits, special regions, and frequency diffusion rates, we will pick a few representative cases and integrate balls of particles around those initial conditions forward for some integration time, $T_{\rm int}$. From this, we can hopefully get an idea of how the morphology of the resultant debris changes with frequency diffusion rate. Does the disk matter? (previous Valluri work suggests yes). What happens to debris on orbits near resonances?
+\item For some of the above cases, run full N-body simulations and look at the debris properties. Are there morphological differences? (Note: can we trust SCF simulations? SCF uses Leapfrog integration, not great for orbits with diffusing frequencies...)
+
+\end{itemize}
+
+{\bf Note: ignore the sections below! They are just notes for myself...}
+
 \section{Methods}\label{sec:methods}
+
+For the debris morphology, ``progenitor'' matters, but also 2nd order potential effects e.g. hessian?
+
 \subsection{Potential form}
 
 \subsection{Tidal disruption in action-angle coordinates}
