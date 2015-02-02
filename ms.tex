@@ -3,6 +3,7 @@
 
 % packages
 \usepackage{amssymb,amsmath,amsbsy}
+\usepackage{forest}
 
 % commands
 \newcommand{\given}{\,|\,}
@@ -68,6 +69,51 @@ The halos of galaxies are filled with substructure...
 As a satellite galaxy or globular cluster orbits within a parent galaxy, its mass is eroded due to the tidal forces of the host galaxy. For (typically) many orbits, these tidally stripped stars remain spatially coherent.
 Of particular interest are cold, young dynamical structures --- ``tidal streams'' -- which provide useful information about the mass distributions at large distances in the galaxies within which they orbit. [At these distances, disk / classic baryonic components can't help you, mostly dark matter]
 The formation and morphology of tidal streams has been studied extensively in a variety of assumed potential forms. [Stream formation in oblate, spherical potentials, action-angle, etc.]
+
+For an integrable Hamiltonian, $H$, with $N$ degrees of freedom (d.o.f.), the equations of motion are most simply expressed in angle-action coordinates. In these coordinates, the actions, $J_n$, are integrals of the motion, and the conjugate angle variables, $\theta_n$, increase linearly with time
+\begin{align}
+	J_n &= {\rm const.}\\
+	\dot{J}_n &= -\frac{\partial H}{\partial \theta_n} = 0\\
+	\theta_n(t) &= \Omega_n t + \theta_n(0)\\
+	\dot{\theta}_n &= \frac{\partial H}{\partial J_n} = \Omega_n(J_1,...,J_n)
+\end{align}
+where $n=1,2,...N$, and $\Omega_n$ are the fundamental frequencies of the orbit. Owing to the involutive property of the actions and the periodic nature of the angle variables, the topology of angle-action space is equivalent to that of the surface of an $N$-dimensional torus, and thus orbits are often referred to in terms of \emph{orbital tori}; each set of actions, $(J_1,J_2,...J_N)$, uniquely determine the torus associated with a given orbit.
+
+If galactic halos are triaxial, their gravitational potentials will almost certainly not be globally integrable. For a given halo, if the potential is close to integrable such that the Hamiltonian can be written in terms of a small perturbation, $\epsilon$, away from some integrable Hamiltonian, $H_0$,
+\begin{equation}
+	H(\bs{\theta}, \bs{J}) = H_0(\bs{J}) + \epsilon H_1(\bs{\theta}, \bs{J})
+\end{equation}
+then a large number of regular orbits will survive the perturbation (e.g., the KAM theorem; cite Arnold)\footnote{3-vectors are represented with bold symbols}. The tori that survive will in general by separated by regions of irregular or chaotic motion, and thus any transformations to angle-action coordinates can only be defined locally. The types of motion generic to typical triaxial systems can be split into several sub-categories (summarized in Figure~\ref{fig:orbit-tree}). Regular motion can be classified by the number of resonance relations it obeys \citep[e.g.,][]{valluri98}: \emph{quasi-periodic} orbits obey no resonance relations, \emph{uni-resonant} orbits obey a single relation of the form $\bs{m}\cdot\bs{\Omega}=0$, and \emph{bi-resonant} orbits obey two resonance relations, $\bs{m}\cdot\bs{\Omega}=0$ and $\bs{n}\cdot\bs{\Omega}=0$, where $\bs{m}$ and $\bs{n}$ are integer vectors.
+
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{figures/orbit-tree.pdf}
+\caption{} \label{fig:orbit-tree}
+\end{center}
+\end{figure*}
+
+For small perturbations, quasi-periodic, resonant, and periodic orbits all survive. As the strength of the perturbation increases, the tori associated with quasi-periodic motion 
+
+the (bold symbols represent 3-vectors)
+
+
+\section{Numerical methods}
+
+\subsection{Numerical estimation of fundamental frequencies}
+
+\subsection{Particle balls}
+
+\section{Experiments}
+
+\subsection{Potential choice}
+
+\subsection{Frequency map}
+
+\subsection{Morphology}
+
+\subsection{Morphology}
+
+
 
 \section{Outline}
 \begin{itemize}
