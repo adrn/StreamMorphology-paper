@@ -17,6 +17,7 @@
 \newcommand{\msun}{\mathrm{M}_\odot}
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\ident}{\mathbb{1}}
+\newcommand{\inttime}{t_{\rm int}}
 
 \newcommand{\act}{J}
 %\newcommand{\jac}{\bs{\rm J}}
@@ -105,6 +106,8 @@ Resonant orbits are dynamically important in systems with several degrees of fre
 
 For small perturbations, generically, many regular orbits survive and only small chaotic islands are introduced. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed, then the uni-resonant tori are destroyed, and finally the bi-resonant tori -- these are least susceptible to destruction from perturbations \citep[e.g., see][]{valluri98}. The irregular or chaotic orbits that fill the parts of action-space where tori have been destroyed are loosely classified by being either \emph{strongly} or \emph{weakly} chaotic. Qualitatively, strongly chaotic orbits behave irregularly over a few ($\sim$10) dynamical times, whereas weakly chaotic orbits behave regularly over this timescale. There are many methods for classifying and measuring the degree of stochasticity of an orbit. 
 
+[ Need to talk about how it is, in general, hard to find transformation to angle-action coords ]
+
 \section{Numerical methods}
 
 \subsection{Potential choice}
@@ -189,14 +192,46 @@ and the MLE is
 
 \subsection{Numerical estimation of fundamental frequencies}
 
-Bounded, regular orbits in triaxial potentials will have three \emph{fundamental frequencies}, $\bs{\Omega}$, that determine the periodic behavior of motion (Eq.~\ref{eq:aafreq}).
+[Compare Lyapunov time to freq. diffusion time?]
+
+Bounded, regular orbits in a triaxial potential will have three fundamental frequencies, $\bs{\Omega}$, that determine the periodic behavior of motion (Eq.~\ref{eq:aafreq}). This implies that for any canonical coordinate, $q$, the motion can be decomposed as 
+\begin{equation}
+	q(t) = \sum^\infty_k a_k e^{i \omega_k t}
+\end{equation}
+where these frequencies, $\omega_k$ are linear, integer combinations of the fundamental frequencies
+\begin{equation}
+	\omega_k = \bs{n}_k \cdot \bs{\Omega}
+\end{equation}
+and the $a_k$ are complex amplitudes. \cite{laskar??} introduced a method for recovering the fundamental frequencies of an orbit that effectively uses a Hanning-filtered fast-Fourier transform (FFT) of complex combinations of the motion (e.g., $x(t) + i v_x(t)$). It has been shown that using the Hanning filter makes the accuracy in determining the frequencies scale as $\inttime^{-4}$ \citep{laskar98}, where $\inttime$ is the integration time. We follow \cite{valluri98} and refer to this method as ``Numerical Approximation of Fundamental Frequencies'' (NAFF) even though it differs slightly from the original method described in (cite Laskar).
+
+If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may act consistently periodic over windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character (possibly) smoothly with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically over time. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit, and these will dramatically if comparing two consecutive integration periods. Therefore, the frequency diffusion rate per orbit, $\mathcal{R}_\Omega$, is a good predictor for how chaotic an orbit is:
+\begin{equation}
+	\mathcal{R}_\Omega = \max_{\bs{a}}\,2(\bs{\Omega}_{T_1} - \bs{\Omega}_{T_2}) / \inttime
+\end{equation}
+where $\bs{\Omega}_{T_1}$ and $\bs{\Omega}_{T_2}$ are the fundamental frequencies computed from two consecutive sections of orbit, $\inttime$ is the total integration time (over both sections), and $\bs{a}$ are the amplitudes corresponding to the frequencies. The frequency diffusion rate measured in the frequency with the largest amplitude is better correlated with the strength of chaos in an orbit relative to, e.g., the mean or maximum rate (cite valluri recent work?).
+
+We have found that for ``sticky'' or mildly chaotic orbits, reliably computing the Lyapunov exponent can require integration times equivalent to thousands of orbital periods. In comparison, owing to the precision of NAFF, detecting small frequency diffusion rates can be done with only hundreds of orbital periods. [example? comparison?] 
+
+NAFF has been applied to many problems in Solar System and Galactic dynamics, especially in studying the nature of orbits in triaxial systems. For more details about the method, see, for example, (cite ...). The original procedure was written in FORTRAN, but we have implemented and tested our own implementation in Python. This code is publicly available through the Gary package.\footnote{link to repo}
 
 [Figure: reproduce some result?]
-
 or
 [Figure: for same orbits as in Lyapunov section, show frequency diffusion?]
 
 \subsection{Particle balls}
+
+Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{pearson15, fardal??} [TODO: should I put sarahs paper here even though we didn't say this explicitly?], however, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depends on the degree of stochasticity. Further, quantifying the degree of stochasticity with the frequency diffusion rate and Lyapunov exponent represent local measures of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question requires a massive exploration of parameter space -- both in potential and in orbits -- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
+
+We therefore take a simplified approach that does reproduce [...] N-body simulations for several test cases. For a given set of orbital initial conditions, we find the coordinates at the nearest pericenter, initialize a small ``ball'' of test particle orbits around this position, then follow the orbits of all of these test particles for some time. For a given mass scale, the ball particle position and velocity offsets are assumed to be Normal distributed away from the parent orbit with spreads set by the tidal radius in position and velocity scale in velocity. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and is drawn from
+\begin{align}
+	\delta\bs{x}_i &\sim \mathcal{N}(0, r_{\rm tide})\\
+	\delta\bs{v}_i &\sim \mathcal{N}(0, \sigma_v)\\
+	r_{\rm tide} &=|\bs{x}_0| \left(\frac{m}{3M_{\rm enc}(|\bs{x}_0|)}\right)^{1/3} \\
+	\sigma_v &= |\bs{v}_0|\left(\frac{m}{3M_{\rm enc}(|\bs{x}_0|)}\right)^{1/3} 
+\end{align}
+where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, and $m$ is the mass scale of the debris. 
+
+For this work, we take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass to estimate the above scales.
 
 Need a fast way to characterize morphology of local orbits after finite time
 
