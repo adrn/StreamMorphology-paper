@@ -115,22 +115,23 @@ All of these parameters are specified in terms of the \emph{density}; for orbit 
 
 For this work, we use the triaxial potential expression from \citet{lee03}, parametrized in a slightly different manner. In terms of spherical coordinates\footnote{(radius, azimuth, colatitude)} with the radius normalized by the scale radius, $u = r/r_s$
 \begin{align}
-	\Phi(u,\phi,\theta) \approx \frac{v_c^2}{\ln2 - 1/2}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]
+	\Phi(u,\phi,\theta) &\approx \frac{v_c^2}{A}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]\\
+	A &= \left(\ln2 - \frac{1}{2}\right) + \left(\ln2-\frac{3}{4}\right) (e_b^2 + e_c^2)
 \end{align}
-where $v_c$ is the circular velocity at the scale radius, $r_s$ (for the spherical case), $e_b = \sqrt{1 - (b/a)^2}$, and $e_c = \sqrt{1 - (c/a)^2}$. The functions $F_i(u)$ are given in the appendix of \cite{lee03}. We chose $r_s=20~{\rm kpc}$ and $v_c \approx 200~{\rm km}~{\rm s}^{-1}$ , which [...] (Figure~\ref{fig:potential}).
+where $v_c$ is the circular velocity at the scale radius, $r_s$, along the $x$-axis, $e_b = \sqrt{1 - (b/a)^2}$, and $e_c = \sqrt{1 - (c/a)^2}$. The functions $F_i(u)$ are given in the appendix of \cite{lee03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 200~{\rm km}~{\rm s}^{-1}$ to [...]. Figure~\ref{fig:potential} shows the rotation curve of this potential along the three principal axes.
 
 \begin{figure*}[!h]
 \begin{center}
 \includegraphics[width=0.75\textwidth]{figures/potential.pdf}
-\caption{Rotation curve along $x$, $y$, and $z$ axes for the triaxial, NFW potential } \label{fig:orbit-tree}
+\caption{Rotation curve along $x$, $y$, and $z$ axes for the triaxial, NFW potential } \label{fig:potential}
 \end{center}
 \end{figure*}
 
-[see discussion section for adding terms (disk, time evolution) to potential]
+This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the effect of chaos in the halos of such galaxies. Real galactic potentials will have a significant component due to the disk and bulge and may have twists (cite), radially changing axis ratios (cite), significant substructure (cite), or time dependence (either from bulk rotation, mass growth, mergers, etc.; cite). We expect all of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for more [...] and a few simple tests that demonstrate this expectation.
 
 \subsection{Orbit integration}
 
-[Use a blah blah integrator...]
+We use the Dormand-Prince 8th-order Runge-Kutta scheme (cite Dormand 1981) to integrate orbits in the above potential. In particular, we use the Python wrapper to the FORTRAN routines provided in the Scipy package (cite?). For all orbits, we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-9}$ by the end of integration. Unless otherwise specified, orbits are integrated for $\sim$200 orbital periods with 500 steps per orbital period. Some box orbits require more internal integration steps in order to conserve energy to the required level. 
 
 \subsection{Lyapunov exponents}
 
@@ -238,6 +239,8 @@ Time dependence
 Radial dependence of axis ratios
 
 Why not disk + bulge? What do we expect when we add? See later section for test of this...
+
+Real disk will be self-consistent with halo, so this isn't really a fair test, but still...
 
 \acknowledgements
 APW is supported by a National Science Foundation Graduate Research Fellowship under Grant No.\ 11-44155. 
