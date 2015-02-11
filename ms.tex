@@ -8,6 +8,7 @@
 \usepackage{algpseudocode}
 \renewcommand\algorithmicthen{}
 \renewcommand\algorithmicdo{}
+\usepackage{mathrsfs}
 
 % commands
 \newcommand{\given}{\,|\,}
@@ -21,7 +22,8 @@
 
 \newcommand{\act}{J}
 %\newcommand{\jac}{\bs{\rm J}}
-\newcommand{\jac}{\bs{G}}
+%\newcommand{\jac}{\bs{G}}
+\newcommand{\jac}{\mathscr{J}}
 
 \begin{document}
 
@@ -80,20 +82,24 @@ As a satellite galaxy or globular cluster orbits within a parent galaxy, its mas
 Of particular interest are cold, young dynamical structures --- ``tidal streams'' -- which provide useful information about the mass distributions at large distances in the galaxies within which they orbit. [At these distances, disk / classic baryonic components can't help you, mostly dark matter]
 The formation and morphology of tidal streams has been studied extensively in a variety of assumed potential forms. [Stream formation in oblate, spherical potentials, action-angle, etc.]
 
-For an integrable Hamiltonian, $H$, with $N$ degrees of freedom (d.o.f.), the equations of motion are most simply expressed in angle-action coordinates. In these coordinates, the actions, $J_n$, are integrals of the motion, and the conjugate angle variables, $\theta_n$, increase linearly with time
+\hrule
+
+For an integrable Hamiltonian, $H$, with $N$ degrees of freedom (dof), the equations of motion are most simply expressed in angle-action coordinates. In these coordinates, the actions, $J_n$, are integrals of the motion, and the conjugate angle variables, $\theta_n$, increase linearly with time
 \begin{align}
 	\act_n &= {\rm const.}\\
 	\dot{\act}_n &= -\frac{\partial H}{\partial \theta_n} = 0\\
 	\theta_n(t) &= \Omega_n t + \theta_n(0)\\
 	\dot{\theta}_n &= \frac{\partial H}{\partial \act_n} = \Omega_n(\act_1,...,\act_n)\label{eq:aafreq}
 \end{align}
-where $n=1,2,...N$, and $\Omega_n$ are the fundamental frequencies of the orbit. Owing to the involutive property of the actions and the periodic nature of the angle variables, the topology of angle-action space is equivalent to that of the surface of an $N$-dimensional torus, and thus orbits are often referred to in terms of \emph{orbital tori}; each set of actions, $(\act_1,\act_2,...\act_N)$, uniquely determine the torus associated with a given orbit.
+where $i=1,2,...N$, and $\Omega_n$ are the fundamental frequencies of the orbit. Owing to the involutive property of the actions and the periodic nature of the angle variables, the topology of angle-action space is equivalent to that of the surface of an $N$-dimensional torus, and thus orbits are often referred to in terms of \emph{orbital tori}: each set of actions, $(\act_1,\act_2,...\act_N)$, uniquely determine the torus associated with a given orbit and the angles specify the location on the surface of the $N$-torus.
 
-If galactic halos are triaxial, their gravitational potentials will almost certainly not be globally integrable. For a given halo, if the potential is close to integrable such that the Hamiltonian can be written in terms of a small perturbation, $\epsilon$, away from some integrable Hamiltonian, $H_0$,
+If, to first order, galactic halos are triaxial, galactic gravitational potentials will almost certainly not be globally integrable. If a triaxial potential is close to integrable such that the Hamiltonian can be written in terms of a small perturbation, $\epsilon$, away from some integrable Hamiltonian, $H_0$,
 \begin{equation}
 	H(\bs{\theta}, \bs{\act}) = H_0(\bs{\act}) + \epsilon H_1(\bs{\theta}, \bs{\act})
 \end{equation}
-then a large number of regular orbits will survive the perturbation (e.g., the KAM theorem; cite Arnold)\footnote{3-vectors are represented with bold symbols}. The tori that survive will in general be separated by regions of irregular or chaotic motion, and thus any transformations to angle-action coordinates can only be defined locally. The types of motion generic to typical triaxial systems can be split into several sub-categories (summarized in Figure~\ref{fig:orbit-tree}). Regular motion can be classified by the number of resonance relations obeyed \citep[e.g.,][]{lichtenberg83, valluri98}: \emph{conditionally periodic} orbits obey no resonance relations, \emph{uni-resonant} orbits obey a single relation of the form $\bs{m}\cdot\bs{\Omega}=0$, and \emph{bi-resonant} orbits obey two resonance relations, $\bs{m}\cdot\bs{\Omega}=0$ and $\bs{n}\cdot\bs{\Omega}=0$, where $\bs{m}$ and $\bs{n}$ are integer vectors.
+then a large number of regular orbits will survive the perturbation (by way of the KAM theorem)\footnote{3-vectors are represented with bold symbols, e.g., $\bs{J}=(J_1,J_2,J_3)$.}. The tori that survive will in general be separated by regions of irregular or chaotic motion, and thus any transformations to angle-action coordinates can only be defined locally. 
+
+The types of motion generic to triaxial systems can be split into several sub-categories (summarized in Figure~\ref{fig:orbit-tree}). Regular motion can be classified by the number of resonance relations obeyed \citep[e.g.,][]{lichtenberg83, valluri98}: \emph{conditionally periodic} orbits obey no resonance relations, \emph{uni-resonant} orbits obey a single relation of the form $\bs{m}\cdot\bs{\Omega}=0$, and \emph{bi-resonant} orbits obey two resonance relations, $\bs{m}\cdot\bs{\Omega}=0$ and $\bs{n}\cdot\bs{\Omega}=0$, where $\bs{m}$ and $\bs{n}$ are integer vectors.
 
 \begin{figure*}[!h]
 \begin{center}
@@ -102,26 +108,26 @@ then a large number of regular orbits will survive the perturbation (e.g., the K
 \end{center}
 \end{figure*}
 
-Resonant orbits are dynamically important in systems with several degrees of freedom as they determine the structure of orbit-space. Stable resonant orbits generate families of orbits that behave or appear similarly, whereas unstable resonances typically generate regions of stochasticity. Not all orbits can be trivially associated with resonances, however, due to the infinitely complex, hierarchical structure of stable resonances. In autonomous, two d.o.f. systems, stochastic regions are generally surrounded and separated by regular motion, but in three or more d.o.f. the chaotic regions will connect and overlap; this is the origin of the phenomenon of Arnold diffusion \citep{arnold79}. The implication of Arnold diffusion is that chaotic orbits may radically change shape by means of traversing the web of unstable resonances and are strictly only bounded to their own energy hypersurface. Another way to understand this phenomenon is by means of orbital tori: in two dimensions, if a given orbital torus is destroyed due to perturbations, the orbit is still bounded between the surrounding tori due to energy conservation. In three dimensions, the extra degree of freedom allows chaotic orbits to ``escape'' confinement.
+Resonant orbits are rare \citep{merritt99} but dynamically important in systems with several degrees of freedom as they determine the structure of orbit-space. Stable, resonant orbits generate families of orbits that may behave or appear similarly, whereas unstable resonances are typically associated with regions of chaos. However not all orbits can be trivially associated with resonances due to the infinitely complex, hierarchical structure of resonances (though the importance or ``size'' of a resonance falls off inversely with the norm of its integer vector, $|\bs{m}|^{-\alpha}$, with $\alpha > 0$). In autonomous, two dof systems, stochastic regions are generally surrounded and separated by regular motion, thus chaotic orbits are confined. In three or more dof the chaotic regions will connect and overlap. This is the origin of Arnold diffusion \citep{arnold64}, which allows chaotic orbits to radically change shape by traversing the web of unstable resonances and are only strictly bounded to their own energy hypersurface. This phenomenon is perhaps easier to visualize in action-space: in two dof systems, if a given set of tori are destroyed due to potential perturbations, an orbit in this now chaotic region is still bounded between the surrounding tori due to energy conservation. In three dimensions, the extra degree of freedom allows chaotic orbits to ``escape'' this confinement.
 
-For small perturbations, generically, many regular orbits survive and only small chaotic islands are introduced. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed, then the uni-resonant tori are destroyed, and finally the bi-resonant tori -- these are least susceptible to destruction from perturbations \citep[e.g., see][]{valluri98}. The irregular or chaotic orbits that fill the parts of action-space where tori have been destroyed are loosely classified by being either \emph{strongly} or \emph{weakly} chaotic. Qualitatively, strongly chaotic orbits behave irregularly over a few ($\sim$10) dynamical times, whereas weakly chaotic orbits behave regularly over this timescale. There are many methods for classifying and measuring the degree of stochasticity of an orbit. 
+For small potential perturbations, many regular orbits survive and only small chaotic islands are introduced. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed. Next, the uni-resonant tori are destroyed, and finally the bi-resonant tori -- these are least susceptible to destruction from perturbations \citep[e.g., see][]{valluri98}. However, even orbits that are strictly chaotic may behave regularly over timescales much longer than, e.g., the dynamical time of the system. Chaotic can therefore be loosely classified by being either \emph{strongly} or \emph{weakly} chaotic: strongly chaotic orbits behave irregularly over a few ($\sim$10) dynamical times, whereas weakly chaotic orbits behave regularly over this timescale (we quantify this distinction in Section~\ref{sec:}). This rough classification is tied to local measures, such as the Lyapunov time (Section~\ref{}) or frequency diffusion time (Section~\ref{}), and to the mixing rate of small ensembles of orbits (Section~\ref{}).
 
-[ Need to talk about how it is, in general, hard to find transformation to angle-action coords ]
+[summarizing paragraph connecting everything, mention mixing, relation to tidal streams]
 
 \section{Numerical methods}
 
 \subsection{Potential choice}
 
-The density distributions within dark matter halos formed in cosmological N-body simulations are typically triaxial (e.g., millenium, aquarius, via lactea). \citet{jing02} found that a triaxial generalization of the classic NFW density profile \citep{navarro96} generates excellent fits to their high-resolution N-body simulations, and they provide probability distributions for the axis ratios of the many halos formed in their simulations. They find median axis ratios of $c/a \approx 0.55$ and $b/a \approx 0.77$ where $a$ is the major axis, $b$ the intermediate, and $c$ the minor axis.\footnote{Note that \citet{jing02} use the opposite notation so that $c$ is the major and $a$ is the minor axis.} They find significant scatter in the distributions of concentration parameter, $c_e$, or scale radius (depending on choice of parametrization). 
+The density distributions within dark matter halos formed in cosmological N-body simulations are typically triaxial \citep[e.g.,][]{jing02, bett07, zemp09, veraciro11}. \citet{jing02} found that a triaxial generalization of the classic NFW density profile \citep{navarro96} generates excellent fits to their high-resolution N-body simulations, and they provide probability distributions for the axis ratios of the many halos formed in their simulations. They find median axis ratios of $c/a \approx 0.55$ and $b/a \approx 0.77$ where $a$ is the major axis, $b$ the intermediate, and $c$ the minor axis.\footnote{Note that \citet{jing02} use the opposite notation so that $c$ is the major and $a$ is the minor axis.} They find significant scatter in the distributions of concentration parameter, $c_e$, or scale radius (depending on choice of parametrization). 
 
-All of these parameters are specified in terms of the \emph{density}; for orbit analysis, we need to determine the form of the potential in terms of these parameters, which, in general, requires numerical integration of the density at each position of interest. For computational efficiency, many authors instead express the triaxiality in the form of the potential, however this can lead to unphysical situations where the density becomes negative. \citet{leesuto03} derive a perturbative expansion of the potential integral and show that the expansion is accurate even for modest axis ratios (e.g., the median values shown above). 
+All of these parameters are specified in terms of the \emph{density}; for orbit analysis, we need to determine the form of the potential in terms of these parameters, which, in general, requires numerical integration of the density at each position of interest. For computational efficiency, many authors instead express the triaxiality in the form of the potential, however this can lead to unphysical situations where the density becomes negative. \citet{leesuto03} derive a perturbative expansion of the potential integral for a triaxial NFW density and show that the expansion is accurate even for modest axis ratios (e.g., the median values shown above). 
 
-For this work, we use the triaxial potential expression from \citet{leesuto03}, parametrized in a slightly different manner. In terms of spherical coordinates\footnote{(radius, azimuth, colatitude)} with the radius normalized by the scale radius, $u = r/r_s$
+For this work, we use the triaxial potential expression from \citet{leesuto03}, parametrized in a slightly different manner. In terms of spherical coordinates\footnote{$(r,\phi,\theta)$ = (radius, azimuth, colatitude)} with the radius normalized by the scale radius, $u = r/r_s$
 \begin{align}
 	\Phi(u,\phi,\theta) &\approx \frac{v_c^2}{A}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]\\
 	A &= \left(\ln2 - \frac{1}{2}\right) + \left(\ln2-\frac{3}{4}\right) (e_b^2 + e_c^2)
 \end{align}
-where $v_c$ is the circular velocity at the scale radius, $r_s$, along the $x$-axis, $e_b = \sqrt{1 - (b/a)^2}$, and $e_c = \sqrt{1 - (c/a)^2}$. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 200~{\rm km}~{\rm s}^{-1}$ to [...]. Figure~\ref{fig:potential} shows the rotation curve of this potential along the three principal axes.
+where $v_c$ is the circular velocity at the scale radius, $r_s$, along the $x$-axis, $e_b = \sqrt{1 - (b/a)^2}$, and $e_c = \sqrt{1 - (c/a)^2}$. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 200~{\rm km}~{\rm s}^{-1}$ as arbitrary choices but motivated by the halo concentration distributions found by \cite{jing02}. Figure~\ref{fig:potential} shows the rotation curve of this potential along the three principal axes.
 
 \begin{figure*}[!h]
 \begin{center}
@@ -130,11 +136,11 @@ where $v_c$ is the circular velocity at the scale radius, $r_s$, along the $x$-a
 \end{center}
 \end{figure*}
 
-This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the effect of chaos in the halos of such galaxies. Real galactic potentials will have a significant component due to the disk and bulge and may have twists (cite), radially changing axis ratios (cite), significant substructure (cite), or time dependence (either from bulk rotation, mass growth, mergers, etc.; cite). We expect all of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for more [...] and a few simple tests that demonstrate this expectation.
+This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the effect of chaos in the halos of such galaxies. Real galactic potentials will have a significant component due to the disk and bulge and may have twisting inertia tensors (cite), radially changing axis ratios \citep[e.g.,][]{veraciro11}, significant substructure \citep{zemp09}, or time dependence (either from bulk rotation, mass growth, mergers, etc.; cite). We expect all of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for a few simple examples that demonstrate this expectation.
 
 \subsection{Orbit integration}
 
-We use the Dormand-Prince 8th-order Runge-Kutta scheme (cite Dormand 1981) to integrate orbits in the above potential. In particular, we use the Python wrapper to the FORTRAN routines provided in the Scipy package (cite?). For all orbits, we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-9}$ by the end of integration. Unless otherwise specified, orbits are integrated for $\sim$200 orbital periods with 500 steps per orbital period. Some box orbits require more internal integration steps in order to conserve energy to the required level. 
+We use the Dormand-Prince 8th-order Runge-Kutta scheme (cite Dormand 1981) to integrate orbits in the above potential. In particular, we use the Python wrapper to the FORTRAN routines provided in the Scipy package \citep{scipy}. For all orbits, we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-9}$ by the end of integration. Unless otherwise specified, orbits are integrated for $\sim$200 orbital periods with 500 steps per orbital period. Some box orbits require more internal integration steps in order to conserve energy to the required level. 
 
 \subsection{Lyapunov exponents}
 
@@ -192,19 +198,17 @@ and the MLE is
 
 \subsection{Numerical estimation of fundamental frequencies}
 
-[Compare Lyapunov time to freq. diffusion time?]
-
-Bounded, regular orbits in a triaxial potential will have three fundamental frequencies, $\bs{\Omega}$, that determine the periodic behavior of motion (Eq.~\ref{eq:aafreq}). This implies that for any canonical coordinate, $q$, the motion can be decomposed as 
+Bounded, regular orbits in a triaxial potential will have three fundamental frequencies, $\bs{\Omega}$, that determine the periodic behavior of motion (Eq.~\ref{eq:aafreq}). This implies that for any canonical coordinate, $q$, the motion in this coordinate can be decomposed as 
 \begin{equation}
 	q(t) = \sum^\infty_k a_k e^{i \omega_k t}
 \end{equation}
-where these frequencies, $\omega_k$ are linear, integer combinations of the fundamental frequencies
+where these frequencies, $\omega_k$, are linear, integer combinations of the fundamental frequencies
 \begin{equation}
 	\omega_k = \bs{n}_k \cdot \bs{\Omega}
 \end{equation}
-and the $a_k$ are complex amplitudes. \cite{laskar??} introduced a method for recovering the fundamental frequencies of an orbit that effectively uses a Hanning-filtered fast-Fourier transform (FFT) of complex combinations of the motion (e.g., $x(t) + i v_x(t)$). It has been shown that using the Hanning filter makes the accuracy in determining the frequencies scale as $\inttime^{-4}$ \citep{laskar98}, where $\inttime$ is the integration time. We follow \cite{valluri98} and refer to this method as ``Numerical Approximation of Fundamental Frequencies'' (NAFF) even though it differs slightly from the original method described in (cite Laskar).
+and the $a_k$ are complex amplitudes. \cite{laskar93} introduced a method for recovering the fundamental frequencies of an orbit that effectively uses a Hanning-filtered fast-Fourier transform (FFT) of complex combinations of the motion (e.g., $x(t) + i v_x(t)$). It has been shown that using the Hanning filter makes the accuracy in determining the frequencies scale as $\inttime^{-4}$ \citep{laskar99}, where $\inttime$ is the integration time. We follow \cite{valluri98} and refer to this method as ``Numerical Approximation of Fundamental Frequencies'' (NAFF) even though it differs slightly from the original method from Laskar.
 
-If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may act consistently periodic over windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character (possibly) smoothly with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically over time. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit, and these will dramatically if comparing two consecutive integration periods. Therefore, the frequency diffusion rate per orbit, $\mathcal{R}_\Omega$, is a good predictor for how chaotic an orbit is:
+If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may act consistently periodic over long windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character (possibly) smoothly with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically when comparing two separate sections of orbit. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit over a given period, and these will vary dramatically if comparing two consecutive integration periods. Therefore, the frequency diffusion rate per orbit, $\mathcal{R}_\Omega$, is a good predictor for how chaotic an orbit is:
 \begin{equation}
 	\mathcal{R}_\Omega = \max_{\bs{a}}\,2(\bs{\Omega}_{T_1} - \bs{\Omega}_{T_2}) / \inttime
 \end{equation}
@@ -212,38 +216,31 @@ where $\bs{\Omega}_{T_1}$ and $\bs{\Omega}_{T_2}$ are the fundamental frequencie
 
 We have found that for ``sticky'' or mildly chaotic orbits, reliably computing the Lyapunov exponent can require integration times equivalent to thousands of orbital periods. In comparison, owing to the precision of NAFF, detecting small frequency diffusion rates can be done with only hundreds of orbital periods. [example? comparison?] 
 
-NAFF has been applied to many problems in Solar System and Galactic dynamics, especially in studying the nature of orbits in triaxial systems. For more details about the method, see, for example, (cite ...). The original procedure was written in FORTRAN, but we have implemented and tested our own implementation in Python. This code is publicly available through the Gary package.\footnote{link to repo}
+NAFF has been applied to many problems in Solar System and Galactic dynamics, especially in the study of of orbits in triaxial systems. For more details about the method, see \cite{papaphillipou, laskar, etc.}. We have implemented and tested our own implementation of NAFF in Python. This code is publicly available through the Gary package.\footnote{link to repo} Figure~\ref{fig:logfreqs} shows a test of the implementation in which we reproduce the frequency map at a fixed energy of an axisymmetric, logarithmic potential \cite[][pg. 260, Figure~3.45]{binneytremaine}. Plotted are the frequency ratios [...]. In such a map, stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. 
 
-[Figure: reproduce some result?]
-or
-[Figure: for same orbits as in Lyapunov section, show frequency diffusion?]
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{figures/log-freqmap.png}
+\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:logfreqs}
+\end{center}
+\end{figure*}
 
-\subsection{Particle balls}
+[Figure: for same orbits as in Lyapunov section, show frequency diffusion by computing frequencies in rolling windows?]
 
-Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{pearson15, fardal??} [TODO: should I put sarahs paper here even though we didn't say this explicitly?], however, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depends on the degree of stochasticity. Further, quantifying the degree of stochasticity with the frequency diffusion rate and Lyapunov exponent represent local measures of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question requires a massive exploration of parameter space -- both in potential and in orbits -- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
+\subsection{Test particle ensembles}
 
-We therefore take a simplified approach that does reproduce [...] N-body simulations for several test cases. For a given set of orbital initial conditions, we find the coordinates at the nearest pericenter, initialize a small ``ball'' of test particle orbits around this position, then follow the orbits of all of these test particles for some time. For a given mass scale, the ball particle position and velocity offsets are assumed to be Normal distributed away from the parent orbit with spreads set by the tidal radius in position and velocity scale in velocity. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and is drawn from
+Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{pearson15, fardal??} [TODO: should I put sarahs paper here even though we didn't say this explicitly?], however, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity. Further, quantifying the degree of stochasticity with, for example, the frequency diffusion rate represents a \emph{local} measure of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question would require a massive exploration of parameter space -- both in potential and in orbits -- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
+
+We therefore take a simplified approach and consider small ensembles of particles meant to represent debris disrupted from a single tidal disruption event of a low-mass progenitor. For a given set of orbital initial conditions -- the parent orbit -- we find the position of the nearest pericenter, initialize a small ensemble of test particle orbits around this position, then follow the orbits of all of these test particles for some evolution time, $T_{\rm ev}$. For a given mass scale, the ensemble particle position and velocity offsets are assumed to be Normal-distributed away from the parent orbit with spreads set by the tidal radius in position and velocity scale in velocity \citep[e.g.,][]{johnston98, apw14}. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and is drawn from
 \begin{align}
 	\delta\bs{x}_i &\sim \mathcal{N}(0, r_{\rm tide})\\
 	\delta\bs{v}_i &\sim \mathcal{N}(0, \sigma_v)\\
 	r_{\rm tide} &=|\bs{x}_0| \left(\frac{m}{3M_{\rm enc}(|\bs{x}_0|)}\right)^{1/3} \\
 	\sigma_v &= |\bs{v}_0|\left(\frac{m}{3M_{\rm enc}(|\bs{x}_0|)}\right)^{1/3} 
 \end{align}
-where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, and $m$ is the mass scale of the debris. For this work, we take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass to estimate the above scales.
+where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, and $m$ is the mass scale of the debris, and $|\cdot |$ is the Euclidean norm. For this work, we take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass to estimate the above scales.
 
-Need a fast way to characterize morphology of local orbits after finite time
-
-Can't run N-body for many tens of thousands of initial conditions
-
-Explain simplistic approach
-
-[Figure: Compare N-body simulation to balls of particles -- captures the essence]
-
-Cite papers that use Lagrange-point stripping methods, Rewinder paper
-
-Like only considering debris that comes off at a single pericentric passage
-
-We follow \citet[][hereafter MV96]{merritt96} and quantify the degree of mixing by computing the ``distance'' between the configuration space density of the ensemble of particles at a given time, $\rho(\bs{x},t)$, with that of a distribution that is uniform over the energy hypersurface, $\rho_{E_0}(\bs{x})$, where $E_0$ is the energy of the parent orbit and hypersurface of interest. Our method differs in a few ways from that of MV96. First, MV96 use isoenergy ensembles of particles for following the density because that is the only way to guarantee that, if chaotic, nearly all orbits in the ensemble will lie on chaotic orbits. We instead use ensembles with small ($\approx$1\%) spreads in energy, but we still expect that such an ensemble around a parent chaotic orbit will reach a fully mixed state. The final distribution, rather than fill the energy hypersurface, will instead have some thickness around this surface. Around a typical regular orbit, each individual orbit will fill its torus ergodically -- that is, a surface with lower dimension than the energy hypersurface -- and thus, a small enough ensemble will never get ``close'' to the fully mixed state as defined above because it will remain confined into a subspace on the energy surface. In practice, only strongly chaotic systems will approach $\rho_{E_0}(\bs{x})$; the rate will depend on how stochastic the parent orbit is (e.g., as measured by the Lyapunov time or frequency diffusion rate), and also on how ``trapped'' the chaotic region is (a small chaotic region wedged between stable tori will take longer to appear chaotic, even if internally the frequency diffusion rate is large). However the difference in configuration space density between an ensemble undergoing chaotic mixing versus an ensemble around a regular orbit may be detectable over a much shorter timescale. The fully-mixed, normalized, configuration-space density that fills a given energy hypersurface, $E_0$, is 
+As the particle ensembles evolve in time, we follow \citet[][hereafter MV96]{merritt96} and quantify the degree of mixing of the ensemble by computing the ``distance'' between the configuration space density of the ensemble at a given time, $\rho(\bs{x},t)$, with that of a distribution that is uniform over the energy hypersurface, $\rho_{E_0}(\bs{x})$, where $E_0$ is the energy of the parent orbit and thus hypersurface of interest. Our method differs in a few ways from that of MV96. First, MV96 use isoenergy ensembles of particles for following the density because that is the only way to guarantee that, if chaotic, nearly all orbits in the ensemble will lie on chaotic orbits. We instead use ensembles with small ($\approx$1\%) spreads in energy, but we still expect that such an ensemble around a parent chaotic orbit will reach a fully mixed state. The final distribution, rather than fill the energy hypersurface, will instead have some thickness around this surface. Around a typical regular orbit, each individual orbit will fill its torus ergodically -- that is, a surface with lower dimension than the energy hypersurface -- and thus, a small enough ensemble will never get ``close'' to the fully mixed state as defined above because it will remain confined into a subspace on the energy surface. In practice, only strongly chaotic systems will approach $\rho_{E_0}(\bs{x})$; the rate will depend on how stochastic the parent orbit is (e.g., as measured by the Lyapunov time or frequency diffusion rate), and also on how ``trapped'' the chaotic region is (a small chaotic region wedged between stable tori will take longer to appear chaotic, even if internally the frequency diffusion rate is large). However the difference in configuration space density between an ensemble undergoing chaotic mixing versus an ensemble around a regular orbit may be detectable over a much shorter timescale. The fully-mixed, normalized, configuration-space density that fills a given energy hypersurface, $E_0$, is 
 \begin{align}
 	\rho_{E_0}(\bs{x}) &= \int \dd^3v \, \rho_0 \, \delta(H - E_0)\\
 	&= \int \dd^3v \, \rho_0 \, \delta\left(|\bs{v}|^2/2 + \Phi(\bs{x}) - E_0\right)\\
@@ -252,7 +249,7 @@ We follow \citet[][hereafter MV96]{merritt96} and quantify the degree of mixing 
 \end{align}
 where $A$ is a constant determined such that $\int \dd^3\bs{x} \, \rho_{E_0}(\bs{x}) = 1$, and $\delta(\cdot)$ is the Dirac delta function. 
 
-Second, we compute the Kullback-Leibler divergence \citep[KL divergence;][]{kullback51} by estimating the configuration space density $\rho(\bs{x},t_j)$ using kernel density estimation (KDE) with the ensemble of particle positions at time $t_j$, then use Monte Carlo integration to evaluate the KL divergence rather than evaluate the integral over a three dimensional grid. The KL divergence, $D_{\rm KL}$, is a measure of the relative Shannon entropy between two normalized density functions, $p(x)$ and $q(x)$,
+Second, we compute the Kullback-Leibler divergence \citep[KL divergence;][]{kullback51} by estimating the configuration space density $\rho(\bs{x},t_j)$ using kernel density estimation (KDE)\footnote{We use an implementation from the Python package scikit-learn \citep{scikitlearn}.} with the ensemble of particle positions at time $t_j$, then use Monte Carlo integration to evaluate the KL divergence rather than evaluate the integral over a three dimensional grid. The KL divergence, $D_{\rm KL}$, is a measure of the relative Shannon entropy between two normalized density functions, $p(x)$ and $q(x)$,
 \begin{equation}
 	D_{\rm KL} = \int \dd x \, p(x) \ln \frac{p(x)}{q(x)}
 \end{equation}
@@ -262,7 +259,7 @@ We would like to compute
 \end{align}
 however, we only have an estimate of the density $\rho_{\rm KDE}(\bs{x},t_j) \approx \rho(\bs{x},t_j)$. Using samples from this KDE estimated density, $\bs{x}_i$, the KL divergence is
 \begin{align}
-	D_{\rm KL}(t_j) &\approx \frac{1}{N} \sum_i \ln \frac{\rho_{\rm KDE}(\bs{x}_i,t_j)}{\rho_{E_0}(\bs{x}_i)}\\
+	D_{\rm KL}(t_j) &\approx \frac{1}{N} \sum_i^N \ln \frac{\rho_{\rm KDE}(\bs{x}_i,t_j)}{\rho_{E_0}(\bs{x}_i)}\\
 	\bs{x}_i &\sim \rho_{\rm KDE}(\bs{x},t_j)\label{eq:sampled_from}
 \end{align}
 where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples from the KDE density. For any computation of the density estimate, we use 10-fold cross-validation to find the optimal kernel bandwidth, $\sigma_{\rm KDE}$, by maximizing the likelihood of withheld particles. Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for a regular (black) and chaotic (blue) orbit. The chaotic orbit ensemble mixes much faster than the regular orbit ensemble.
@@ -284,15 +281,10 @@ Explain qualitative differences between the two -- e.g., Y-Z plane will have man
 
 \subsection{Morphology}
 
-\subsubsection{Entropy evolution}
+\subsubsection{Minimum KLD map}
+Look at minimum value of $D_{\rm KL}$ over $T_{\rm ev}$, use that as metric of 
 
-\subsubsection{Density evolution}
-
-Compare mean density or some other metric for the balls, show that decreases faster for chaotic orbit -- chaotic mixing dominates over phase-mixing
-
-Power law (Helmi and White)
-
-\subsubsection{Adding a disk?}
+\subsection{Adding a disk?}
 
 \section{Discussion}\label{sec:discussion}
 
