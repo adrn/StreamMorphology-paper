@@ -114,14 +114,14 @@ For small perturbations, generically, many regular orbits survive and only small
 
 The density distributions within dark matter halos formed in cosmological N-body simulations are typically triaxial (e.g., millenium, aquarius, via lactea). \citet{jing02} found that a triaxial generalization of the classic NFW density profile \citep{navarro96} generates excellent fits to their high-resolution N-body simulations, and they provide probability distributions for the axis ratios of the many halos formed in their simulations. They find median axis ratios of $c/a \approx 0.55$ and $b/a \approx 0.77$ where $a$ is the major axis, $b$ the intermediate, and $c$ the minor axis.\footnote{Note that \citet{jing02} use the opposite notation so that $c$ is the major and $a$ is the minor axis.} They find significant scatter in the distributions of concentration parameter, $c_e$, or scale radius (depending on choice of parametrization). 
 
-All of these parameters are specified in terms of the \emph{density}; for orbit analysis, we need to determine the form of the potential in terms of these parameters, which, in general, requires numerical integration of the density at each position of interest. For computational efficiency, many authors instead express the triaxiality in the form of the potential, however this can lead to unphysical situations where the density becomes negative. \citet{lee03} derive a perturbative expansion of the potential integral and show that the expansion is accurate even for modest axis ratios (e.g., the median values shown above). 
+All of these parameters are specified in terms of the \emph{density}; for orbit analysis, we need to determine the form of the potential in terms of these parameters, which, in general, requires numerical integration of the density at each position of interest. For computational efficiency, many authors instead express the triaxiality in the form of the potential, however this can lead to unphysical situations where the density becomes negative. \citet{leesuto03} derive a perturbative expansion of the potential integral and show that the expansion is accurate even for modest axis ratios (e.g., the median values shown above). 
 
-For this work, we use the triaxial potential expression from \citet{lee03}, parametrized in a slightly different manner. In terms of spherical coordinates\footnote{(radius, azimuth, colatitude)} with the radius normalized by the scale radius, $u = r/r_s$
+For this work, we use the triaxial potential expression from \citet{leesuto03}, parametrized in a slightly different manner. In terms of spherical coordinates\footnote{(radius, azimuth, colatitude)} with the radius normalized by the scale radius, $u = r/r_s$
 \begin{align}
 	\Phi(u,\phi,\theta) &\approx \frac{v_c^2}{A}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]\\
 	A &= \left(\ln2 - \frac{1}{2}\right) + \left(\ln2-\frac{3}{4}\right) (e_b^2 + e_c^2)
 \end{align}
-where $v_c$ is the circular velocity at the scale radius, $r_s$, along the $x$-axis, $e_b = \sqrt{1 - (b/a)^2}$, and $e_c = \sqrt{1 - (c/a)^2}$. The functions $F_i(u)$ are given in the appendix of \cite{lee03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 200~{\rm km}~{\rm s}^{-1}$ to [...]. Figure~\ref{fig:potential} shows the rotation curve of this potential along the three principal axes.
+where $v_c$ is the circular velocity at the scale radius, $r_s$, along the $x$-axis, $e_b = \sqrt{1 - (b/a)^2}$, and $e_c = \sqrt{1 - (c/a)^2}$. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 200~{\rm km}~{\rm s}^{-1}$ to [...]. Figure~\ref{fig:potential} shows the rotation curve of this potential along the three principal axes.
 
 \begin{figure*}[!h]
 \begin{center}
@@ -229,9 +229,7 @@ We therefore take a simplified approach that does reproduce [...] N-body simulat
 	r_{\rm tide} &=|\bs{x}_0| \left(\frac{m}{3M_{\rm enc}(|\bs{x}_0|)}\right)^{1/3} \\
 	\sigma_v &= |\bs{v}_0|\left(\frac{m}{3M_{\rm enc}(|\bs{x}_0|)}\right)^{1/3} 
 \end{align}
-where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, and $m$ is the mass scale of the debris. 
-
-For this work, we take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass to estimate the above scales.
+where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, and $m$ is the mass scale of the debris. For this work, we take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass to estimate the above scales.
 
 Need a fast way to characterize morphology of local orbits after finite time
 
@@ -244,6 +242,37 @@ Explain simplistic approach
 Cite papers that use Lagrange-point stripping methods, Rewinder paper
 
 Like only considering debris that comes off at a single pericentric passage
+
+We follow \citet[][hereafter MV96]{merritt96} and quantify the degree of mixing by computing the ``distance'' between the configuration space density of the ensemble of particles at a given time, $\rho(\bs{x},t)$, with that of a distribution that is uniform over the energy hypersurface, $\rho_{E_0}(\bs{x})$, where $E_0$ is the energy of the parent orbit and hypersurface of interest. Our method differs in a few ways from that of MV96. First, MV96 use isoenergy ensembles of particles for following the density because that is the only way to guarantee that, if chaotic, nearly all orbits in the ensemble will lie on chaotic orbits. We instead use ensembles with small ($\approx$1\%) spreads in energy, but we still expect that such an ensemble around a parent chaotic orbit will reach a fully mixed state. The final distribution, rather than fill the energy hypersurface, will instead have some thickness around this surface. Around a typical regular orbit, each individual orbit will fill its torus ergodically -- that is, a surface with lower dimension than the energy hypersurface -- and thus, a small enough ensemble will never get ``close'' to the fully mixed state as defined above because it will remain confined into a subspace on the energy surface. In practice, only strongly chaotic systems will approach $\rho_{E_0}(\bs{x})$; the rate will depend on how stochastic the parent orbit is (e.g., as measured by the Lyapunov time or frequency diffusion rate), and also on how ``trapped'' the chaotic region is (a small chaotic region wedged between stable tori will take longer to appear chaotic, even if internally the frequency diffusion rate is large). However the difference in configuration space density between an ensemble undergoing chaotic mixing versus an ensemble around a regular orbit may be detectable over a much shorter timescale. The fully-mixed, normalized, configuration-space density that fills a given energy hypersurface, $E_0$, is 
+\begin{align}
+	\rho_{E_0}(\bs{x}) &= \int \dd^3v \, \rho_0 \, \delta(H - E_0)\\
+	&= \int \dd^3v \, \rho_0 \, \delta\left(|\bs{v}|^2/2 + \Phi(\bs{x}) - E_0\right)\\
+	&= 4\pi \int \dd v \, v^2 \, \rho_0 \, \delta\left(v^2/2 + \Phi(\bs{x}) - E_0\right)\\
+	&= A \sqrt{E_0 - \Phi(\bs{x})}
+\end{align}
+where $A$ is a constant determined such that $\int \dd^3\bs{x} \, \rho_{E_0}(\bs{x}) = 1$, and $\delta(\cdot)$ is the Dirac delta function. 
+
+Second, we compute the Kullback-Leibler divergence \citep[KL divergence;][]{kullback51} by estimating the configuration space density $\rho(\bs{x},t_j)$ using kernel density estimation (KDE) with the ensemble of particle positions at time $t_j$, then use Monte Carlo integration to evaluate the KL divergence rather than evaluate the integral over a three dimensional grid. The KL divergence, $D_{\rm KL}$, is a measure of the relative Shannon entropy between two normalized density functions, $p(x)$ and $q(x)$,
+\begin{equation}
+	D_{\rm KL} = \int \dd x \, p(x) \ln \frac{p(x)}{q(x)}
+\end{equation}
+We would like to compute 
+\begin{align}
+	D_{\rm KL}(t_j) &= \int \dd^3 \bs{x} \, \rho(\bs{x},t_j) \ln \frac{\rho(\bs{x},t_j)}{\rho_{E_0}(\bs{x})}
+\end{align}
+however, we only have an estimate of the density $\rho_{\rm KDE}(\bs{x},t_j) \approx \rho(\bs{x},t_j)$. Using samples from this KDE estimated density, $\bs{x}_i$, the KL divergence is
+\begin{align}
+	D_{\rm KL}(t_j) &\approx \frac{1}{N} \sum_i \ln \frac{\rho_{\rm KDE}(\bs{x}_i,t_j)}{\rho_{E_0}(\bs{x}_i)}\\
+	\bs{x}_i &\sim \rho_{\rm KDE}(\bs{x},t_j)\label{eq:sampled_from}
+\end{align}
+where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples from the KDE density. For any computation of the density estimate, we use 10-fold cross-validation to find the optimal kernel bandwidth, $\sigma_{\rm KDE}$, by maximizing the likelihood of withheld particles. Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for a regular (black) and chaotic (blue) orbit. The chaotic orbit ensemble mixes much faster than the regular orbit ensemble.
+
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{figures/D_KL.pdf}
+\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:DKL}
+\end{center}
+\end{figure*}
 
 \section{Experiments}
 
@@ -278,9 +307,10 @@ Why not disk + bulge? What do we expect when we add? See later section for test 
 Real disk will be self-consistent with halo, so this isn't really a fair test, but still...
 
 \acknowledgements
+The authors wish to thank ...
 APW is supported by a National Science Foundation Graduate Research Fellowship under Grant No.\ 11-44155. 
 This research made use of Astropy, a community-developed core \texttt{Python} package for Astronomy \citep{astropy13}.
-This work additionally relied on Columbia University's \emph{Hotfoot} and \emph{Yeti} compute clusters, and we acknowledge the Columbia HPC support staff for assistance. \\
+This work additionally relied on Columbia University's \emph{Hotfoot} and \emph{Yeti} compute clusters, and we acknowledge the Columbia HPC support staff for assistance.
 
 \bibliographystyle{apj}
 \bibliography{refs}
