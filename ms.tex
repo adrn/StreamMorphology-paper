@@ -9,6 +9,7 @@
 \renewcommand\algorithmicthen{}
 \renewcommand\algorithmicdo{}
 \usepackage{mathrsfs}
+\usepackage{subfigure}
 
 % commands
 \newcommand{\given}{\,|\,}
@@ -19,6 +20,7 @@
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\ident}{\mathbb{1}}
 \newcommand{\inttime}{t_{\rm int}}
+\newcommand{\fdrate}{\mathcal{R}_\Omega}
 
 \newcommand{\act}{J}
 %\newcommand{\jac}{\bs{\rm J}}
@@ -127,7 +129,7 @@ For this work, we use the triaxial potential expression from \citet{leesuto03}, 
 	\Phi(u,\phi,\theta) &\approx \frac{v_c^2}{A}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]\\
 	A &= \left(\ln2 - \frac{1}{2}\right) + \left(\ln2-\frac{3}{4}\right) (e_b^2 + e_c^2)
 \end{align}
-where $v_c$ is the circular velocity at the scale radius, $r_s$, along the $x$-axis, $e_b = \sqrt{1 - (b/a)^2}$, and $e_c = \sqrt{1 - (c/a)^2}$. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 200~{\rm km}~{\rm s}^{-1}$ as arbitrary choices but motivated by the halo concentration distributions found by \cite{jing02}. Figure~\ref{fig:potential} shows the rotation curve of this potential along the three principal axes.
+where $e_b = \sqrt{1 - (b/a)^2}$, $e_c = \sqrt{1 - (c/a)^2}$, and $v_c$ is the circular velocity at the scale radius, $r_s$, for the spherical case. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=40~{\rm kpc}$ and $v_c = 150~{\rm km}~{\rm s}^{-1}$ by taking the mean halo concentration found by \cite{jing02} for a ${\rm M}_{vir} \approx 10^{12}~\msun$ halo, $c_e\approx5$, and assuming $R_{vir}\approx200~{\rm kpc}$. Figure~\ref{fig:potential} shows the rotation curve of this potential along the three principal axes.
 
 \begin{figure*}[!h]
 \begin{center}
@@ -138,7 +140,7 @@ where $v_c$ is the circular velocity at the scale radius, $r_s$, along the $x$-a
 
 This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the effect of chaos in the halos of such galaxies. Real galactic potentials will have a significant component due to the disk and bulge and may have twisting inertia tensors (cite), radially changing axis ratios \citep[e.g.,][]{veraciro11}, significant substructure \citep{zemp09}, or time dependence (either from bulk rotation, mass growth, mergers, etc.; cite). We expect all of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for a few simple examples that demonstrate this expectation.
 
-\subsection{Orbit integration}
+\subsection{Orbit integration}\label{sec:integration}
 
 We use the Dormand-Prince 8th-order Runge-Kutta scheme (cite Dormand 1981) to integrate orbits in the above potential. In particular, we use the Python wrapper to the FORTRAN routines provided in the Scipy package \citep{scipy}. For all orbits, we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-9}$ by the end of integration. Unless otherwise specified, orbits are integrated for $\sim$200 orbital periods with 500 steps per orbital period. Some box orbits require more internal integration steps in order to conserve energy to the required level. 
 
@@ -208,9 +210,9 @@ where these frequencies, $\omega_k$, are linear, integer combinations of the fun
 \end{equation}
 and the $a_k$ are complex amplitudes. \cite{laskar93} introduced a method for recovering the fundamental frequencies of an orbit that effectively uses a Hanning-filtered fast-Fourier transform (FFT) of complex combinations of the motion (e.g., $x(t) + i v_x(t)$). It has been shown that using the Hanning filter makes the accuracy in determining the frequencies scale as $\inttime^{-4}$ \citep{laskar99}, where $\inttime$ is the integration time. We follow \cite{valluri98} and refer to this method as ``Numerical Approximation of Fundamental Frequencies'' (NAFF) even though it differs slightly from the original method from Laskar.
 
-If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may act consistently periodic over long windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character (possibly) smoothly with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically when comparing two separate sections of orbit. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit over a given period, and these will vary dramatically if comparing two consecutive integration periods. Therefore, the frequency diffusion rate per orbit, $\mathcal{R}_\Omega$, is a good predictor for how chaotic an orbit is:
+If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may act consistently periodic over long windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character (possibly) smoothly with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically when comparing two separate sections of orbit. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit over a given period, and these will vary dramatically if comparing two consecutive integration periods. Therefore, the frequency diffusion rate per orbit, $\fdrate$, is a good predictor for how chaotic an orbit is:
 \begin{equation}
-	\mathcal{R}_\Omega = \max_{\bs{a}}\,2(\bs{\Omega}_{T_1} - \bs{\Omega}_{T_2}) / \inttime
+	\fdrate = \max_{\bs{a}}\,2(\bs{\Omega}_{T_1} - \bs{\Omega}_{T_2}) / \inttime \label{eq:fdrate}
 \end{equation}
 where $\bs{\Omega}_{T_1}$ and $\bs{\Omega}_{T_2}$ are the fundamental frequencies computed from two consecutive sections of orbit, $\inttime$ is the total integration time (over both sections), and $\bs{a}$ are the amplitudes corresponding to the frequencies. The frequency diffusion rate measured in the frequency with the largest amplitude is better correlated with the strength of chaos in an orbit relative to, e.g., the mean or maximum rate (cite valluri recent work?).
 
@@ -273,15 +275,50 @@ where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples f
 
 \section{Experiments}
 
-\subsection{Frequency map}
+\subsection{Orbital properties: frequencies and frequency diffusion}
 
-We generate frequency maps at X energies for tube orbits started around the major and intermediate axes of the potential (figures)
+We start by studying the properties of isoenergy orbits in the potential described above. We generate grids of initial condition along the $xz$ ($y=0$) and $yz$ ($x=0$) planes\footnote{Recall that $x$ is the major, $y$ the intermediate, and $z$ the minor axis.} all with the same energy, $E=XXX$. For the $xz$ orbits, we fix $v_x = v_z = 0$, and compute $v_y$ from the energy. Similarly, for the $yz$ orbits, we fix $v_y = v_z = 0$, and compute $v_x$ from the energy. We integrate the orbits as described in Section~\ref{sec:integration} and compute the fundamental frequencies of each orbit with NAFF. Figure~\ref{fig:freqmap} shows frequency maps for the $xz$ (left) and $yz$ (right) grids. For short-axis tubes, the frequencies plotted are the radial frequency, $\Omega_r$, the azimuthal frequency around the $z$ axis, $\Omega_\phi$, and the oscillation along the $z$ axis, $\Omega_z$. For long-axis tubes, the frequencies plotted are the radial frequency, $\Omega_r$, the azimuthal frequency around the $x$ axis, $\Omega_\phi$, and the oscillation along the $x$ axis, $\Omega_x$. Box orbits are not shown. Already evident in these panels is that many of the orbits are regular: the transformed, even-spaced sampling of the initial conditions is preserved in the frequency transformation, implying that the frequencies for many orbits do not change appreciably. Also apparent is resonant trapping,  which appear as over-dense, linear features in these frequency maps. 
 
-Explain qualitative differences between the two -- e.g., Y-Z plane will have many more stochastic tubes because intermediate axis
+The majority of the orbits generated on these grids are tube orbits, which preserve a sense of rotation about one of the principal axes of the potential and are generally centrophobic. Tube orbits are generally less stochastic than box orbits -- the other major class of orbits in triaxial potentials -- which tend to plunge deep into the inner regions of the potential. Thin tidal streams are thought to form along tube orbits rather than box orbits because of the fast disruption expected for stellar systems on radially plunging orbits. The major classes of stable tube orbits circulate about either the major or minor axis; the most prominent orbits are the short-axis and outer long-axis tubes, but these grids do generate some inner long-axis tubes and box orbits. Orbits that try to circulate about the intermediate axis tend to be highly irregular and do not preserve their sense of circulation for long periods of time. NAFF recovers fundamental frequencies for an orbit faster (with a fewer number of terms) when the coordinates used are ``close'' to the angle variables \cite[PL95][]{papaphillippou96}. PL96 show that a good choice of coordinates for tube orbits are the Poincar\'e symplectic polar coordinates, a set of canonical coordinates similar to cylindrical coordinates. For approximately XX\% of the orbits, NAFF fails to recover the frequencies (similar difficulties were reported in \cite{valluri98} and \cite{papaphillippou96} for recovering certain tube orbit frequencies).
 
-\subsection{Morphology}
+\begin{figure}[h]
+\centering
+	\includegraphics[width=0.45\columnwidth] {figures/freqmap_xz.png}
+	\includegraphics[width=0.45\columnwidth] {figures/freqmap_yz.png}
+	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
+	\label{fig:freqmap}
+\end{figure}
 
-\subsubsection{Minimum KLD map}
+For each orbit, we also compute the frequency diffusion rate per orbit, $\fdrate$ (Equation~\ref{eq:fdrate}) by computing the frequencies for the first half and second half of the orbital time series separately. This rate is only a measure of the time-averaged diffusion rate because the frequencies are computed for long segments of orbit, but \cite{valluri??} [...]. Figure~\ref{fig:diffusionmap} shows maps of the frequency diffusion for the $xz$ (left) and $yz$ (right) grids: plotted are the initial conditions for all orbits colored by $\log_{10}(\fdrate)$ (white points are strongly chaotic, black are regular). The rich structure of unstable resonances apparent in these frequency diffusion maps highlight the accuracy of NAFF. It seems that tube orbits in these potentials are mostly regular or only mildly chaotic, however islands of stronger chaos do appear, especially at the intersections of unstable resonances. The bright, unstable regions in these maps are a visualization of the Arnold web at this energy. It is evident that these unstable regions are interconnected and therefore a tube orbit that starts, for example, in the lower left-hand region of one of these maps could  theoretically end up as a box orbit (along the zero-velocity curve) at some point in it its history (but the timescale for this to happen is likely prohibitively long).
+
+\begin{figure}[h]
+\centering
+	\includegraphics[width=0.45\columnwidth] {figures/diffusion_map_xz.png}
+	\includegraphics[width=0.45\columnwidth] {figures/diffusion_map_yz.png}
+	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
+	\label{fig:diffusionmap}
+\end{figure}
+
+Figure~\ref{fig:xx} shows a sample of regular orbits from these two grids, plotted in projection. The left column are orbits from the $xz$ grid and the right column shows orbits from the $yz$ grid. Orbits near a resonance are labeled with the integer vector associated with the nearest resonance. Figures~\ref{fig:chaotic1} and \ref{fig:chaotic2} show two chaotic orbits, one with a large $\fdrate$ and one with a small $\fdrate$ (labeled in the figure titles). The figures show projections of the orbit in three consecutive sections of orbit with $\sim$50 periods shown per panel.
+
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/chaotic_orbit1.png}
+\caption{Just a placeholder figure that has a similar shape to what I will put here} \label{fig:chaotic1}
+\end{center}
+\end{figure*}
+
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/chaotic_orbit2.png}
+\caption{Just a placeholder figure that has a similar shape to what I will put here} \label{fig:chaotic2}
+\end{center}
+\end{figure*}
+
+\subsection{Ensemble properties: mixing of nearby orbits}
+
+
+
 Look at minimum value of $D_{\rm KL}$ over $T_{\rm ev}$, use that as metric of 
 
 \subsection{Adding a disk?}
