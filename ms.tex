@@ -129,11 +129,13 @@ The types of motion generic to triaxial systems can be split into several sub-ca
 
 Resonant orbits are rare \citep{merritt99} but dynamically important in systems with several degrees of freedom as they determine the structure of orbit-space. Stable, resonant orbits generate families of orbits that may behave or appear similarly, whereas unstable resonances are typically associated with regions of chaos. However not all orbits can be trivially associated with resonances due to the infinitely complex, hierarchical structure of resonances (though the importance or ``size'' of a resonance falls off inversely with the norm of its integer vector, $|\bs{m}|^{-\alpha}$, with $\alpha > 0$). In autonomous, two dof systems, stochastic regions are generally surrounded and separated by regular motion, thus chaotic orbits are confined. In three or more dof the chaotic regions will connect and overlap. This is the origin of Arnold diffusion \citep{arnold64}, which allows chaotic orbits to radically change shape by traversing the web of unstable resonances and are only strictly bounded to their own energy hypersurface. This phenomenon is perhaps easier to visualize in action-space: in two dof systems, if a given set of tori are destroyed due to potential perturbations, an orbit in this now chaotic region is still bounded between the surrounding tori due to energy conservation. In three dimensions, the extra degree of freedom allows chaotic orbits to ``escape'' this confinement.
 
-For small potential perturbations, many regular orbits survive and only small chaotic islands are introduced. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed. Next, the uni-resonant tori are destroyed, and finally the bi-resonant tori -- these are least susceptible to destruction from perturbations \citep[e.g., see][]{valluri98}. However, even orbits that are strictly chaotic may behave regularly over timescales much longer than, for example, the dynamical time of the system. Chaotic can therefore be loosely classified by being either \emph{strongly} or \emph{weakly} chaotic: strongly chaotic orbits behave irregularly over a few ($\sim$10) dynamical times, whereas weakly chaotic orbits behave regularly over this timescale (we quantify this distinction in Section~\ref{sec:}). This rough classification is tied to local measures, such as the Lyapunov time (Section~\ref{}) or frequency diffusion time (Section~\ref{}). In Section~\ref{} we look at how these relate to the the mixing rate of small ensembles of orbits.
+For small potential perturbations, many regular orbits survive and only small chaotic islands are introduced. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed. Next, the uni-resonant tori are destroyed, and finally the bi-resonant tori -- these are least susceptible to destruction from perturbations \citep[e.g., see][]{valluri98}. However, even orbits that are strictly chaotic may behave regularly over timescales much longer than, for example, the dynamical time of the system. Chaotic can therefore be loosely classified by being either \emph{strongly} or \emph{weakly} chaotic: strongly chaotic orbits behave irregularly over a few ($\sim$10) dynamical times, whereas weakly chaotic orbits behave regularly over this timescale (we quantify this distinction with the experiments of Section~\ref{sec:experiments}). This rough classification is tied to local measures, such as the Lyapunov time (Section~\ref{sec:lyap}) or frequency diffusion time (Section~\ref{sec:naff}). 
 
-[summarizing paragraph connecting everything, mention mixing, relation to tidal streams]
+These local measures quantify the divergence of infinitesimally nearby orbits or the rate of frequency diffusion along an orbit. For an ensemble of orbits with finite spreads in energy or frequencies (e.g., tidal debris), each orbit will have a slightly different characteristic timescale, but we still expect mixing time of the ensemble to correlate with local measures of chaos of the ``parent'' orbit of the ensemble (Section~\ref{sec:ensemble}). The evolution of tidal debris will depend on the ensemble mixing rate of the parent orbit: chaotic mixing will cause the density of the debris to fall off more quickly than the typical power-law behavior expected for regular orbits \citep[e.g.,][]{merritt96, helmi99}. Since all known tidal streams have been discovered as kinematic overdensities of stars, this implies (1) [something about accretion history], (2) the long, thin tidal streams we see may represent a sampling from ``special'' orbits in the Galactic potential where the mixing time is low, and (3) previous assumptions that connect the length and size of streams to their evolution time may be invalid.
 
-\section{Numerical methods}
+This paper is organized as follows: In Section~\ref{sec:methods}, we outline the numerical methods used for the experiments of Section~\ref{sec:experiments}. In Section~\ref{sec:discussion}, we describe the connection between different measures of chaotic behavior, further discuss the implications of chaotic mixing, and comment on the applicability of the methods presented here to more realistic Galactic potentials and simulations.
+
+\section{Numerical methods}\label{sec:methods}
 
 \subsection{Potential choice}
 
@@ -161,7 +163,7 @@ This potential is a simple and unrealistic model for the total potential of a Mi
 
 We use the Dormand-Prince 8th-order Runge-Kutta scheme (TODO: cite Dormand 1981) to integrate orbits in the above potential. In particular, we use the Python wrapper to the FORTRAN routines provided in the Scipy package \citep{scipy}. For all orbits, we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-9}$ by the end of integration. Unless otherwise specified, orbits are integrated for $\sim$200 orbital periods with 500 steps per orbital period. Some box orbits require more internal integration steps in order to conserve energy to the required level. 
 
-\subsection{Lyapunov exponents}
+\subsection{Lyapunov exponents} \label{sec:lyap}
 
 The simplest and perhaps most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent of an orbit. Defining the vector $\bs{w} = (q_1,...,q_N,p_1,...,p_N)$ for some set of canonical coordinates $(q_i,p_i)$, we can write Hamilton's equations as 
 \begin{equation}
@@ -216,7 +218,7 @@ and the MLE is
 
 [Computationally, expensive to compute Lyapunov exponent for sticky or mildly chaotic orbits]
 
-\subsection{Numerical estimation of fundamental frequencies}
+\subsection{Numerical estimation of fundamental frequencies}\label{sec:naff}
 
 Bounded, regular orbits in a triaxial potential will have three fundamental frequencies, $\bs{\Omega}$, that determine the periodic behavior of motion (Eq.~\ref{eq:aafreq}). This implies that for any canonical coordinate, $q$, the motion in this coordinate can be decomposed as 
 \begin{equation}
@@ -247,7 +249,7 @@ NAFF has been applied to many problems in Solar System and Galactic dynamics, es
 
 [Figure: for same orbits as in Lyapunov section, show frequency diffusion by computing frequencies in rolling windows?]
 
-\subsection{Test particle ensembles}
+\subsection{Test particle ensembles} \label{sec:ensemble}
 
 Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{pearson15, fardal14} [TODO: should I put sarahs paper here even though we didn't say this explicitly?], however, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity. Further, quantifying the degree of stochasticity with, for example, the frequency diffusion rate represents a \emph{local} measure of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question would require a massive exploration of parameter space -- both in potential and in orbits -- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
 
@@ -291,7 +293,7 @@ where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples f
 \end{center}
 \end{figure*}
 
-\section{Experiments}
+\section{Experiments}\label{sec:experiments}
 
 \subsection{Orbital properties: frequencies, frequency diffusion, and Lyapunov exponents}
 
@@ -325,7 +327,15 @@ For each orbit, we also compute the frequency diffusion rate per orbit, $\fdrate
 	\label{fig:diffusionrates}
 \end{figure}
 
-[Lyapunov exponent grids...]
+\begin{figure}[!h]
+\centering
+	\includegraphics[width=0.4\columnwidth] {figures/lyap_map_xz.png}
+	\includegraphics[width=0.4\columnwidth] {figures/lyap_map_yz.png}
+	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
+	\label{fig:lyapmap}
+\end{figure}
+
+We also compute the Lyapunov exponents for all orbits in the grid by integrating their orbits for 250 orbital periods. Figure~\ref{fig:lyapmap} shows the initial condition grids again, but now the greyscale intensity corresponds to the logarithm of the Lyapunov time, $t_\lambda = \lambda_{\rm max}^{-1}$. These Lyapunov exponent maps show that, for a fixed integration time, only the most chaotic orbits are identified. NAFF is able to detect small differences in the frequencies and thus measure small diffusion rates with comparable integration times.
 
 Figure~\ref{fig:xx} shows a sample of regular orbits from these two grids, plotted in projection. The left column are orbits from the $xz$ grid and the right column shows orbits from the $yz$ grid. Orbits near a resonance are labeled with the integer vector associated with the nearest resonance. Figures~\ref{fig:chaotic1} and \ref{fig:chaotic2} show two chaotic orbits, one with a large $\fdrate$ and one with a small $\fdrate$ (labeled in the figure titles). The figures show projections of the orbit in three consecutive sections of orbit with $\sim$50 periods shown per panel.
 
@@ -378,7 +388,7 @@ Why not disk + bulge? What do we expect when we add? See later section for test 
 Real disk will be self-consistent with halo, so this isn't really a fair test, but still...
 
 \acknowledgements
-The authors wish to thank Sarah Pearson, Andreas K\"upper, David Hogg, David Merritt, \emph{Stream Team}, etc...
+The authors wish to thank Sarah Pearson, Andreas K\"upper, David Hogg, David Merritt, and the \emph{Stream Team} for useful comments and discussion.
 APW is supported by a National Science Foundation Graduate Research Fellowship under Grant No.\ 11-44155. 
 This research made use of Astropy, a community-developed core \texttt{Python} package for Astronomy \citep{astropy13}.
 This work additionally relied on Columbia University's \emph{Hotfoot} and \emph{Yeti} compute clusters, and we acknowledge the Columbia HPC support staff for assistance.
