@@ -137,7 +137,7 @@ This paper is organized as follows: In Section~\ref{sec:methods}, we outline the
 
 \section{Numerical methods}\label{sec:methods}
 
-\subsection{Potential choice}
+\subsection{Potential choice}\label{sec:potential}
 
 The density distributions within dark matter halos formed in cosmological N-body simulations are typically triaxial \citep[e.g.,][]{jing02, bett07, zemp09, veraciro11}. \citet{jing02} found that a triaxial generalization of the classic NFW density profile \citep{navarro96} generates excellent fits to their high-resolution N-body simulations, and they provide probability distributions for the axis ratios of the many halos formed in their simulations. They find median axis ratios of $c/a \approx 0.55$ and $b/a \approx 0.77$ where $a$ is the major axis, $b$ the intermediate, and $c$ the minor axis.\footnote{Note that \citet{jing02} use the opposite notation so that $c$ is the major and $a$ is the minor axis.} They find significant scatter in the distributions of concentration parameter, $c_e$, or scale radius (depending on choice of parametrization). 
 
@@ -212,11 +212,43 @@ and the MLE is
 \begin{equation}
 	\lambda_{\rm max} = \lim_{N\rightarrow \infty} l_N.
 \end{equation}
-[Some more practical issues with implementation] [Figure showing $l_N$ for regular, chaotic orbit?]
 
-[Copy in text fomr ``behavior of MLE'']
+For most regular orbits, deviations will grow close to linearly or as some power-law of time. 
+%As we have seen (Section~\ref{sec:introduction}), if the orbit is regular, there exists a local transformation to action-angle variables where the angle variables increase linearly with time, $\theta_n \propto \Omega_n t$. We can look at small variations around the orbit defined by the above equations:\footnote{Note the implied summation in repeated indices in the above expression.}
+%\begin{align}
+%	\frac{d (\delta \theta_n)}{dt} &= \frac{\partial \Omega_n}{\partial J_m} \delta J_m
+%\end{align}
+%These equations are trivially integrated:
+%\begin{align}
+%	\delta \theta_n(t) &= \delta \theta_n(0) + \left(\frac{\partial \Omega_n}{\partial J_m} \delta J_m \right) t
+%\end{align}
+%It's clear then that the norm of the deviation vector grows linearly with time:
+%\begin{align}
+%	\|\delta \bs{w}(t)\| &= \left[\sum_n (\delta \theta_n(t))^2 + \sum_n (\delta J_n)^2\right]^{1/2}\\
+%	&= \left[\sum_n \left(\delta \theta_n(0) + \frac{\partial \Omega_n}{\partial J_m} \delta J_m t\right)^2 + \sum_n (\delta J_n)^2\right]^{1/2}\\
+%	&\propto t.
+%\end{align}
+From Eq.~\ref{eq:lmax} and Eq.~\ref{eq:lyapmax} it is evident that any deviation vector that grows as a power law with time, $t^k$, will asymptote to 0 from the limit 
+\begin{equation}
+	\lambda_{\rm max} \propto \lim_{t\rightarrow \infty} k \frac{\ln t}{t} = 0.
+\end{equation}
+At long times, the implication is that the the numerically computed MLE should approach 0 like $t^{-1}$ for regular orbits. For chaotic orbits, the divergence is exponential, and the limit should converge to the rate of the exponential: the Lyapunov exponent.
 
-[Computationally, expensive to compute Lyapunov exponent for sticky or mildly chaotic orbits]
+In practice, the MLE is often estimated as the mean of $l_N$ after the summation diverges from power-law behavior. Figure~\ref{fig:lyap-orbits} shows $l_N$ computed for two nearby orbits in the potential of Section~\ref{sec:potential}. In physical units and Cartesian coordinates, the initial conditions for the two orbits are:
+\begin{align}
+	\bs{x}_{0}^{(1)} &= (27.85, 0, 23.35)~{\rm kpc}\\
+	\bs{v}_{0}^{(1)} &= (0, 115.37, 0)~{\rm km~s}^{-1}\\
+	\bs{x}_{0}^{(2)} &= (27.85, 0, 23.10)~{\rm kpc}\\
+	\bs{v}_{0}^{(2)} &= (0, 116.43, 0)~{\rm km~s}^{-1}.
+\end{align}
+Over-plotted on both panels are lines (dashed) that show $t^{-0.9}$ behavior. The MLE estimate continues towards zero for the regular orbit (top) but saturates for the chaotic orbit (bottom) and continues to increase at least until the end of our integration period. For mildly chaotic or ``sticky'' orbits, it can take integration periods of many hundreds or thousands of orbits to determine a reliable estimate of the Lyapunov exponent.
+
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{figures/lyap-orbits.pdf}
+\caption{ } \label{fig:lyap-orbits}
+\end{center}
+\end{figure*}
 
 \subsection{Numerical estimation of fundamental frequencies}\label{sec:naff}
 
