@@ -279,28 +279,35 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 
 \begin{figure*}[!h]
 \begin{center}
-\includegraphics[width=0.75\textwidth]{figures/log-freqmap.png}
+\includegraphics[width=0.5\textwidth]{figures/log-freqmap.png}
 \caption{This is really just a placeholder that shows what I want to show here...} \label{fig:logfreqs}
 \end{center}
 \end{figure*}
 
-We have found that for ``sticky'' or mildly chaotic orbits, reliably computing the Lyapunov exponent can require integration times equivalent to thousands of orbital periods. In comparison, owing to the precision of NAFF, detecting small frequency diffusion rates can be done with only hundreds of orbital periods. [example? comparison?] 
-[Figure: for same orbits as in Lyapunov section, show frequency diffusion by computing frequencies in rolling windows?]
+We have found that for ``sticky'' or mildly chaotic orbits, reliably computing the Lyapunov exponent can require integration times equivalent to thousands of orbital periods. In comparison, owing to the precision of NAFF, detecting small frequency diffusion rates can be done with only $\sim$100 orbital periods. Figure~\ref{fig:fdiff-orbits} shows the two strongest frequency components plotted against each other for the two orbits of Figure~\ref{fig:lyap-orbits}. The orbits were integrated for a total of 400 orbital periods and the frequencies were computed for 12 consecutive windows of orbit, where each section was 100 orbital periods in length. The frequencies are consistent for the regular orbit (left panel) whereas there is significant diffusion in the chaotic orbit (right panel).
+
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/freq-diff-orbits.pdf}
+\caption{ } \label{fig:fdiff-orbits}
+\end{center}
+\end{figure*}
 
 \subsection{Test particle ensembles} \label{sec:ensemble}
 
-Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{pearson15, fardal14} [TODO: should I put sarahs paper here even though we didn't say this explicitly?], however, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity. Further, quantifying the degree of stochasticity with, for example, the frequency diffusion rate represents a \emph{local} measure of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question would require a massive exploration of parameter space -- both in potential and in orbits -- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
+% TODO: below, should I put sarahs paper here even though we didn't say this explicitly?
+Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{fardal14, pearson15}, however, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity. Further, quantifying the degree of stochasticity with, for example, the frequency diffusion rate represents a \emph{local} measure of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question would require a massive exploration of parameter space -- both in potential and in orbits -- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
 
 We therefore take a simplified approach and consider small ensembles of particles meant to represent debris disrupted from a single tidal disruption event of a low-mass progenitor. For a given set of orbital initial conditions -- the parent orbit -- we find the position of the nearest pericenter, initialize a small ensemble of test particle orbits around this position, then follow the orbits of all of these test particles for some evolution time, $T_{\rm ev}$. For a given mass scale, the ensemble particle position and velocity offsets are assumed to be Normal-distributed away from the parent orbit with spreads set by the tidal radius in position and velocity scale in velocity \citep[e.g.,][]{johnston98, apw14}. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and is drawn from
 \begin{align}
 	\delta\bs{x}_i &\sim \mathcal{N}(0, r_{\rm tide})\\
 	\delta\bs{v}_i &\sim \mathcal{N}(0, \sigma_v)\\
-	r_{\rm tide} &=|\bs{x}_0| \left(\frac{m}{3M_{\rm enc}(|\bs{x}_0|)}\right)^{1/3} \\
-	\sigma_v &= |\bs{v}_0|\left(\frac{m}{3M_{\rm enc}(|\bs{x}_0|)}\right)^{1/3} 
+	r_{\rm tide} &= \|\bs{x}_0\| \left(\frac{m}{3M_{\rm enc}(\|\bs{x}_0\|)}\right)^{1/3} \\
+	\sigma_v &= \|\bs{v}_0\|\left(\frac{m}{3M_{\rm enc}(\|\bs{x}_0\|)}\right)^{1/3} 
 \end{align}
-where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, and $m$ is the mass scale of the debris, and $|\cdot |$ is the Euclidean norm. For this work, we take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass to estimate the above scales.
+where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, and $m$ is the mass scale of the debris, and $\|\cdot \|$ is the Euclidean norm. For this work, we take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass to estimate the above scales.
 
-As the particle ensembles evolve in time, we follow \citet[][hereafter MV96]{merritt96} and quantify the degree of mixing of the ensemble by computing the ``distance'' between the configuration space density of the ensemble at a given time, $\rho(\bs{x},t)$, with that of a distribution that is uniform over the energy hypersurface, $\rho_{E_0}(\bs{x})$, where $E_0$ is the energy of the parent orbit and thus hypersurface of interest. Our method differs in a few ways from that of MV96. First, MV96 use isoenergy ensembles of particles for following the density because that is the only way to guarantee that, if chaotic, nearly all orbits in the ensemble will lie on chaotic orbits. We instead use ensembles with small ($\approx$1\%) spreads in energy, but we still expect that such an ensemble around a parent chaotic orbit will reach a fully mixed state. The final distribution, rather than fill the energy hypersurface, will instead have some thickness around this surface. Around a typical regular orbit, each individual orbit will fill its torus ergodically -- that is, a surface with lower dimension than the energy hypersurface -- and thus, a small enough ensemble will never get ``close'' to the fully mixed state as defined above because it will remain confined into a subspace on the energy surface. In practice, only strongly chaotic systems will approach $\rho_{E_0}(\bs{x})$; the rate will depend on how stochastic the parent orbit is (e.g., as measured by the Lyapunov time or frequency diffusion rate), and also on how ``trapped'' the chaotic region is (a small chaotic region wedged between stable tori will take longer to appear chaotic, even if internally the frequency diffusion rate is large). However the difference in configuration space density between an ensemble undergoing chaotic mixing versus an ensemble around a regular orbit may be detectable over a much shorter timescale. The fully-mixed, normalized, configuration-space density that fills a given energy hypersurface, $E_0$, is 
+As the particle ensembles evolve in time, we follow \citet[][hereafter MV96]{merritt96} and quantify the degree of mixing of the ensemble by computing the ``distance'' between the configuration space density of the ensemble at a given time, $\rho(\bs{x},t)$, with that of a distribution that is uniform over the energy hypersurface, $\rho_{E_0}(\bs{x})$, where $E_0$ is the energy of the parent orbit and thus hypersurface of interest. Our method differs in a few ways from that of MV96. First, MV96 use isoenergy ensembles of particles for following the density because that is the only way to guarantee that, if chaotic, nearly all orbits in the ensemble will lie on chaotic orbits. We instead use ensembles with small ($\approx$1\%) spreads in energy, but we still expect that such an ensemble around a parent chaotic orbit will reach a fully mixed state. The final distribution, rather than fill the energy hypersurface, will instead have some thickness around this surface. Around a typical regular orbit, each individual orbit will fill its torus ergodically --- a surface with lower dimension than the energy hypersurface --- and thus, a small enough ensemble will never reach the fully mixed state as defined above because it will remain confined into a subspace on the energy surface. In practice, only strongly chaotic systems will approach $\rho_{E_0}(\bs{x})$; the rate will depend on how stochastic the parent orbit is (e.g., as measured by the Lyapunov time or frequency diffusion rate), and also on how ``trapped'' the chaotic region is (a small chaotic region wedged between stable tori will take longer to appear chaotic, even if internally the frequency diffusion rate is large). However the difference in configuration space density between an ensemble undergoing chaotic mixing versus an ensemble around a regular orbit may be detectable over a much shorter timescale. The fully-mixed, normalized, configuration-space density that fills a given energy hypersurface, $E_0$, is 
 \begin{align}
 	\rho_{E_0}(\bs{x}) &= \int \dd^3v \, \rho_0 \, \delta(H - E_0)\\
 	&= \int \dd^3v \, \rho_0 \, \delta\left(|\bs{v}|^2/2 + \Phi(\bs{x}) - E_0\right)\\
@@ -415,13 +422,11 @@ Recovering the potential of triaxial systems is not trivial. Danger of orbit fit
 
 \subsection{Potential}
 
-Time dependence
-
-Radial dependence of axis ratios
-
-Why not disk + bulge? What do we expect when we add? See later section for test of this...
+Why not disk + bulge? What do we expect when we add?
 
 Real disk will be self-consistent with halo, so this isn't really a fair test, but still...
+
+Other effects: radial dependence of axis ratios, time dependence, etc.
 
 \acknowledgements
 The authors wish to thank Sarah Pearson, Andreas K\"upper, David Hogg, David Merritt, and the \emph{Stream Team} for useful comments and discussion.
