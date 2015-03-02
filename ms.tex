@@ -100,43 +100,23 @@ classes of triaxial potentials that provide a good representation for its dark m
 
 On the largest scales in the halos of galaxies ($\gtrsim$30~kpc for a Milky-Way-like galaxy), gravitational potentials are thought to be triaxial. Despite suggestive evidence from a range of complimentary techniques, this fundamental prediction from $\Lambda$CDM cosmology has not been conclusively verified by observations. Around other galaxies, it is generally hard to measure the 3D mass profile because they are seen in projection. From the Earth's position within the Milky Way, our view of our own halo and proximity gives us a unique chance to directly measure the 6D positions of stars and model the shape of the mass distribution at large radii. Unfortunately, the Milky Way halo has a low density of visible tracers, but luckily many of the halo stars are likely on non-random orbits and thus contain extra information (e.g., debris stripped from in-falling satellite galaxies).
 
-As a satellite galaxy or globular cluster orbits within some larger system, mass is eroded due to the tidal forces of the host galaxy potential. If the orbit of such an object is regular, only mildly eccentric, and stays far from sharp density features (e.g., the disk), the disruption is a steady process and the mass is slowly stretched into long streams of matter. The phase-space density and therefore the observable properties of these tidal streams are sensitive to the internal progenitor properties, orbit of the progenitor, and underlying mass distribution of the host galaxy. The morphological evolution of the debris depends on the spread of orbital properties (e.g., actions or frequencies) of the debris and the orbit of the progenitor system, both of which are also set by the shape and radial profile of the gravitational potential of the host galaxy. In the halo of the Milky Way, tidal streams of stars are found over a large range of distances ($\sim$10-100~kpc). By simultaneously modeling the observed phase-space density of stream stars along with the potential, it is hoped that we may infer the dark matter distribution of the Milky Way on these scales.
+As a satellite galaxy or globular cluster orbits within some larger system, mass is eroded due to the tidal forces of the host galaxy potential. If the orbit of such an object is regular, only mildly eccentric, and stays far from sharp density features (e.g., the disk), the disruption is a steady process and the mass is slowly stretched into long streams of matter: tidal (stellar) streams. The phase-space density and therefore the observable properties of these tidal streams are sensitive to the internal progenitor properties, orbit of the progenitor, and  mass distribution of the host galaxy. The morphological evolution of the debris depends on the spread of orbital properties (e.g., actions or frequencies) of the debris and the orbit of the progenitor system, both of which are also set by the shape and radial profile of the gravitational potential of the host galaxy. In the halo of the Milky Way, tidal streams of stars are found over a large range of distances ($\sim$10-100~kpc). By simultaneously modeling the observed phase-space density of stream stars along with the potential, it is hoped that we may infer the dark matter distribution of the Milky Way on these scales.
 
 Tidal streams are generally modeled as 1D structures formed on regular orbits with simple internal progenitor dynamics and density evolution. Methods span a range of complexity from orbit-fitting, to \emph{Streakline} or particle-spray models, to action-space density modeling, to N-body simulations. All methods have been tested in some way on simulated observations of data and authors have mainly demonstrated their ability to recover parameters of analytic, static potential forms. Many of the methods have been shown to work in axisymmetric or otherwise simple potentials but claim to extend to more complex, generalized potentials (e.g., triaxial or multi-component potentials). 
 
-\citet{pearson15} tried to reproduce observations of the stellar stream density from the globular cluster Palomar 5 in a single oblate and single triaxial potential using \emph{Streakline} models \citep{kuepper12}. They use the observed SDSS number density of stars and a limited number of radial velocities measured for stream members to fit model streams to the data. In the oblate potential (a three-component, bulge, disk, and spherical halo potential), a thin model stream is easily found that reproduces the observed stellar density morphology of the stream. In the triaxial potential (the potential from \cite{law10}, a three component, bulge, disk, and triaxial halo fit to Sagitarrius stream data), the model streams generically form large, two-dimensional ``fans'' of debris near the ends, and there are no physically reasonable progenitor orbits that reproduce the observed thinness of the stream given the observational constraints of the present-day position and velocity of the cluster. This result suggests that the shape of the host galaxy potential directly influences the morphology of the resulting debris. In order to extend tidal stream models to more generic potentials, it is important to understand why this stream-fanning occurs and whether this and other strange debris morphologies are generic to more complex potentials. This also has implications for modeling the accretion histories of galaxies. Debris morphology is often separated into two classes --- streams (usually from high angular momentum progenitor orbits) and shells (from radially plunging orbits) --- but in practice the distinction may not be as clear due to other mixing effects.
+One example of stream modeling in a multi-component (static, analytic) potential was done by \citet{pearson15}, who tried to reproduce observations of the stellar stream density from the globular cluster Palomar 5 in a single oblate and single triaxial potential using \emph{Streakline} models \citep{kuepper12}. They use the observed SDSS number density of stars and a limited number of radial velocities measured for stream members to fit model streams to the data. In the oblate potential (a three-component, bulge, disk, and spherical halo potential), a thin model stream is easily found that reproduces the observed stellar density morphology of the stream. In the triaxial potential (the potential from \cite{law10}, a three component, bulge, disk, and triaxial halo fit to Sagitarrius stream data), the model streams generically form large, two-dimensional ``fans'' of debris near the ends, and there are no physically reasonable progenitor orbits that reproduce the observed thinness of the stream given the observational constraints of the present-day position and velocity of the cluster. This result suggests that the shape of the host galaxy potential directly influences the morphology of the resulting debris. % In order to extend tidal stream models to more generic potentials, it is important to understand why this stream-fanning occurs and whether this and other strange debris morphologies are generic to more complex potentials. 
 
-The obvious difference between the two potentials considered by \citet{pearson15} is the extra symmetry of the oblate potential. For an integrable Hamiltonian, $H$, with $N$ degrees of freedom (dof), the equations of motion are most simply expressed in angle-action coordinates \cite[e.g.,][]{goldstein80}. In these coordinates, the actions, $J_n$, are integrals of the motion, and the conjugate angle variables, $\theta_n$, increase linearly with time
-\begin{align}
-	\dot{\act}_n &= -\frac{\partial H}{\partial \theta_n} = 0\\
-	\act_n &= {\rm const.}\\
-	\dot{\theta}_n &= \frac{\partial H}{\partial \act_n} = \Omega_n(\act_1,\act_2,...,\act_n)\label{eq:aafreq}\\
-	\theta_n(t) &= \Omega_n t + \theta_n(0)
-\end{align}
-where $i=1,2,...N$, and $\Omega_n$ are the fundamental frequencies of the orbit. The topology of angle-action space is equivalent to that of the surface of an $N$-dimensional torus, and thus orbits are often referred to in terms of \emph{orbital tori}: each set of actions, $(\act_1,\act_2,...\act_N)$, uniquely ``label'' the torus associated with a given orbit and the angles specify the location on the surface of the $N$-torus. If a global transformation to angle-action coordinates exists, the potential is said to be \emph{integrable}.
+The obvious difference between the two potentials considered by \citet{pearson15} is the extra symmetry of the oblate potential. It is well known that the number of symmetries or the number of degrees of freedom of a potential plays a major role in determining the orbital structure within the potential. The peculiar shape of the particular triaxial potential also likely has significant chaotic regions within the potential. \citet{pearson15} tested the stochasticity of the orbit of the fanned debris progenitor by computing the Lyapunov exponent but found that the orbit is consistent with being regular over dynamically relevant timescales (many Hubble times). It has been shown qualitatively that along some strongly chaotic orbits, tidal streams form large, diffuse fans of debris \citep[e.g.,][]{fardal14}. However, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity; the result from \citet{pearson15} suggests that even a weakly chaotic progenitor orbit effects the density and therefore observability of tidal streams. 
 
-Galactic gravitational potentials will almost certainly not be globally integrable, especially if the dark matter halos of galaxies are triaxial. If a triaxial (three dof) potential is close to integrable such that the Hamiltonian can be written in terms of a small perturbation, $\epsilon$, away from some integrable Hamiltonian, $H_0$,
-\begin{equation}
-	H(\bs{\theta}, \bs{\act}) = H_0(\bs{\act}) + \epsilon H_1(\bs{\theta}, \bs{\act})
-\end{equation}
-then a large number of regular orbits will survive the perturbation (by way of the KAM theorem)\footnote{3-vectors are represented with bold symbols, e.g., $\bs{J}=(J_1,J_2,J_3)$.}. The tori that survive will in general be separated by regions of irregular or chaotic motion, and thus any transformations to angle-action coordinates can only be defined locally. Analytic transformations to angle-action coordinates are only known for a handful of simple, integrable potentials. Much effort has gone in to developing general methods for transforming either from position-velocity to angle-action coordinates, $(\bs{x},\bs{v})\rightarrow(\bs{\theta},\bs{J})$ \citep{many}, or vice-versa, $(\bs{\theta},\bs{J})\rightarrow(\bs{x},\bs{v})$ \citep{many}.
+In this work, we analyze whether the final configuration-space morphology of simple tidal stream models is correlated with measures of chaos local to the orbit of the progenitor. The effect of chaos in the halos of galaxies has largely been neglected because the chaotic timescales estimated were thought to be many times the age of the universe, but recent work has shown that even weak chaos may be relevant for tidal stream morphology. Here we choose a simple, cosmologically motivated model for a triaxial potential, analyze the degree of chaos as computed from single-orbit diagnostics, and compare these results to measures of the mixing time of finite-volume ensembles of orbits (analogs to tidal debris). Finally, we connect the ensemble mixing rate to observational properties, thus demonstrating that local orbital measures of chaos can be used to predict the [...].
 
-The types of motion generic to triaxial systems can be split into several sub-categories (summarized in Figure~\ref{fig:orbit-tree}). Regular motion can be classified by the number of resonance relations obeyed \citep[e.g.,][]{lichtenberg83}: \emph{conditionally periodic} orbits obey no resonance relations, \emph{uni-resonant} orbits obey a single relation of the form $\bs{m}\cdot\bs{\Omega}=0$, and \emph{bi-resonant} orbits obey two resonance relations, $\bs{m}\cdot\bs{\Omega}=0$ and $\bs{n}\cdot\bs{\Omega}=0$, where $\bs{m}$ and $\bs{n}$ are integer vectors.
+This paper is organized as follows: In Section~\ref{sec:methods}, we describe our choice of potential and method for numerical orbit integration. We review relevant nonlinear dynamics in Section~\ref{sec:nldreview}. We present our results in Section~\ref{sec:results} and discuss their implications in Section~\ref{sec:discussion}. We conclude in Section~\ref{sec:conclusions}.
 
-\begin{figure*}[!h]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{figures/orbit-tree.pdf}
-\caption{} \label{fig:orbit-tree}
-\end{center}
-\end{figure*}
+% , we describe the connection between different measures of chaotic behavior, further discuss the implications of chaotic mixing, and comment on the applicability of the methods presented here to more realistic Galactic potentials and simulations.
 
-Truly resonant orbits are rare \citep{merritt99}, but dynamically important in systems with several degrees of freedom as they determine the structure of orbit-space. Stable, resonant orbits generate families of orbits that may behave or appear similarly, whereas unstable resonances are typically associated with regions of chaos. Not all orbits can be trivially associated with resonances due to the infinitely complex, hierarchical structure of resonances (though the importance or ``size'' of a resonance falls off inversely with the norm of its integer vector, $|\bs{m}|^{-\alpha}$, with $\alpha > 0$). In autonomous, two dof systems, stochastic regions are generally surrounded and separated by regular motion, thus chaotic orbits are confined. In three or more dof the chaotic regions will connect and overlap. This is the origin of Arnold diffusion \citep{arnold64}, which allows chaotic orbits to radically change shape by traversing the web of unstable resonances and are only strictly bounded to their own energy hypersurface. This phenomenon is perhaps easier to visualize in action-space: in two dof systems, if a given set of tori are destroyed due to potential perturbations, an orbit in this now chaotic region is still bounded between the surrounding tori due to energy conservation. In three dimensions, the extra degree of freedom allows chaotic orbits to ``escape'' this confinement.
+%[Does this go anywhere?]
+%Thin stellar streams form when the spreading of the debris is faster in some preferred direction \citep[one eigenvalue of the Hessian of the potential is large relative to others e.g.,][]{helmi99, sanders??}. This is generically the case for orbits with significant angular momentum in a spherical potential ($|L| > J_r$, orbits that we expect for form streams), but [... comments about expectations in more complex potentials] In a spherical or mildly axisymmetric potential, the debris can only really spread in a single dimension because somehow the constraint that .... Along chaotic orbits, Hessian not defined and frequencies diffuse, ...
 
-For small potential perturbations, many regular orbits survive and only small chaotic islands are introduced. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed. Next, the uni-resonant tori are destroyed, and finally the bi-resonant tori -- these are least susceptible to destruction from perturbations \citep[e.g., see][]{valluri98}. However, even orbits that are strictly chaotic may behave regularly over timescales much longer than, for example, the dynamical time of the system. Chaotic orbits can therefore be loosely classified by being either \emph{strongly} or \emph{weakly} chaotic: strongly chaotic orbits behave irregularly over a few ($\sim$10) dynamical times, whereas weakly chaotic orbits behave regularly over this timescale (we quantify this distinction with the experiments of Section~\ref{sec:experiments}). This rough classification is tied to local measures, such as the Lyapunov time (Section~\ref{sec:lyap}) or frequency diffusion time (Section~\ref{sec:naff}). 
-
-These local measures quantify the divergence of infinitesimally nearby orbits or the rate of frequency diffusion along an orbit. For an ensemble of orbits with finite spreads in energy or frequencies (e.g., tidal debris), each orbit will have a slightly different characteristic timescale, but we still expect mixing time of the ensemble to correlate with local measures of chaos of the ``parent'' orbit of the ensemble (Section~\ref{sec:ensemble}). The evolution of tidal debris will depend on the ensemble mixing rate of the parent orbit: chaotic mixing will cause the density of the debris to fall off more quickly than the typical power-law behavior expected for regular orbits \citep[e.g.,][]{merritt96, helmi99}. Since all known tidal streams have been discovered as kinematic overdensities of stars, this implies (1) [something about accretion history], (2) the long, thin tidal streams we see may represent a sampling from ``special'' orbits in the Galactic potential where the mixing time is long, and (3) previous assumptions that connect the length and size of streams to their evolution time may be invalid.
-
-This paper is organized as follows: In Section~\ref{sec:methods}, we outline the numerical methods used for the experiments of Section~\ref{sec:experiments}. In Section~\ref{sec:discussion}, we describe the connection between different measures of chaotic behavior, further discuss the implications of chaotic mixing, and comment on the applicability of the methods presented here to more realistic Galactic potentials and simulations.
 
 \section{Numerical methods}\label{sec:methods}
 
@@ -164,26 +144,78 @@ This potential is a simple and unrealistic model for the total potential of a Mi
 
 \subsection{Orbit integration}\label{sec:integration}
 
-We use the Dormand-Prince 8th-order Runge-Kutta scheme (TODO: cite Dormand 1981) to integrate orbits in the above potential. In particular, we use the Python wrapper to the FORTRAN routines provided in the Scipy package \citep{scipy}. For all orbits, we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-9}$ by the end of integration. Unless otherwise specified, orbits are integrated for $\sim$250 orbital periods with 500 steps per orbital period. Some box orbits require more internal integration steps in order to conserve energy to the required level. 
+We use the Dormand-Prince 8th-order Runge-Kutta scheme (TODO: cite Dormand 1981) to integrate orbits in the above potential. For all orbits, we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-8}$ by the end of integration. Unless otherwise specified, orbits are integrated for $\sim$250 orbital periods with 500 steps per orbital period. Some box orbits require more internal integration steps in order to conserve energy to the required level. 
+
+\section{Review of nonlinear dynamics}\label{sec:nldreview}
+
+For an integrable Hamiltonian, $H$, with $N$ degrees of freedom (dof), the equations of motion are most simply expressed in angle-action coordinates \cite[e.g.,][]{goldstein80}. In these coordinates, the actions, $J_n$, are integrals of the motion, and the conjugate angle variables, $\theta_n$, increase linearly with time
+\begin{align}
+	\dot{\act}_n &= -\frac{\partial H}{\partial \theta_n} = 0\\
+	\act_n &= {\rm const.}\\
+	\dot{\theta}_n &= \frac{\partial H}{\partial \act_n} = \Omega_n(\act_1,\act_2,...,\act_n)\label{eq:aafreq}\\
+	\theta_n(t) &= \Omega_n t + \theta_n(0)
+\end{align}
+where $i=1,2,...N$, and $\Omega_n$ are the fundamental frequencies of the orbit. The topology of angle-action space is equivalent to that of the surface of an $N$-dimensional torus, and thus orbits are often referred to in terms of \emph{orbital tori}: each set of actions, $(\act_1,\act_2,...\act_N)$, uniquely ``label'' the torus associated with a given orbit and the angles specify the location on the surface of the $N$-torus. If a global transformation to angle-action coordinates exists, the potential is said to be \emph{integrable}.
+
+Galactic gravitational potentials will almost certainly not be globally integrable. Dark matter halos of galaxies are expected to be triaxial but even if they are close to axisymmetric or spherical, the superposition of components (e.g., disk, bulge, halo) will break global integrability. If a triaxial (three dof) potential is close to integrable such that the Hamiltonian can be written in terms of a small perturbation, $\epsilon$, away from some integrable Hamiltonian, $H_0$,
+\begin{equation}
+	H(\bs{\theta}, \bs{\act}) = H_0(\bs{\act}) + \epsilon H_1(\bs{\theta}, \bs{\act})
+\end{equation}
+then a large number of regular orbits will survive the perturbation (by way of the KAM theorem)\footnote{3-vectors are represented with bold symbols, e.g., $\bs{J}=(J_1,J_2,J_3)$.}. The tori that survive will in general be separated by regions of irregular or chaotic motion, and thus any transformations to angle-action coordinates can only be defined locally. Analytic transformations to angle-action coordinates are only known for a handful of simple, integrable potentials. Much effort has gone in to developing general methods for transforming either from position-velocity to angle-action coordinates, $(\bs{x},\bs{v})\rightarrow(\bs{\theta},\bs{J})$ \citep{many}, or vice-versa, $(\bs{\theta},\bs{J})\rightarrow(\bs{x},\bs{v})$ \citep{many}.
+
+The types of motion generic to triaxial systems can be split into several sub-categories (summarized in Figure~\ref{fig:orbit-tree}). Regular motion can be classified by the number of resonance relations obeyed \citep[e.g.,][]{lichtenberg83}: \emph{conditionally periodic} orbits obey no resonance relations, \emph{uni-resonant} orbits obey a single relation of the form $\bs{m}\cdot\bs{\Omega}=0$, and \emph{bi-resonant} orbits obey two resonance relations, $\bs{m}\cdot\bs{\Omega}=0$ and $\bs{n}\cdot\bs{\Omega}=0$, where $\bs{m}$ and $\bs{n}$ are integer vectors.
+
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{figures/orbit-tree.pdf}
+\caption{} \label{fig:orbit-tree}
+\end{center}
+\end{figure*}
+
+Truly resonant orbits are rare \citep{merritt99}, but dynamically important in systems with several degrees of freedom as they determine the structure of orbit-space. Stable, resonant orbits generate families of orbits that may behave or appear similarly, whereas unstable resonances are typically associated with regions of chaos. Not all orbits can be trivially associated with resonances due to the infinitely complex, hierarchical structure of resonances (though the importance or ``size'' of a resonance falls off inversely with the norm of its integer vector, $|\bs{m}|^{-\alpha}$, with $\alpha > 0$). In autonomous, two dof systems, stochastic regions are generally surrounded and separated by regular motion, thus chaotic orbits are confined. In three or more dof the chaotic regions will connect and overlap. This is the origin of Arnold diffusion \citep{arnold64}, which allows chaotic orbits to radically change shape by traversing the web of unstable resonances and are only strictly bounded to their own energy hypersurface. This phenomenon is perhaps easier to visualize in action-space: in two dof systems, if a given set of tori are destroyed due to potential perturbations, an orbit in this now chaotic region is still bounded between the surrounding tori due to energy conservation. In three dimensions, the extra degree of freedom allows chaotic orbits to ``escape'' this confinement.
+
+For small potential perturbations, many regular orbits survive and only small chaotic islands are introduced. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed. Next, the uni-resonant tori are destroyed, and finally the bi-resonant tori -- these are least susceptible to destruction from perturbations \citep[e.g., see][]{valluri98}. However, even orbits that are strictly chaotic may behave regularly over timescales much longer than, for example, the dynamical time of the system. Chaotic orbits can therefore be loosely classified by being either \emph{strongly} or \emph{weakly} chaotic: strongly chaotic orbits behave irregularly over a few ($\sim$10) dynamical times, whereas weakly chaotic orbits behave regularly over this timescale. This rough classification is tied to local measures, such as the Lyapunov time (Section~\ref{sec:lyap}) or frequency diffusion time (Section~\ref{sec:naff}). 
+
+These local measures quantify the divergence of infinitesimally nearby orbits or the rate of frequency diffusion along an orbit. For an ensemble of orbits with finite spreads in energy or frequencies (e.g., tidal debris), each orbit will have a slightly different characteristic timescale, but we still expect mixing time of the ensemble to correlate with local measures of chaos of the ``parent'' orbit of the ensemble (Section~\ref{sec:ensemble}). The evolution of tidal debris will depend on the ensemble mixing rate around the parent orbit: chaotic mixing will cause the density of the debris to fall off more quickly than the typical power-law behavior expected for regular orbits \citep[e.g.,][]{merritt96, helmi99}. 
 
 \subsection{Lyapunov exponents} \label{sec:lyap}
 
-The simplest and perhaps most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent (MLE) of an orbit. Defining the vector $\bs{w} = (q_1,...,q_N,p_1,...,p_N)$ for some set of canonical coordinates $(q_i,p_i)$, we can write Hamilton's equations as 
+%The simplest and perhaps most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent (MLE) of an orbit. Defining the vector $\bs{w} = (q_1,...,q_N,p_1,...,p_N)$ for some set of canonical coordinates $(q_i,p_i)$, we can write Hamilton's equations as 
+%\begin{equation}
+%	\dot{\bs{w}} = \bs{\mathcal{J}} \frac{\partial H}{\partial \bs{w}} = f(\bs{w}) \label{eq:ham}
+%\end{equation}
+%where $\bs{\mathcal{J}}$ is the $2N \times 2N$ canonical Poisson tensor (also called the symplectic matrix) defined by
+%\begin{equation}
+%	\bs{\mathcal{J}} = \left( \begin{array}{c:c} 0 & \ident \\ \hdashline -\ident & 0 \end{array} \right)
+%\end{equation}
+%with $N$-dimensional identity matrices $\ident$. If we consider a nearby phase-space position, $\bs{w}'$, separated from $\bs{w}$ by an infinitesimal deviation, $\delta \bs{w}$, such that $\bs{w}' = \bs{w} + \delta \bs{w}$. We can expand to linear order in the deviation about the parent orbit and write the equations of motion for the deviation as follows
+%\begin{align}
+%	\dot{\bs{w}}' &= f(\bs{w}')\\
+%	\dot{\bs{w}} + \dot{\delta \bs{w}} &= f(\bs{w} +  \delta \bs{w})\\
+%	\dot{\bs{w}} + \dot{\delta \bs{w}} &\approx f(\bs{w}) + \jac_{\bs{w}}\cdot\delta \bs{w} + \mathcal{O}(\delta \bs{w}^2)\\
+%	\dot{\delta \bs{w}} &\approx \jac_{\bs{w}} \cdot  \delta \bs{w}\label{eq:deviate}
+%\end{align}
+%where $\jac$ is the Jacobian of Eq.~\ref{eq:ham}, evaluated at the parent orbit (the Hessian of the Hamiltonian). For chaotic orbits, the maximum eigenvalue of the solution matrix to Eq.~\ref{eq:deviate} is positive real, leading to exponential divergence of nearby orbits. 
+
+%The simplest and perhaps most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent (MLE) of an orbit. Defining the vector $\bs{w} = (q_1,...,q_N,p_1,...,p_N)$ for some set of canonical coordinates $(q_i,p_i)$, and a nearby phase-space position, $\bs{w}'$, separated from $\bs{w}$ by an infinitesimal deviation, $\delta \bs{w}$, such that $\bs{w}' = \bs{w} + \delta \bs{w}$, we can expand to linear order in the deviation about the parent orbit and write the equations of motion for the deviation as 
+%\begin{align}
+%	\dot{\delta \bs{w}} &\approx \jac_{\bs{w}} \cdot  \delta \bs{w}\label{eq:deviate}
+%\end{align}
+%where $\jac$ is the Jacobian of Eq.~\ref{eq:ham}, evaluated at the parent orbit (the Hessian of the Hamiltonian). For chaotic orbits, the maximum eigenvalue of the solution matrix to Eq.~\ref{eq:deviate} is positive real, leading to exponential divergence of nearby orbits. 
+
+The simplest and perhaps most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent (MLE) of an orbit. For some set of canonical coordinates $(q,p)$, we define the vector $w_i = (w_1,...w_{2N}) = (q_1,...,q_N,p_1,...,p_N)$ so we can write Hamilton's equations as 
 \begin{equation}
-	\dot{\bs{w}} = \bs{\mathcal{J}} \frac{\partial H}{\partial \bs{w}} = f(\bs{w}) \label{eq:ham}
+	\dot{w}_i = \mathcal{J}_{ij}\,\frac{\partial H}{\partial w_j} \label{eq:ham}
 \end{equation}
-where $\bs{\mathcal{J}}$ is the $2N \times 2N$ canonical Poisson tensor (also called the symplectic matrix) defined by
+where $\mathcal{J}_{ij}$ is the $2N \times 2N$ canonical Poisson tensor (also called the symplectic matrix) defined by
 \begin{equation}
-	\bs{\mathcal{J}} = \left( \begin{array}{c:c} 0 & \ident \\ \hdashline -\ident & 0 \end{array} \right)
+	\mathcal{J}_{ij} = \left( \begin{array}{c:c} 0 & \ident \\ \hdashline -\ident & 0 \end{array} \right)
 \end{equation}
-with $N$-dimensional identity matrices $\ident$. If we consider a nearby phase-space position, $\bs{w}'$, separated from $\bs{w}$ by an infinitesimal deviation, $\delta \bs{w}$, such that $\bs{w}' = \bs{w} + \delta \bs{w}$. We can expand to linear order in the deviation about the parent orbit and write the equations of motion for the deviation as follows
+with $N$-dimensional identity matrices $\ident$. If we consider a nearby phase-space position, $w_i'$, separated from $w_i$ by an infinitesimal deviation, $\delta w_i$, such that $w_i' = w_i + \delta w_i$. We can expand to linear order in the deviation about the parent orbit and write the equations of motion for the deviation as 
 \begin{align}
-	\dot{\bs{w}}' &= f(\bs{w}')\\
-	\dot{\bs{w}} + \dot{\delta \bs{w}} &= f(\bs{w} +  \delta \bs{w})\\
-	\dot{\bs{w}} + \dot{\delta \bs{w}} &\approx f(\bs{w}) + \jac_{\bs{w}}\cdot\delta \bs{w} + \mathcal{O}(\delta \bs{w}^2)\\
-	\dot{\delta \bs{w}} &\approx \jac_{\bs{w}} \cdot  \delta \bs{w}\label{eq:deviate}
+	\dot{\delta w_i} = \mathcal{J}_{ij} \frac{\partial^2 H}{\partial w_j \partial w_k} \delta w_k =  \mathcal{J}_{ij}\, D_{jk} \, \delta w_k \label{eq:deviate}
 \end{align}
-where $\jac$ is the Jacobian of Eq.~\ref{eq:ham}, evaluated at the parent orbit (the Hessian of the Hamiltonian). For chaotic orbits, the maximum eigenvalue of the solution matrix to Eq.~\ref{eq:deviate} is positive real, leading to exponential divergence of nearby orbits. 
+where $D_{jk}$ is the Hessian matrix evaluated at the parent orbit. For chaotic orbits, the maximum eigenvalue of the solution matrix to Eq.~\ref{eq:deviate} is positive real, leading to exponential divergence of nearby orbits. 
 
 Computing the Lyapunov spectrum for a given orbit is often not necessary if one is only interested in characterizing the degree of chaos. Instead, it is often more efficient to compute the maximum Lyapunov exponent by estimating the finite-time maximum Lyapunov exponent (FTMLE), defined as 
 \begin{equation}
@@ -235,23 +267,7 @@ From Eq.~\ref{eq:lmax} and Eq.~\ref{eq:lyapmax} it is evident that any deviation
 \begin{equation}
 	\lambda_{\rm max} \propto \lim_{t\rightarrow \infty} k \frac{\ln t}{t} = 0.
 \end{equation}
-At long times, the numerically computed MLE should approach 0 as $t^{-1}$ for regular orbits. For chaotic orbits, the divergence is exponential, and the limit should converge to the rate of the exponential: the Lyapunov exponent.
-
-In practice, the MLE is often estimated as the mean of $l_N$ after the summation diverges from power-law behavior. Figure~\ref{fig:lyap-orbits} shows $l_N$ computed for two nearby orbits in the potential of Section~\ref{sec:potential}. In physical units and Cartesian coordinates, the initial conditions for the two orbits are:
-\begin{align}
-	\bs{x}_{0}^{(1)} &= (27.85, 0, 23.35)~{\rm kpc}\\
-	\bs{v}_{0}^{(1)} &= (0, 115.37, 0)~{\rm km~s}^{-1}\\
-	\bs{x}_{0}^{(2)} &= (27.85, 0, 23.10)~{\rm kpc}\\
-	\bs{v}_{0}^{(2)} &= (0, 116.43, 0)~{\rm km~s}^{-1}.
-\end{align}
-Over-plotted on both panels are lines (dashed) that show $t^{-0.9}$ behavior. The MLE estimate continues towards zero for the regular orbit (top) but saturates for the chaotic orbit (bottom) and continues to increase at least until the end of our integration period. For mildly chaotic or ``sticky'' orbits, it can take integration periods of many hundreds or thousands of orbits to determine a reliable estimate of the Lyapunov exponent.
-
-\begin{figure*}[!h]
-\begin{center}
-\includegraphics[width=0.75\textwidth]{figures/lyap-orbits.pdf}
-\caption{ } \label{fig:lyap-orbits}
-\end{center}
-\end{figure*}
+At long times, the numerically computed MLE should approach 0 as $t^{-1}$ for regular orbits. For chaotic orbits, the divergence is exponential, and the limit should converge to the rate of the exponential: the Lyapunov exponent. In practice, the MLE is often estimated as the mean of $l_N$ after the summation diverges from power-law behavior. 
 
 \subsection{Numerical estimation of fundamental frequencies}\label{sec:naff}
 
@@ -284,19 +300,42 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 \end{center}
 \end{figure*}
 
-We have found that for ``sticky'' or mildly chaotic orbits, reliably computing the Lyapunov exponent can require integration times equivalent to thousands of orbital periods. In comparison, owing to the precision of NAFF, detecting small frequency diffusion rates can be done with only $\sim$100 orbital periods. Figure~\ref{fig:fdiff-orbits} shows the two strongest frequency components plotted against each other for the two orbits of Figure~\ref{fig:lyap-orbits}. The orbits were integrated for a total of 400 orbital periods and the frequencies were computed for 12 consecutive windows of orbit, where each section was 100 orbital periods in length. The frequencies are consistent for the regular orbit (left panel) whereas there is significant diffusion in the chaotic orbit (right panel).
+\subsection{Comparison of methods}
+
+We choose two nearby short-axis tube orbits in the potential described in Section~\ref{sec:potential} in order to demonstrate the two methods described above. The orbits were chosen from the grids of initial conditions described in later sections because they are very close in phase-space but display very different behavior. In particular, Orbit A is regular and Orbit B is stochastic. Figure~\ref{fig:two-orbits} shows the two orbits in projection -- Orbit A is shown in the left column and Orbit B the right. Two consecutive integration periods for each orbit are shown as the two rows -- note the change in appearance of Orbit B (the chaotic orbit, right column). The initial conditions for the two orbits in physical units and Cartesian coordinates are:
+\begin{align}
+	\bs{x}_{0}^{(A)} &= (27.85, 0, 23.35)~{\rm kpc}\\
+	\bs{v}_{0}^{(A)} &= (0, 115.37, 0)~{\rm km~s}^{-1}\\
+	\bs{x}_{0}^{(B)} &= (27.85, 0, 23.10)~{\rm kpc}\\
+	\bs{v}_{0}^{(B)} &= (0, 116.43, 0)~{\rm km~s}^{-1}.
+\end{align}
 
 \begin{figure*}[!h]
 \begin{center}
-\includegraphics[width=\textwidth]{figures/freq-diff-orbits.pdf}
+\includegraphics[width=0.9\textwidth]{figures/two-orbits.pdf}
+\caption{ } \label{fig:two-orbits}
+\end{center}
+\end{figure*}
+
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{figures/lyap-orbits.pdf}
+\caption{ } \label{fig:two-methods}
+\end{center}
+\end{figure*}
+
+\begin{figure*}[!h]
+\begin{center}
+\includegraphics[width=0.75\textwidth]{figures/freq-diff-orbits.pdf}
 \caption{ } \label{fig:fdiff-orbits}
 \end{center}
 \end{figure*}
 
-\subsection{Test particle ensembles} \label{sec:ensemble}
+Figure~\ref{fig:two-methods} shows $l_N$ computed for the two orbits. Over-plotted on both panels are lines (dashed) that show $t^{-0.9}$ behavior. The MLE estimate continues towards zero for the regular orbit (top) but saturates for the chaotic orbit (bottom). For mildly chaotic or ``sticky'' orbits, it can take integration periods of many thousands of orbits to determine a reliable estimate of the Lyapunov exponent. In comparison, owing to the precision of NAFF, detecting small frequency diffusion rates can be done with only $\sim$100 orbital periods. Figure~\ref{fig:fdiff-orbits} shows the three fundamental frequencies computed for 12 consecutive windows of orbit (each section is $\sim$100 orbital periods in length) for Orbit A (left) and Orbit B (right). Dashed horizontal line is the estimate of the uncertainty in the numerical computation of the frequencies from Orbit A. The value of each frequency in the first window is subtracted from each subsequent window. The frequencies only show minor deviations for Orbit A (left panel) whereas there is significant diffusion in Orbit B (right panel).
 
-% TODO: below, should I put sarahs paper here even though we didn't say this explicitly?
-Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{fardal14, pearson15}, however, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity. Further, quantifying the degree of stochasticity with, for example, the frequency diffusion rate represents a \emph{local} measure of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question would require a massive exploration of parameter space -- both in potential and in orbits -- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
+\section{Test particle ensembles} \label{sec:ensemble}
+
+The Lyapunov time and frequency diffusion rate are local measures of chaos but ...
 
 We therefore take a simplified approach and consider small ensembles of particles meant to represent debris disrupted from a single tidal disruption event of a low-mass progenitor. For a given set of orbital initial conditions -- the parent orbit -- we find the position of the nearest pericenter, initialize a small ensemble of test particle orbits around this position, then follow the orbits of all of these test particles for some evolution time, $T_{\rm ev}$. For a given mass scale, the ensemble particle position and velocity offsets are assumed to be Normal-distributed away from the parent orbit with spreads set by the tidal radius in position and velocity scale in velocity \citep[e.g.,][]{johnston98, apw14}. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and is drawn from
 \begin{align}
@@ -329,7 +368,9 @@ however, we only have an estimate of the density $\rho_{\rm KDE}(\bs{x},t_j) \ap
 	D_{\rm KL}(t_j) &\approx \frac{1}{N} \sum_i^N \ln \frac{\rho_{\rm KDE}(\bs{x}_i,t_j)}{\rho_{E_0}(\bs{x}_i)}\\
 	\bs{x}_i &\sim \rho_{\rm KDE}(\bs{x},t_j)\label{eq:sampled_from}
 \end{align}
-where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples from the KDE density. For any computation of the density estimate, we use 10-fold cross-validation to find the optimal kernel bandwidth, $\sigma_{\rm KDE}$, by maximizing the likelihood of withheld particles. Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for a regular (black) and chaotic (blue) orbit. The chaotic orbit ensemble mixes much faster than the regular orbit ensemble.
+where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples from the KDE density. For any computation of the density estimate, we use 10-fold cross-validation to find the optimal kernel bandwidth, $\sigma_{\rm KDE}$, by maximizing the likelihood of withheld particles. 
+
+Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for a regular (black) and chaotic (blue) orbit. The chaotic orbit ensemble mixes much faster than the regular orbit ensemble.
 
 \begin{figure*}[!h]
 \begin{center}
@@ -338,7 +379,7 @@ where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples f
 \end{center}
 \end{figure*}
 
-\section{Experiments}\label{sec:experiments}
+\section{Results}\label{sec:results}
 
 \subsection{Orbital properties: frequencies, frequency diffusion, and Lyapunov exponents}
 
@@ -400,6 +441,8 @@ Figure~\ref{fig:xx} shows a sample of regular orbits from these two grids, plott
 
 \subsection{Ensemble properties: mixing of debris}
 
+Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{fardal14, pearson15}, however, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity. Further, quantifying the degree of stochasticity with, for example, the frequency diffusion rate represents a \emph{local} measure of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question would require a massive exploration of parameter space -- both in potential and in orbits -- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
+
 We measure the state of mixing of the debris as described above: we compute the KL divergence between the configuration-space density of the ensemble and the configuration-space density expected if the ensemble particles were uniformly distributed over the parent orbit energy hypersurface. 
 
 a:
@@ -418,6 +461,8 @@ Streams should be shorter? How to test this? Length of stream in angle at isoden
 
 \section{Discussion}\label{sec:discussion}
 
+Since all known tidal streams have been discovered as kinematic overdensities of stars, this implies (1) [something about accretion history], (2) the long, thin tidal streams we see may represent a sampling from ``special'' orbits in the Galactic potential where the mixing time is long, and (3) previous assumptions that connect the length and size of streams to their evolution time may be invalid.
+
 Recovering the potential of triaxial systems is not trivial. Danger of orbit fitting because chaotic orbits can reproduce morphologies of regular orbits.
 
 \subsection{Potential}
@@ -428,8 +473,14 @@ Real disk will be self-consistent with halo, so this isn't really a fair test, b
 
 Other effects: radial dependence of axis ratios, time dependence, etc.
 
+Moved from intro:
+This also has implications for modeling the accretion histories of galaxies. Debris morphology is often separated into two classes --- streams (usually from high angular momentum progenitor orbits) and shells (from radially plunging orbits) --- but in practice the distinction may not be as clear due to other mixing effects.
+
+\section{Conclusions}\label{sec:conclusions}
+For small ensembles, the frequency diffusion rate is a predictor of debris morphology. 
+
 \acknowledgements
-The authors wish to thank Sarah Pearson, Andreas K\"upper, David Hogg, David Merritt, and the \emph{Stream Team} for useful comments and discussion.
+The authors wish to thank Sarah Pearson, Andreas K\"upper, David Hogg, Dan D'Orazio, David Merritt, and the \emph{Stream Team} for useful comments and discussion.
 APW is supported by a National Science Foundation Graduate Research Fellowship under Grant No.\ 11-44155. 
 This research made use of Astropy, a community-developed core \texttt{Python} package for Astronomy \citep{astropy13}.
 This work additionally relied on Columbia University's \emph{Hotfoot} and \emph{Yeti} compute clusters, and we acknowledge the Columbia HPC support staff for assistance.
