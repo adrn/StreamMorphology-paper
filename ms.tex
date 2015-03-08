@@ -68,21 +68,21 @@
 
 \begin{abstract}
 
-Tidal streams form from the steady disruption of stellar systems
-orbiting within the gravitational field of some parent galaxy. Many
-streams and debris structures have been discovered in the halo of the
-Milky Way and have been used to model the potential of the Galaxy. 
-However, few of these models have yet explored the properties of
-tidal debris in triaxial potentials.
-The existence of a variety of orbits, resonances, and chaotic regions in such potentials 
-suggest that the morphologies and dispersal timescales of
-debris could differ significantly from the simpler spherical and oblate cases.
-In this work we use a series of N-body simulations of stellar systems over a range 
-of masses of disruption in triaxial potentials to understand the influence of the nature 
-and types of orbits on debris morphologies.
-Our results suggest that the mere existence of the multitude of thin streams
-already known to orbit the Milky Way provides significant constraints on the
-classes of triaxial potentials that provide a good representation for its dark matter halo.
+%Tidal streams form from the steady disruption of stellar systems
+%orbiting within the gravitational field of some parent galaxy. Many
+%streams and debris structures have been discovered in the halo of the
+%Milky Way and have been used to model the potential of the Galaxy. 
+%However, few of these models have yet explored the properties of
+%tidal debris in triaxial potentials.
+%The existence of a variety of orbits, resonances, and chaotic regions in such potentials 
+%suggest that the morphologies and dispersal timescales of
+%debris could differ significantly from the simpler spherical and oblate cases.
+%In this work we use a series of N-body simulations of stellar systems over a range 
+%of masses of disruption in triaxial potentials to understand the influence of the nature 
+%and types of orbits on debris morphologies.
+%Our results suggest that the mere existence of the multitude of thin streams
+%already known to orbit the Milky Way provides significant constraints on the
+%classes of triaxial potentials that provide a good representation for its dark matter halo.
 
 \end{abstract}
 
@@ -371,7 +371,12 @@ however, we only have an estimate of the density $\rho_{\rm KDE}(\bs{x},t_j) \ap
 \end{align}
 where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples from the KDE density. For any computation of the density estimate, we use 10-fold cross-validation to find the optimal kernel bandwidth, $\sigma_{\rm KDE}$, by maximizing the likelihood of withheld particles. [TODO: previous sentence?]
 
-Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for the two orbits of Section~\ref{sec:comparison}. The chaotic orbit (Orbit B) ensemble mixes much faster than the regular orbit (Orbit A) ensemble, but note the timescale here is still over many tens of orbital periods. The KLD is related to the log-density of the debris so that the final difference in KLD shown in Figure~\ref{fig:DKL} corresponds to a factor of 10 difference in density. TODO: From the decay of the KLD, we measure a mixing rate, defined as [...] TODO: what is the mixing rate? etc...
+Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for the two orbits of Section~\ref{sec:comparison}. The chaotic orbit (Orbit B) ensemble mixes much faster than the regular orbit (Orbit A) ensemble. The KLD is related to the log-density of the debris so that even after XX, the difference in the KLD for the two orbits corresponds to a factor of 10 difference in density. Figure XX shows particle positions at apocenter after $\approx$10 Gyr of evolution for ensembles of 1000 particles generated around the two orbits. For visualization, the final positions are rotated to lie on the $x$ axis and the angular momentum vector of the parent orbit is aligned with the $z$ axis.
+
+
+From the decay of the KLD, we measure a mixing rate by [TODO: how?].
+
+ TODO: From the decay of the KLD, we measure a mixing rate, defined as [...] TODO: what is the mixing rate? etc...
 
 \begin{figure*}[!h]
 \begin{center}
@@ -452,7 +457,7 @@ This also has implications for modeling the accretion histories of galaxies. Deb
 For small ensembles, the frequency diffusion rate is a predictor of debris morphology. 
 
 \acknowledgements
-The authors wish to thank Sarah Pearson, Andreas K\"upper, David Hogg, Dan D'Orazio, David Merritt, and the \emph{Stream Team} for useful comments and discussion.
+The authors wish to thank Sarah Pearson, Robyn Sanderson, Andreas K\"upper, David Hogg, Dan D'Orazio, David Merritt, and the \emph{Stream Team} for useful comments and discussion.
 APW is supported by a National Science Foundation Graduate Research Fellowship under Grant No.\ 11-44155. 
 This research made use of Astropy, a community-developed core \texttt{Python} package for Astronomy \citep{astropy13}.
 This work additionally relied on Columbia University's \emph{Hotfoot} and \emph{Yeti} compute clusters, and we acknowledge the Columbia HPC support staff for assistance.
