@@ -434,6 +434,12 @@ Only effectively looking at debris disrupted from a single pericenter --- debris
 
 Streams should be shorter? How to test this? Length of stream in angle at isodensity contour?
 
+\begin{align}
+	E[\rho(\bs{x},t_j)] &= \int \rho(\bs{x},t_j) \, \rho(\bs{x},t_j) \, \dd \bs{x}\\
+	&\approx \frac{1}{N}\sum \rho(\bs{x}_i,t_j)
+\end{align}
+So we can actually estimate the mean density by evaluating at the particles and taking the mean.
+
 \section{Discussion}\label{sec:discussion}
 
 We have shown that local measures of chaos [...]
