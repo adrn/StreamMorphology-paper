@@ -283,9 +283,9 @@ and the $a_k$ are complex amplitudes and $\bs{n}_k$ is an integer vector. \cite{
 
 If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may act consistently periodic over long windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically when comparing two separate sections of orbit. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit over a given period, and these will vary dramatically if comparing two consecutive integration periods. Therefore, the frequency diffusion rate per orbit, $\fdrate$, is a good predictor for how chaotic an orbit is:
 \begin{equation}
-	\fdrate = \max_{\bs{a}}\,2(\bs{\Omega}_{T_1} - \bs{\Omega}_{T_2}) / \inttime \label{eq:fdrate}
+	\fdrate = \max_{\bs{a}} \, (\bs{\Omega}_{T_1} - \bs{\Omega}_{T_2}) / N_T \label{eq:fdrate}
 \end{equation}
-where $\bs{\Omega}_{T_1}$ and $\bs{\Omega}_{T_2}$ are the fundamental frequencies computed from two consecutive sections of orbit, $\inttime$ is the total integration time (over both sections), and the maximum is taken with relation to the corresponding amplitudes, $\bs{a}$, of the frequency components. The frequency diffusion rate as defined above (e.g., measured in the frequency with the largest amplitude) is better correlated with the strength of chaos in an orbit \citep{valluri??} but differs from the original definition of \cite{valluri98}.
+where $\bs{\Omega}_{T_1}$ and $\bs{\Omega}_{T_2}$ are the fundamental frequencies computed from two consecutive sections of orbit, $N_T$ is the number of orbital periods within a single section of orbit computed from the most significant fundamental frequency, and the maximum is taken with respect to the corresponding amplitudes, $\bs{a}$, of the frequency components. The frequency diffusion rate as defined above (e.g., measured in the frequency with the largest amplitude) is better correlated with the strength of chaos in an orbit \citep{valluri??} but differs from the original definition of \cite{valluri98}.
 
 NAFF has been applied to many problems in Solar System and Galactic dynamics, especially in the study of of orbits in triaxial systems. For more details about the method, see \cite{papaphilippou96, laskar, etc.}. We have implemented and tested our own implementation of NAFF in Python. This code is publicly available through the Gary package.\footnote{link to repo} Figure~\ref{fig:logfreqs} shows a test of the implementation in which we reproduce the frequency map at a fixed energy of an axisymmetric, logarithmic potential \cite[][pg. 260, Figure~3.45]{binneytremaine}. Plotted are the (Cartesian) frequency ratios recovered for a grid of iso-energy, box orbits integrated in the potential
 \begin{equation}
@@ -361,23 +361,20 @@ For each ensemble, we compute the Kullback-Leibler divergence \citep[KL divergen
 \begin{equation}
 	D_{\rm KL} = \int \dd x \, p(x) \ln \frac{p(x)}{q(x)}
 \end{equation}
-We would like to compute 
+Instead, we are computing the three dimensional integral
 \begin{align}
 	D_{\rm KL}(t_j) &= \int \dd^3 \bs{x} \, \rho(\bs{x},t_j) \ln \frac{\rho(\bs{x},t_j)}{\rho_{E_0}(\bs{x})}
 \end{align}
-however, we only have an estimate of the density $\rho_{\rm KDE}(\bs{x},t_j) \approx \rho(\bs{x},t_j)$. Using samples from this KDE estimated density, $\bs{x}_i$, the KL divergence is
+where we only have an estimate of the density $\rho_{\rm KDE}(\bs{x},t_j) \approx \rho(\bs{x},t_j)$. Using samples from this KDE estimated density, $\bs{x}_i$, the KL divergence is
 \begin{align}
 	D_{\rm KL}(t_j) &\approx \frac{1}{N} \sum_i^N \ln \frac{\rho_{\rm KDE}(\bs{x}_i,t_j)}{\rho_{E_0}(\bs{x}_i)}\\
 	\bs{x}_i &\sim \rho_{\rm KDE}(\bs{x},t_j)\label{eq:sampled_from}
 \end{align}
-where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples from the KDE density. For any computation of the density estimate, we use 10-fold cross-validation to find the optimal kernel bandwidth, $\sigma_{\rm KDE}$, by maximizing the likelihood of withheld particles. [TODO: previous sentence?]
+where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples from the KDE density. For any computation of the density estimate, we use 10-fold cross-validation to find the optimal kernel bandwidth, $\sigma_{\rm KDE}$, by maximizing the likelihood of withheld particles.
 
-Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for the two orbits of Section~\ref{sec:comparison}. The chaotic orbit (Orbit B) ensemble mixes much faster than the regular orbit (Orbit A) ensemble. The KLD is related to the log-density of the debris so that even after XX, the difference in the KLD for the two orbits corresponds to a factor of 10 difference in density. Figure XX shows particle positions at apocenter after $\approx$10 Gyr of evolution for ensembles of 1000 particles generated around the two orbits. For visualization, the final positions are rotated to lie on the $x$ axis and the angular momentum vector of the parent orbit is aligned with the $z$ axis.
-
+Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for the two orbits of Section~\ref{sec:comparison}. The chaotic orbit (Orbit B, dashed line) ensemble mixes much faster than the regular orbit (Orbit A, solid line) ensemble. The KLD is related to the logarithm of the mean density of the debris so that a difference of 1 in the KLD roughly corresponds to a factor of 10 difference in mean density of the debris. Figure XX shows particle positions at apocenter after 2, 16, and 32 orbital periods of evolution for ensembles of 1000 particles generated around Orbit A and B. For visualization, the final positions are rotated to lie on the $x$ axis and the angular momentum vector of the parent orbit at the given time is aligned with the $z$ axis.
 
 From the decay of the KLD, we measure a mixing rate by [TODO: how?].
-
- TODO: From the decay of the KLD, we measure a mixing rate, defined as [...] TODO: what is the mixing rate? etc...
 
 \begin{figure*}[!h]
 \begin{center}
@@ -390,9 +387,18 @@ From the decay of the KLD, we measure a mixing rate by [TODO: how?].
 
 \subsection{Orbital properties: frequencies, frequency diffusion, and Lyapunov exponents}
 
-We start by studying the properties of isoenergy orbits in the potential described above. We generate isoenergy grids of initial conditions along the $xz$ ($y=0$) plane\footnote{$x$ is the major and $z$ the minor axis.} with energy $E=XXX$. We fix $v_x = v_z = 0$, and compute $v_y$ from the energy. The majority of the orbits generated on this grid are tube orbits, which preserve a sense of rotation about one of the principal axes of the potential and are generally centrophobic. Tube orbits are generally less stochastic than box orbits --- the other major class of orbits in triaxial potentials --- which tend to plunge deep into the inner regions of the potential. Thin tidal streams are thought to form along tube orbits rather than box orbits because of the fast disruption expected for stellar systems on radially plunging orbits. The major classes of stable tube orbits circulate about either the major or minor axis. The most prominent orbits in this grid are the short-axis and outer long-axis tubes, but this grid generates all of the major orbit classes: short-axis tubes, long-axis inner tubes, long-axis outer tubes, stochastic intermediate-axis, and box orbits. [TODO: Stochastic tube orbits not well studied...because not very important here...]
+We start by studying the properties of individual orbits in the potential described above. We generate isoenergy grids of initial conditions along the $xz$ ($y=0$) plane\footnote{$x$ is the major and $z$ the minor axis.} with energy $E=XXX$. We fix $v_x = v_z = 0$, and compute $v_y$ from the energy. The majority of the orbits generated on this grid are tube orbits, which preserve a sense of rotation about one of the principal axes of the potential and are generally centrophobic. Tube orbits are generally less stochastic than box orbits --- the other major class of orbits in triaxial potentials --- which tend to plunge deep into the inner regions of the potential, however there are appreciable regions of stochastic tube orbits. Thin tidal streams are thought to form along tube orbits rather than box orbits because of the fast disruption expected for stellar systems on radially plunging orbits. The major classes of stable tube orbits circulate about either the major or minor axis. The most prominent orbits in this grid are the short-axis and outer long-axis tubes, but this grid generates all of the major orbit classes: short-axis tubes, long-axis inner tubes, long-axis outer tubes, stochastic intermediate-axis, and box orbits. 
 
-We integrate all orbits for $\approx$200 orbital periods (Section~\ref{sec:integration}) and use NAFF to compute the fundamental frequencies for the two consecutive sections of 100 orbital periods. Figure~\ref{fig:freqmap} (left) shows a map of the fundamental frequency ratios for all tube orbits from the input grid (we plot the frequencies estimated from the first 100 orbital periods). Already evident in this panel is that many of the orbits are regular: the transformed, even-spaced sampling of the initial conditions is preserved in the frequency transformation, implying that the frequencies for many orbits do not change appreciably. Also apparent is resonant trapping, which appear as over-dense, linear features. For approximately XX\% of the orbits, NAFF fails to recover the frequencies (similar difficulties were reported in \cite{valluri98} and \cite{papaphilippou96} for recovering certain tube orbit frequencies).
+We compute the Lyapunov exponents for all orbits in the grid by integrating the orbits for 1000 orbital periods and use the method described in Section~\ref{sec:lyap} to estimate the maximum Lyapunov exponent. Figure~\ref{fig:lyapmap} shows the grid of initial conditions (in the $x--z$ plane) --- each pixel corresponds to an orbit, and the greyscale intensity is related to the logarithm of the Lyapunov time, $t_\lambda = \lambda_{\rm max}^{-1}$. This map shows that by numerically estimating the MLE over this fixed integration window, the majority of orbits appear to be regular or have long Lyapunov times.
+
+\begin{figure}[!h]
+\centering
+	\includegraphics[width=0.4\columnwidth] {figures/lyap_map_xz.png}
+	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
+	\label{fig:lyapmap}
+\end{figure}
+
+For all orbits, we also integrate instead for $\approx$200 orbital periods (Section~\ref{sec:integration}) and use NAFF to compute the fundamental frequencies for the two consecutive sections of 100 orbital periods. Figure~\ref{fig:freqmap} (left) shows a map of the fundamental frequency ratios for all tube orbits from the input grid (we plot the frequencies estimated from the first 100 orbital periods). This panel demonstrates again that many of the orbits are regular: the transformed, even-spaced sampling of the initial conditions is preserved in the frequency transformation, implying that the frequencies for many orbits do not change appreciably. Also apparent is resonant trapping, which manifests as over-dense, linear features in the frequency map. For approximately 2\% of the orbits, NAFF fails to recover the frequencies (similar difficulties were reported in \cite{valluri98} and \cite{papaphilippou96} for recovering certain tube orbit frequencies).
 
 \begin{figure}[h]
 \centering
@@ -402,32 +408,23 @@ We integrate all orbits for $\approx$200 orbital periods (Section~\ref{sec:integ
 	\label{fig:freqmap}
 \end{figure}
 
-For each orbit, we also compute the frequency diffusion rate per orbit, $\fdrate$ (Equation~\ref{eq:fdrate}), using the frequencies computed for the two integrated sections of orbit. This rate only measures the time-averaged diffusion because the frequencies are computed for long segments of orbit, but \cite{valluri??} [...]. Figure~\ref{fig:freqmap} (right) shows the grid of initial conditions for all orbits colored by $\log_{10}(\fdrate)$ (white points are strongly chaotic, black are regular). A rich structure of resonances is apparent in this frequency diffusion map and highlights the accuracy of NAFF. From this map we again see that the tube orbits in this potential are mostly regular or only mildly chaotic, however islands of stronger chaos do appear, especially at the intersections of unstable resonances. The bright, unstable regions in these maps are a visualization of the Arnold web at this energy. It is evident that these unstable regions are interconnected and therefore a tube orbit that starts, for example, in the lower left-hand region of one of these maps could theoretically end up as a box orbit at some point in it its history (but the timescale for this to happen is likely prohibitively long). 
+For each orbit, we also compute the frequency diffusion rate per orbit, $\fdrate$ (Equation~\ref{eq:fdrate}), using the frequencies computed for the two integrated sections of orbit. Figure~\ref{fig:freqmap} (right) shows the grid of initial conditions for all orbits colored by $\log_{10}(\fdrate)$ (white points are strongly chaotic, black are regular). A rich structure of resonances appears in this frequency diffusion map that were not seen in the Lyapunov exponent map: this highlights the accuracy of NAFF. We again see that the tube orbits in this potential are mostly regular or only mildly chaotic, however islands of stronger chaos do appear, especially at the intersections of unstable resonances. The unstable (white) regions in these maps reveal the Arnold web of resonances at this energy. These unstable regions are interconnected and it is therefore possible for a tube orbit that starts, for example, in the lower left-hand region of one of these maps to end up as a box orbit at some point in it its history (but the timescale for this to happen is likely prohibitively long). 
 
-\begin{figure}[!h]
-\centering
-	\includegraphics[width=0.4\columnwidth] {figures/lyap_map_xz.png}
-	\includegraphics[width=0.4\columnwidth] {figures/lyap_map_yz.png}
-	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
-	\label{fig:lyapmap}
-\end{figure}
-
-[TODO: move lyapunov stuff to above FDR stuff?]
-We also compute the Lyapunov exponents for all orbits in the grid by integrating their orbits for 250 orbital periods. Figure~\ref{fig:lyapmap} shows the initial condition grids again, but now the greyscale intensity corresponds to the logarithm of the Lyapunov time, $t_\lambda = \lambda_{\rm max}^{-1}$. These Lyapunov exponent maps show that, for a fixed integration time, only the most chaotic orbits are identified. NAFF is able to detect small differences in the frequencies and thus measure small diffusion rates with comparable integration times.
+The strongest chaotic regions appear in both the Lyapunov exponent and frequency diffusion rate (Figure~\ref{fig:lyapmap} and Figure~\ref{fig:freqmap}, right), but the frequency diffusion rate is more accurate and thus more sensitive to mild chaos. It is unclear whether these regions will be dynamically important on realistic timescales, but we have confirmed from two independent methods that there are regions of strongly chaotic orbits even in this simple, triaxial potential.
 
 \subsection{Ensemble properties: mixing of debris}
 
-Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{fardal14, pearson15}, however, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity. Further, quantifying the degree of stochasticity with, for example, the frequency diffusion rate represents a \emph{local} measure of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question would require a massive exploration of parameter space --- both in potential and in orbits --- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
+Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{fardal14, pearson15}, however, it is unknown how the observable properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity. Further, quantifying the degree of stochasticity with, for example, the frequency diffusion rate represents a \emph{local} measure of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question would require a massive exploration of parameter space --- both in potential and in orbits --- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
 
-We measure the state of mixing of the debris as described above: we compute the KL divergence between the configuration-space density of the ensemble and the configuration-space density expected if the ensemble particles were uniformly distributed over the parent orbit energy hypersurface. 
+We measure the state of mixing of debris along the same grid of initial conditions as described above by computing the KL divergence (KLD) between the configuration-space density of the ensemble and the configuration-space density expected if the ensemble particles were uniformly distributed over the parent orbit energy hypersurface (Section~\ref{sec:ensemble}). From the time evolution of the KLD for a given ensemble around an orbit from the orbit grid, we estimate the mixing rate [TODO]. Figure~\ref{fig:kldmap} shows the same grids of initial conditions as plotted in Figures~\ref{fig:lyapmap} and \ref{fig:freqmap}, but now the intensity of the pixels is set by the [TODO].
 
-a:
-This measure can be computed at any time --- [we show two different maps of this quantity: one after 10 Gyr, one after 15 orbits?]
+\begin{figure}[!h]
+\centering
+	\includegraphics[width=0.4\columnwidth] {figures/kld-map.png}
+	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
+	\label{fig:kldmap}
+\end{figure}
 
-b: 
-From the KL divergence, we compute a mixing time by measuring the slope or power law index?
-
-[Measure mixing time from KLD(t), plot freq. diffusion time vs. mixing time, show we can predict morphology from orbital properties of progenitor?]
 
 \subsection{Observable consequences of mixing}
 
@@ -461,7 +458,7 @@ Moved from intro:
 This also has implications for modeling the accretion histories of galaxies. Debris morphology is often separated into two classes --- streams (usually from high angular momentum progenitor orbits) and shells (from radially plunging orbits) --- but in practice the distinction may not be as clear due to other mixing effects.
 
 \section{Conclusions}\label{sec:conclusions}
-For small ensembles, the frequency diffusion rate is a predictor of debris morphology. 
+We have shown that ...
 
 \acknowledgements
 The authors wish to thank Sarah Pearson, Robyn Sanderson, Andreas K\"upper, David Hogg, Dan D'Orazio, David Merritt, and the \emph{Stream Team} for useful comments and discussion.
