@@ -17,7 +17,7 @@
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\transpose}[1]{{#1}^{\mathsf{T}}}
 \newcommand{\inverse}[1]{{#1}^{-1}}
-\newcommand{\msun}{\mathrm{M}_\odot}
+\newcommand{\msun}{\ensuremath{\mathrm{M}_\odot}}
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\ident}{\mathbb{1}}
 \newcommand{\inttime}{t_{\rm int}}
@@ -89,24 +89,17 @@
 \keywords{
 }
 
-%\begin{figure*}[!h]
-%\begin{center}
-%\includegraphics[width=\textwidth]{PATH}
-%\caption{ CAPTION }\label{fig:FIGNAME}
-%\end{center}
-%\end{figure*}
-
 \section{Introduction}\label{sec:introduction}
 
 On the largest scales in the halos of galaxies ($\gtrsim$30~kpc for a Milky-Way-like galaxy), gravitational potentials are thought to be triaxial. Despite suggestive evidence from a range of complimentary techniques, this fundamental prediction from $\Lambda$CDM cosmology has not been conclusively verified by observations. Around other galaxies, it is generally hard to measure the 3D mass profile because they are seen in projection. From the Earth's position within the Milky Way, our view of our own halo and proximity gives us a unique chance to directly measure the 6D positions of stars and model the shape of the mass distribution at large radii. Unfortunately, the Milky Way halo has a low density of visible tracers, but luckily many of the halo stars are likely on non-random orbits and thus contain extra information (e.g., debris stripped from in-falling satellite galaxies).
 
-As a satellite galaxy or globular cluster orbits within some larger system, mass is eroded due to the tidal forces of the host galaxy potential. If the orbit of such an object is regular, only mildly eccentric, and stays far from sharp density features (e.g., the disk), the disruption is a steady process and the mass is slowly stretched into long streams of matter: tidal (stellar) streams. The phase-space density and therefore the observable properties of these tidal streams are sensitive to the internal progenitor properties, orbit of the progenitor, and  mass distribution of the host galaxy. The morphological evolution of the debris depends on the spread of orbital properties (e.g., actions or frequencies) of the debris and the orbit of the progenitor system, both of which are also set by the shape and radial profile of the gravitational potential of the host galaxy. In the halo of the Milky Way, tidal streams of stars are found over a large range of distances ($\sim$10-100~kpc). By simultaneously modeling the observed phase-space density of stream stars along with the potential, it is hoped that we may infer the dark matter distribution of the Milky Way on these scales.
+As a satellite galaxy or globular cluster orbits within some larger system, mass is eroded due to the tidal forces of the host galaxy potential. If the orbit of such an object is regular, only mildly eccentric, and stays far from sharp density features (e.g., the disk), the disruption is a steady process and the mass is slowly stretched into long streams of matter: stellar tidal streams. The phase-space density and therefore the observable properties of these tidal streams are sensitive to the internal progenitor properties, orbit of the progenitor, and  mass distribution of the host galaxy. The morphological evolution of the debris depends on the spread of orbital properties (e.g., actions or frequencies) of the debris and the orbit of the progenitor system, both of which are also set by the shape and radial profile of the gravitational potential of the host galaxy. In the halo of the Milky Way, tidal streams of stars are found over a large range of distances ($\approx$10-100~kpc). By simultaneously modeling the observed phase-space density of stream stars along with the potential, it is hoped that we may infer the dark matter distribution of the Milky Way on these scales.
 
 Tidal streams are generally modeled as 1D structures formed on regular orbits with simple internal progenitor dynamics and density evolution. Methods span a range of complexity from orbit-fitting, to \emph{Streakline} or particle-spray models, to action-space density modeling, to N-body simulations. All methods have been tested in some way on simulated observations of data and authors have mainly demonstrated their ability to recover parameters of analytic, static potential forms. Many of the methods have been shown to work in axisymmetric or otherwise simple potentials but claim to extend to more complex, generalized potentials (e.g., triaxial or multi-component potentials). 
 
 One example of stream modeling in a multi-component (static, analytic) potential was done by \citet{pearson15}, who tried to reproduce observations of the stellar stream density from the globular cluster Palomar 5 in a single oblate and single triaxial potential using \emph{Streakline} models \citep{kuepper12}. They use the observed SDSS number density of stars and a limited number of radial velocities measured for stream members to fit model streams to the data. In the oblate potential (a three-component, bulge, disk, and spherical halo potential), a thin model stream is easily found that reproduces the observed stellar density morphology of the stream. In the triaxial potential (the potential from \cite{law10}, a three component, bulge, disk, and triaxial halo fit to Sagitarrius stream data), the model streams generically form large, two-dimensional ``fans'' of debris near the ends, and there are no physically reasonable progenitor orbits that reproduce the observed thinness of the stream given the observational constraints of the present-day position and velocity of the cluster. This result suggests that the shape of the host galaxy potential directly influences the morphology of the resulting debris. % In order to extend tidal stream models to more generic potentials, it is important to understand why this stream-fanning occurs and whether this and other strange debris morphologies are generic to more complex potentials. 
 
-The obvious difference between the two potentials considered by \citet{pearson15} is the extra symmetry of the oblate potential. It is well known that the number of symmetries or the number of degrees of freedom of a potential plays a major role in determining the orbital structure within the potential. The peculiar shape of the particular triaxial potential also likely has significant chaotic regions within the potential. \citet{pearson15} tested the stochasticity of the orbit of the fanned debris progenitor by computing the Lyapunov exponent but found that the orbit is consistent with being regular over dynamically relevant timescales (many Hubble times). It has been shown qualitatively that along some strongly chaotic orbits, tidal streams form large, diffuse fans of debris \citep[e.g.,][]{fardal14}. However, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity; the result from \citet{pearson15} suggests that even a weakly chaotic progenitor orbit effects the density and therefore observability of tidal streams. 
+The obvious difference between the two potentials considered by \citet{pearson15} is the extra symmetry of the oblate potential. It is well known that the number of symmetries or the number of degrees of freedom of a potential plays a major role in determining the orbital structure within the potential. The peculiar shape of the particular triaxial potential also likely has significant chaotic regions within the potential. \citet{pearson15} tested the stochasticity of the orbit of the fanned debris progenitor by computing the Lyapunov exponent but found that the orbit is consistent with being regular over dynamically relevant timescales (many Hubble times). It has been shown qualitatively that along some strongly chaotic orbits, tidal streams form large, diffuse fans of debris \citep[e.g.,][]{fardal14}. However, it is unknown how the resultant properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity; the result from \citet{pearson15} suggests that even a weakly chaotic progenitor orbit affects the density and therefore observability of tidal streams. 
 
 In this work, we analyze whether the final configuration-space morphology of simple tidal stream models is correlated with measures of chaos local to the orbit of the progenitor. The effect of chaos in the halos of galaxies has largely been neglected because the chaotic timescales estimated were thought to be many times the age of the universe, but recent work has shown that even weak chaos may be relevant for tidal stream morphology. Here we choose a simple, cosmologically motivated model for a triaxial potential, analyze the degree of chaos as computed from single-orbit diagnostics, and compare these results to measures of the mixing time of finite-volume ensembles of orbits (analogs to tidal debris). Finally, we connect the ensemble mixing rate to observational properties of streams, thus demonstrating that local orbital measures of chaos are predictors of tidal stream morphology. This provides a strong case for developing a method to use the mere existence of the many thin streams found in the halo of our own Galaxy to rule out classes or shapes of possible potentials that fit the Milky Way.
 
@@ -122,7 +115,9 @@ This paper is organized as follows: In Section~\ref{sec:methods}, we describe ou
 
 \subsection{Potential choice}\label{sec:potential}
 
-The density distributions within dark matter halos formed in cosmological N-body simulations are typically triaxial \citep[e.g.,][]{jing02, bett07, zemp09, veraciro11}. \citet{jing02} found that a triaxial generalization of the classic NFW density profile \citep{navarro96} generates excellent fits to their high-resolution N-body simulations, and they provide probability distributions for the axis ratios of the many halos formed in their simulations. They find median axis ratios of $c/a \approx 0.55$ and $b/a \approx 0.77$ where $a$ is the major axis, $b$ the intermediate, and $c$ the minor axis.\footnote{Note that \citet{jing02} use the opposite notation so that $c$ is the major and $a$ is the minor axis.} These are consistent with constraints from weak lensing that place a lower limit on minor-to-major axis ratios of $c/a\gtrsim0.5$ \citep{vanuitert12}. They find significant scatter in the distributions of concentration parameter, $c_e$, or scale radius (depending on choice of parametrization). 
+The density distributions within dark matter halos formed in cosmological N-body simulations are generically triaxial \citep[e.g.,][]{jing02, bett07, zemp09, veraciro11}. With the inclusion of baryonic physics and sub-grid prescriptions for energy input due to supernovae and other feedback mechanisms, the inner potential ($\lesssim$$0.1R_{\rm vir}$ for a $\approx$$10^{12}~\msun$ halo mass) typically becomes more spherical, though the magnitude of this reshaping depends on the particular merger history and star formation efficiency within a given halo \citep[e.g.,][]{dubinski??, recent NiHao stuff}. It is less clear what happens to the outer halo where tidal streams are more readily found; for this reason, we ask what we would expect to happen to tidal streams if the halo in which they form is strongly triaxial.
+
+ \citet[][hereafter JS02]{jing02} found that a triaxial generalization of the classic NFW density profile \citep{navarro96} generates excellent fits to the density distributions within haloes in their high-resolution N-body simulations, and they provide probability distributions for the axis ratios of a large sample of these halos. JS02 finds median axis ratios of $c/a \approx 0.55$ and $b/a \approx 0.77$ where $a$ is the major axis, $b$ the intermediate, and $c$ the minor axis.\footnote{Note that JS02 use the opposite notation so that $c$ is the major and $a$ is the minor axis.} These are largely consistent with findings from more recent simulations \citep[e.g.,][]{??, NiHao} and consistent with constraints from weak lensing that place a lower limit on minor-to-major axis ratios of $c/a\gtrsim0.5$ \citep{vanuitert12}. JS02 finds significant scatter in the distributions of concentration parameter, $c_e$, or scale radius (depending on choice of parametrization). 
 
 All of these parameters are specified in terms of the \emph{density}; for orbit analysis, we need to determine the form of the potential in terms of these parameters, which, in general, requires numerical integration of the density at each position of interest. For computational efficiency, many authors instead express the triaxiality in the form of the potential, but this can lead to unphysical situations where the density becomes negative. \citet{leesuto03} derive a perturbative expansion of the potential integral for a triaxial NFW density and show that the expansion is accurate even for modest axis ratios (e.g., the median values shown above). 
 
@@ -133,14 +128,15 @@ In this work, we use the triaxial potential expression from \citet{leesuto03}, p
 \end{align}
 where $e_b = \sqrt{1 - (b/a)^2}$, $e_c = \sqrt{1 - (c/a)^2}$, and $v_c$ is the circular velocity at the scale radius, $r_s$, for the spherical case. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=40~{\rm kpc}$ and $v_c = 150~{\rm km}~{\rm s}^{-1}$ by taking the mean halo concentration for a ${\rm M}_{vir} \approx 10^{12}~\msun$ halo, $c_e\approx5$, from \cite{jing02} and by assuming $R_{vir}\approx200~{\rm kpc}$. Figure~\ref{fig:potential} shows the rotation curve of this potential along the three principal axes.
 
-\begin{figure*}[!h]
-\begin{center}
-\includegraphics[width=0.75\textwidth]{figures/potential.pdf}
-\caption{Rotation curve along $x$, $y$, and $z$ axes for the triaxial, NFW potential } \label{fig:potential}
-\end{center}
-\end{figure*}
+% Figure 1
+%\begin{figure*}[!h]
+%\begin{center}
+%\includegraphics[width=0.75\textwidth]{figures/potential.pdf}
+%\caption{Rotation curve along $x$, $y$, and $z$ axes for the triaxial, NFW potential } \label{fig:potential}
+%\end{center}
+%\end{figure*}
 
-This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the effect of chaos in the halos of such galaxies. Realistic Galactic potentials will have a significant component due to the disk and bulge and may have twisting inertia tensors (cite), radially changing axis ratios \citep[e.g.,][]{kazantzidis04,debattista08,veraciro11}, significant substructure \citep{moore98,zemp09}, or time dependence \citep[either from bulk rotation, mass growth, mergers, etc.][]{bailin05}. We expect all of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for a few simple demonstrations.
+This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the structure of orbits in the halos of such galaxies. Realistic Galactic potentials will have a significant component due to the disk and bulge and may have twisting inertia tensors (cite), radially changing axis ratios \citep[e.g.,][]{kazantzidis04,debattista08,veraciro11}, significant substructure \citep{moore98,zemp09}, or time dependence \citep[either from bulk rotation, mass growth, mergers, etc.][]{bailin05}. We expect all of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for a few simple demonstrations.
 
 \subsection{Orbit integration}\label{sec:integration}
 
@@ -165,12 +161,13 @@ then a large number of regular orbits will survive the perturbation (by way of t
 
 The types of motion generic to triaxial systems can be split into several sub-categories (summarized in Figure~\ref{fig:orbit-tree}). Regular motion can be classified by the number of resonance relations obeyed \citep[e.g.,][]{lichtenberg83}: \emph{conditionally periodic} orbits obey no resonance relations, \emph{uni-resonant} orbits obey a single relation of the form $\bs{m}\cdot\bs{\Omega}=0$, and \emph{bi-resonant} orbits obey two resonance relations, $\bs{m}\cdot\bs{\Omega}=0$ and $\bs{n}\cdot\bs{\Omega}=0$, where $\bs{m}$ and $\bs{n}$ are integer vectors.
 
-\begin{figure*}[!h]
-\begin{center}
-\includegraphics[width=0.6\textwidth]{figures/orbit-tree.pdf}
-\caption{A rough classification of the types of orbits found in triaxial potentials. Regular orbits are classified by the number of resonance relations obeyed: conditionally periodic (\emph{none}), uni-resonant (\emph{one}), bi-resonant (\emph{two}). Irregular or chaotic orbits are simply separated into two classes: strongly and weakly chaotic, defined by the timescales of interest in a problem. When the characteristic chaotic timescale is much longer than, for example, the age of the universe, the orbit is only weakly chaotic. } \label{fig:orbit-tree}
-\end{center}
-\end{figure*}
+% Figure 2
+%\begin{figure*}[!h]
+%\begin{center}
+%\includegraphics[width=0.6\textwidth]{figures/orbit-tree.pdf}
+%\caption{A rough classification of the types of orbits found in triaxial potentials. Regular orbits are classified by the number of resonance relations obeyed: conditionally periodic (\emph{none}), uni-resonant (\emph{one}), bi-resonant (\emph{two}). Irregular or chaotic orbits are simply separated into two classes: strongly and weakly chaotic, defined by the timescales of interest in a problem. When the characteristic chaotic timescale is much longer than, for example, the age of the universe, the orbit is only weakly chaotic. } \label{fig:orbit-tree}
+%\end{center}
+%\end{figure*}
 
 Truly resonant orbits are rare \citep{merritt99}, but dynamically important in systems with several degrees of freedom as they determine the structure of orbit-space. Stable, resonant orbits generate families of orbits that may behave or appear similarly, whereas unstable resonances are typically associated with regions of chaos. Not all orbits can be trivially associated with resonances due to the infinitely complex, hierarchical structure of resonances (though the importance or ``size'' of a resonance falls off inversely with the norm of its integer vector, $|\bs{m}|^{-\alpha}$, with $\alpha > 0$). In autonomous, two dof systems, stochastic regions are generally surrounded and separated by regular motion, thus chaotic orbits are confined. In three or more dof the chaotic regions will connect and overlap. This is the origin of Arnold diffusion \citep{arnold64}, which allows chaotic orbits to radically change shape by traversing the web of unstable resonances and are only strictly bounded to their own energy hypersurface. This phenomenon is perhaps easier to visualize in action-space: in two dof systems, if a given set of tori are destroyed due to potential perturbations, an orbit in this now chaotic region is still bounded between the surrounding tori due to energy conservation. In three dimensions, the extra degree of freedom allows chaotic orbits to ``escape'' this confinement.
 
@@ -293,23 +290,25 @@ NAFF has been applied to many problems in Solar System and Galactic dynamics, es
 \end{equation}
 In such a map, stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.
 
-\begin{figure*}[!h]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{figures/log-freqmap.png}
-\caption{Ratio of cartesian frequencies for a grid of iso-energy box orbits integrated in the potential of Equation~\ref{eq:logpotential}. Stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.} \label{fig:logfreqs}
-\end{center}
-\end{figure*}
+% Figure 3
+%\begin{figure*}[!h]
+%\begin{center}
+%\includegraphics[width=0.5\textwidth]{figures/log-freqmap.png}
+%\caption{Ratio of cartesian frequencies for a grid of iso-energy box orbits integrated in the potential of Equation~\ref{eq:logpotential}. Stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.} \label{fig:logfreqs}
+%\end{center}
+%\end{figure*}
 
 NAFF recovers the fundamental frequencies for an orbit faster (with a fewer number of terms) when the coordinates used are ``close'' to the angle variables \cite[PL96][]{papaphilippou96}. PL96 show that a good choice of coordinates for tube orbits are the Poincar\'e symplectic polar coordinates, a set of canonical coordinates similar to cylindrical coordinates. When computing the frequencies for tube orbits, we first rotate the orbits until the circulation is about the $z$-axis, transform to Poincar\'e polar coordinates, then use NAFF to measure the fundamental frequencies. We could equivalently use the Cartesian time series, but the convergence of terms is slower (the amplitudes of successive terms decrease slower for Cartesian coordinates). We have tested that our implementation of NAFF returns the same fundamental frequencies in either case for a set of tube orbits. For box orbits, the motion is close to separable in each Cartesian component and we therefore use Cartesian coordinates for estimating frequencies for these orbits.
 
 \subsection{Comparison of methods}\label{sec:comparison}
 
-\begin{figure*}[!h]
-\begin{center}
-\includegraphics[width=0.9\textwidth]{figures/two-orbits.pdf}
-\caption{ Two orbits integrated in the triaxial potential described in Section~\ref{sec:potential}. Left panels (black) show two consecutive sections of orbit, where the integration time for each section (rows) is set to 100 times the maximum orbital period. Right panels (red) shows the same for the chaotic orbit. The appearance of the orbit in configuration space changes appreciably over timescales of tens of orbital periods. } \label{fig:two-orbits}
-\end{center}
-\end{figure*}
+% Figure 4
+%\begin{figure*}[!h]
+%\begin{center}
+%\includegraphics[width=0.9\textwidth]{figures/two-orbits.pdf}
+%\caption{ Two orbits integrated in the triaxial potential described in Section~\ref{sec:potential}. Left panels (black) show two consecutive sections of orbit, where the integration time for each section (rows) is set to 100 times the maximum orbital period. Right panels (red) shows the same for the chaotic orbit. The appearance of the orbit in configuration space changes appreciably over timescales of tens of orbital periods. } \label{fig:two-orbits}
+%\end{center}
+%\end{figure*}
 
 We choose two nearby short-axis tube orbits in the potential described in Section~\ref{sec:potential} in order to demonstrate the two methods described above. The orbits were chosen from a grid of initial conditions in the $x$-$z$ plane (described in later sections) because they are very close in phase-space but display very different behavior. In particular, Orbit A is regular or at least weakly chaotic and Orbit B is strongly chaotic. Figure~\ref{fig:two-orbits} shows the two orbits in projection --- Orbit A is shown in the left column and Orbit B the right. Two consecutive integration periods for each orbit are shown in the two rows; note the change in appearance of Orbit B (right column). The initial conditions for the two orbits in physical units and Cartesian coordinates are:
 \begin{align}
@@ -319,18 +318,20 @@ We choose two nearby short-axis tube orbits in the potential described in Sectio
 	\bs{v}_{0}^{(B)} &= (0, 116.43, 0)~{\rm km~s}^{-1}.
 \end{align}
 
-\begin{figure*}[!h]
-\begin{center}
-\includegraphics[width=0.62\textwidth]{figures/lyap-orbits.pdf}
-\caption{ FTMLE (Equation~\ref{eq:ftmle}) computed over 1000 orbital periods (the maximum orbital period) for Orbit A (left) and Orbit B (right). For Orbit A, the FTMLE asymptotes towards zero with a characteristic power-law slope. For Orbit B, the FTMLE begins to saturate to a constant; the Lyapunov exponent estimated for this orbit is $\lambda_{\rm max} \approx 0.07 \, {\rm Gyr}^{-1}$ corresponding to a Lyapunov time of $t_\lambda \approx 14 \, {Gyr}$. Over-plotted on both panels are lines (dashed, blue) that show $t^{-0.9}$ behavior.} \label{fig:lyap-orbits}
-\end{center}
-\end{figure*}
-\begin{figure*}[!h]
-\begin{center}
-\includegraphics[width=0.62\textwidth]{figures/freq-diff-orbits.pdf}
-\caption{ Difference in frequencies computed for successive sections of 100 orbital periods from the frequencies computed in the initial section for Orbit A (left) and Orbit B (right). The three lines in each panel are for the three fundamental frequencies. Dashed (red) horizontal line shows the estimate of the uncertainty for the frequencies computed for Orbit A. After many hundreds of orbital periods, the frequency deviation is not appreciable indicating again that the orbit is regular or only very weakly chaotic. The frequency deviations computed for Orbit B, however, show a clear increasing trend, indicating that the frequencies are diffusing with time. } \label{fig:fdiff-orbits} % The frequency diffusion rate defined in Equation~\ref{eq:fdrate} measures the initial slope of this trend.
-\end{center}
-\end{figure*}
+% Figure 5, 6
+%\begin{figure*}[!h]
+%\begin{center}
+%\includegraphics[width=0.62\textwidth]{figures/lyap-orbits.pdf}
+%\caption{ FTMLE (Equation~\ref{eq:ftmle}) computed over 1000 orbital periods (the maximum orbital period) for Orbit A (left) and Orbit B (right). For Orbit A, the FTMLE asymptotes towards zero with a characteristic power-law slope. For Orbit B, the FTMLE begins to saturate to a constant; the Lyapunov exponent estimated for this orbit is $\lambda_{\rm max} \approx 0.07 \, {\rm Gyr}^{-1}$ corresponding to a Lyapunov time of $t_\lambda \approx 14 \, {Gyr}$. Over-plotted on both panels are lines (dashed, blue) that show $t^{-0.9}$ behavior.} \label{fig:lyap-orbits}
+%\end{center}
+%\end{figure*}
+%
+%\begin{figure*}[!h]
+%\begin{center}
+%\includegraphics[width=0.62\textwidth]{figures/freq-diff-orbits.pdf}
+%\caption{ Difference in frequencies computed for successive sections of 100 orbital periods from the frequencies computed in the initial section for Orbit A (left) and Orbit B (right). The three lines in each panel are for the three fundamental frequencies. Dashed (red) horizontal line shows the estimate of the uncertainty for the frequencies computed for Orbit A. After many hundreds of orbital periods, the frequency deviation is not appreciable indicating again that the orbit is regular or only very weakly chaotic. The frequency deviations computed for Orbit B, however, show a clear increasing trend, indicating that the frequencies are diffusing with time. } \label{fig:fdiff-orbits} % The frequency diffusion rate defined in Equation~\ref{eq:fdrate} measures the initial slope of this trend.
+%\end{center}
+%\end{figure*}
 
 Figure~\ref{fig:lyap-orbits} shows $l_N$ computed for the two orbits described above. The MLE estimate continues towards zero for the regular orbit (left) but saturates for the chaotic orbit (right). For mildly chaotic or ``sticky'' orbits, it can take integration periods of many thousands of orbits to determine a reliable estimate of the Lyapunov exponent. In comparison, owing to the precision of NAFF, detecting small frequency diffusion rates can be done with only $\sim$100 orbital periods. Figure~\ref{fig:fdiff-orbits} shows the three fundamental frequencies computed for 12 consecutive windows of orbit (each section is $\sim$100 orbital periods in length) for Orbit A (left) and Orbit B (right). Dashed horizontal line is the estimate of the uncertainty in the numerical computation of the frequencies from Orbit A. The value of each frequency in the first window is subtracted from each subsequent window. The frequencies only show minor deviations for Orbit A (left panel) whereas there is significant diffusion in Orbit B (right panel).
 
@@ -376,13 +377,6 @@ Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for the two orbits
 
 From the decay of the KLD, we measure a mixing rate by [TODO: how?].
 
-\begin{figure*}[!h]
-\begin{center}
-\includegraphics[width=0.75\textwidth]{figures/D_KL.pdf}
-\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:DKL}
-\end{center}
-\end{figure*}
-
 \section{Results}\label{sec:results}
 
 \subsection{Orbital properties: frequencies, frequency diffusion, and Lyapunov exponents}
@@ -391,12 +385,12 @@ We start by studying the properties of individual orbits in the potential descri
 
 We compute the Lyapunov exponents for all orbits in the grid by integrating the orbits for 1000 orbital periods and use the method described in Section~\ref{sec:lyap} to estimate the maximum Lyapunov exponent. Figure~\ref{fig:lyapmap} shows the grid of initial conditions (in the $x--z$ plane) --- each pixel corresponds to an orbit, and the greyscale intensity is related to the logarithm of the Lyapunov time, $t_\lambda = \lambda_{\rm max}^{-1}$. This map shows that by numerically estimating the MLE over this fixed integration window, the majority of orbits appear to be regular or have long Lyapunov times.
 
-\begin{figure}[!h]
-\centering
-	\includegraphics[width=0.4\columnwidth] {figures/lyap_map_xz.png}
-	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
-	\label{fig:lyapmap}
-\end{figure}
+%\begin{figure}[!h]
+%\centering
+%	\includegraphics[width=0.4\columnwidth] {figures/lyap_map_xz.png}
+%	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
+%	\label{fig:lyapmap}
+%\end{figure}
 
 For all orbits, we also integrate instead for $\approx$200 orbital periods (Section~\ref{sec:integration}) and use NAFF to compute the fundamental frequencies for the two consecutive sections of 100 orbital periods. Figure~\ref{fig:freqmap} (left) shows a map of the fundamental frequency ratios for all tube orbits from the input grid (we plot the frequencies estimated from the first 100 orbital periods). This panel demonstrates again that many of the orbits are regular: the transformed, even-spaced sampling of the initial conditions is preserved in the frequency transformation, implying that the frequencies for many orbits do not change appreciably. Also apparent is resonant trapping, which manifests as over-dense, linear features in the frequency map. For approximately 2\% of the orbits, NAFF fails to recover the frequencies (similar difficulties were reported in \cite{valluri98} and \cite{papaphilippou96} for recovering certain tube orbit frequencies).
 
@@ -418,13 +412,12 @@ Our goal is to characterize the morphology of tidal debris along orbits generic 
 
 We measure the state of mixing of debris along the same grid of initial conditions as described above by computing the KL divergence (KLD) between the configuration-space density of the ensemble and the configuration-space density expected if the ensemble particles were uniformly distributed over the parent orbit energy hypersurface (Section~\ref{sec:ensemble}). From the time evolution of the KLD for a given ensemble around an orbit from the orbit grid, we estimate the mixing rate [TODO]. Figure~\ref{fig:kldmap} shows the same grids of initial conditions as plotted in Figures~\ref{fig:lyapmap} and \ref{fig:freqmap}, but now the intensity of the pixels is set by the [TODO].
 
-\begin{figure}[!h]
-\centering
-	\includegraphics[width=0.4\columnwidth] {figures/kld-map.png}
-	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
-	\label{fig:kldmap}
-\end{figure}
-
+%\begin{figure}[!h]
+%\centering
+%	\includegraphics[width=0.4\columnwidth] {figures/kld-map.png}
+%	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
+%	\label{fig:kldmap}
+%\end{figure}
 
 \subsection{Observable consequences of mixing}
 
@@ -468,5 +461,78 @@ This work additionally relied on Columbia University's \emph{Hotfoot} and \emph{
 
 \bibliographystyle{apj}
 \bibliography{refs}
+\clearpage
+
+% Figure 1
+\begin{figure*}[!p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/potential.pdf}
+\caption{Rotation curve along $x$, $y$, and $z$ axes for the triaxial, NFW potential } \label{fig:potential}
+\end{center}
+\end{figure*}
+
+% Figure 2
+\begin{figure*}[!p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/orbit-tree.pdf}
+\caption{A rough classification of the types of orbits found in triaxial potentials. Regular orbits are classified by the number of resonance relations obeyed: conditionally periodic (\emph{none}), uni-resonant (\emph{one}), bi-resonant (\emph{two}). Irregular or chaotic orbits are simply separated into two classes: strongly and weakly chaotic, defined by the timescales of interest in a problem. When the characteristic chaotic timescale is much longer than, for example, the age of the universe, the orbit is only weakly chaotic. } \label{fig:orbit-tree}
+\end{center}
+\end{figure*}
+
+% Figure 3
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/log-freqmap.png}
+\caption{Ratio of cartesian frequencies for a grid of iso-energy box orbits integrated in the potential of Equation~\ref{eq:logpotential}. Stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.} \label{fig:logfreqs}
+\end{center}
+\end{figure*}
+
+% Figure 4
+\begin{figure*}[!p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/two-orbits.pdf}
+\caption{ Two orbits integrated in the triaxial potential described in Section~\ref{sec:potential}. Left panels (black) show two consecutive sections of orbit, where the integration time for each section (rows) is set to 100 times the maximum orbital period. Right panels (red) shows the same for the chaotic orbit. The appearance of the orbit in configuration space changes appreciably over timescales of tens of orbital periods. } \label{fig:two-orbits}
+\end{center}
+\end{figure*}
+
+% Figure 5
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/lyap-orbits.pdf}
+\caption{ FTMLE (Equation~\ref{eq:ftmle}) computed over 1000 orbital periods (the maximum orbital period) for Orbit A (left) and Orbit B (right). For Orbit A, the FTMLE asymptotes towards zero with a characteristic power-law slope. For Orbit B, the FTMLE begins to saturate to a constant; the Lyapunov exponent estimated for this orbit is $\lambda_{\rm max} \approx 0.07 \, {\rm Gyr}^{-1}$ corresponding to a Lyapunov time of $t_\lambda \approx 14 \, {Gyr}$. Over-plotted on both panels are lines (dashed, blue) that show $t^{-0.9}$ behavior.} \label{fig:lyap-orbits}
+\end{center}
+\end{figure*}
+
+% Figure 6
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/freq-diff-orbits.pdf}
+\caption{ Difference in frequencies computed for successive sections of 100 orbital periods from the frequencies computed in the initial section for Orbit A (left) and Orbit B (right). The three lines in each panel are for the three fundamental frequencies. Dashed (red) horizontal line shows the estimate of the uncertainty for the frequencies computed for Orbit A. After many hundreds of orbital periods, the frequency deviation is not appreciable indicating again that the orbit is regular or only very weakly chaotic. The frequency deviations computed for Orbit B, however, show a clear increasing trend, indicating that the frequencies are diffusing with time. } \label{fig:fdiff-orbits} % The frequency diffusion rate defined in Equation~\ref{eq:fdrate} measures the initial slope of this trend.
+\end{center}
+\end{figure*}
+
+% Figure 7
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/D_KL.pdf}
+\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:DKL}
+\end{center}
+\end{figure*}
+
+% Figure 8
+\begin{figure}[p]
+\centering
+	\includegraphics[width=\columnwidth] {figures/lyap_map_xz.png}
+	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
+	\label{fig:lyapmap}
+\end{figure}
+
+% Figure 9
+%\begin{figure}[!h]
+%\centering
+%	\includegraphics[width=0.4\columnwidth] {figures/kld-map.png}
+%	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
+%	\label{fig:kldmap}
+%\end{figure}
 
 \end{document}
