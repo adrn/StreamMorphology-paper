@@ -32,7 +32,7 @@
 
 \begin{document}
 
-\title{Tidal streams in triaxial systems}
+\title{Chaotic diffusion of tidal streams}
 \author{Adrian M. Price-Whelan\altaffilmark{\colum,\adrn},
 	    Kathryn V. Johnston\altaffilmark{\colum},
 	    Monica Valluri\altaffilmark{\mich},
@@ -104,35 +104,12 @@ The obvious difference between the two potentials considered by \citet{pearson15
 TODO: this paragraph needs to be reworked...
 In this work, we analyze whether the final configuration-space morphology of simple tidal stream models is correlated with measures of chaos local to the orbit of the progenitor. The effect of chaos in the halos of galaxies has largely been neglected because the chaotic timescales estimated were thought to be many times the age of the universe, but recent work has shown that even weak chaos may be relevant for tidal stream morphology. In this Article, we choose a simple, cosmologically motivated model for a triaxial potential, analyze the degree of chaos for grids of constant-energy orbits as computed from single-orbit diagnostics, and compare these results to measures of the mixing time of finite-volume ensembles of orbits (analogs to tidal debris). Finally, we connect the ensemble mixing rate to observational properties of streams, thus demonstrating that local orbital measures of chaos are predictors of tidal stream morphology. This provides a strong case for developing a method to use the mere existence of the many thin streams found in the halo of our own Galaxy to rule out classes or shapes of possible potentials that fit the Milky Way.
 
-This paper is organized as follows: In Section~\ref{sec:methods}, we describe our choice of potential and method for numerical orbit integration. We review relevant nonlinear dynamics in Section~\ref{sec:nldreview}. We present our results in Section~\ref{sec:results} and discuss their implications in Section~\ref{sec:discussion}. We conclude in Section~\ref{sec:conclusions}.
+This paper is organized as follows: We review relevant nonlinear dynamics in Section~\ref{sec:nldreview}. In Section~\ref{sec:methods}, we describe our choice of potential and method for numerical orbit integration. We present our results in Section~\ref{sec:results} and discuss their implications in Section~\ref{sec:discussion}. We conclude in Section~\ref{sec:conclusions}.
 
 % , we describe the connection between different measures of chaotic behavior, further discuss the implications of chaotic mixing, and comment on the applicability of the methods presented here to more realistic Galactic potentials and simulations.
 
 %[Does this go anywhere?]
 %Thin stellar streams form when the spreading of the debris is faster in some preferred direction \citep[one eigenvalue of the Hessian of the potential is large relative to others e.g.,][]{helmi99, sanders??}. This is generically the case for orbits with significant angular momentum in a spherical potential ($|L| > J_r$, orbits that we expect for form streams), but [... comments about expectations in more complex potentials] In a spherical or mildly axisymmetric potential, the debris can only really spread in a single dimension because somehow the constraint that .... Along chaotic orbits, Hessian not defined and frequencies diffuse, ...
-
-\section{Numerical methods}\label{sec:methods}
-
-\subsection{Potential choice}\label{sec:potential}
-
-The density distributions within dark matter halos formed in cosmological N-body simulations are generically triaxial \citep[e.g.,][]{jing02, bett07, zemp09, veraciro11}. With the inclusion of baryonic physics and sub-grid prescriptions for energy input due to supernovae and other feedback mechanisms, the inner potential ($\lesssim$$0.1R_{\rm vir}$ for a $\approx$$10^{12}~\msun$ halo mass) typically becomes more spherical, though the magnitude of this reshaping depends on the particular merger history and star formation efficiency within a given halo \citep[e.g.,][]{dubinski??, recent NiHao stuff}. It is less clear what happens to the outer halo where tidal streams are more readily found. %; for this reason, we ask what we would expect to happen to tidal streams if the halo in which they form is strongly triaxial.
-
- \citet[][hereafter JS02]{jing02} found that a triaxial generalization of the classic NFW density profile \citep{navarro96} generates excellent fits to the density distributions within haloes in their high-resolution N-body simulations, and they provide probability distributions for the axis ratios of a large sample of these halos. JS02 finds median axis ratios of $c/a \approx 0.55$ and $b/a \approx 0.77$ where $a$ is the major axis, $b$ the intermediate, and $c$ the minor axis.\footnote{Note that JS02 use the opposite notation so that $c$ is the major and $a$ is the minor axis.} These are largely consistent with findings from more recent simulations \citep[e.g.,][]{??, NiHao} and consistent with constraints from weak lensing that place a lower limit on minor-to-major axis ratios of $c/a\gtrsim0.5$ \citep{vanuitert12}. JS02 finds significant scatter in the distributions of concentration parameter, $c_e$, or scale radius (depending on choice of parametrization). 
-
-All of these parameters are specified in terms of the \emph{density}; for orbit analysis, we need to determine the form of the potential in terms of these parameters, which, in general, requires numerical integration of the density at each position of interest. For computational efficiency, many authors instead express the triaxiality in the form of the potential, but this can lead to unphysical situations where the density becomes negative. \citet{leesuto03} derive a perturbative expansion of the potential integral for a triaxial NFW density and show that the expansion is accurate even for modest axis ratios (e.g., the median values shown above). 
-
-In this work, we use the triaxial potential expression from \citet{leesuto03}, parametrized in a slightly different manner. In terms of spherical coordinates\footnote{$(r,\phi,\theta)$ = (radius, azimuth, colatitude)} with the radius normalized by the scale radius, $u = r/r_s$
-\begin{align}
-	\Phi(u,\phi,\theta) &\approx \frac{v_c^2}{A}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]\\
-	A &= \left(\ln2 - \frac{1}{2}\right) + \left(\ln2-\frac{3}{4}\right) (e_b^2 + e_c^2)
-\end{align}
-where $e_b = \sqrt{1 - (b/a)^2}$, $e_c = \sqrt{1 - (c/a)^2}$, and $v_c$ is the circular velocity at the scale radius, $r_s$, for the spherical case. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 175~{\rm km}~{\rm s}^{-1}$ by taking the mean halo concentration for a ${\rm M}_{vir} \approx 10^{12}~\msun$ halo, $c_e\approx5$, from \cite{jing02} and by assuming $R_{vir}\approx200~{\rm kpc}$. Figure~\ref{fig:potential} shows equipotential contours of the potential in projection.
-
-This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the structure of orbits in the halos of such galaxies. Realistic Galactic potentials will have a significant component due to the disk and bulge, may have twisting inertia tensors (cite), radially changing axis ratios \citep[e.g.,][]{kazantzidis04,debattista08,veraciro11, NiHao}, significant substructure \citep{moore98,zemp09}, or time dependence \citep[either from bulk rotation, mass growth, mergers, etc.][]{bailin05}. We expect inclusion of any of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for a few simple demonstrations.
-
-\subsection{Orbit integration}\label{sec:integration}
-
-We use the Dormand-Prince 8th-order Runge-Kutta scheme \citep{prince81} to integrate orbits in the above potential. For all orbits we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-8}$ by the end of integration, however most orbits conserve energy to $\Delta E/E_0 \approx 10^{-13}$. Unless otherwise specified, the integration timesteps are chosen so that there are 512 steps per strongest orbital period component. 
 
 \section{Review of nonlinear dynamics}\label{sec:nldreview}
 
@@ -216,75 +193,35 @@ When $\epsilon$ is large, there is no general prediction for the resulting behav
 %
 %These local measures quantify the divergence of infinitesimally nearby orbits or the rate of frequency diffusion along an orbit. For an ensemble of orbits with finite spreads in energy or frequencies (e.g., tidal debris), each orbit will have a slightly different characteristic timescale, but we still expect mixing time of the ensemble to correlate with local measures of chaos of the ``parent'' orbit of the ensemble (Section~\ref{sec:ensemble}). The evolution of tidal debris will depend on the ensemble mixing rate around the parent orbit: chaotic mixing will cause the density of the debris to fall off more quickly than the typical power-law behavior expected for regular orbits \citep[e.g.,][]{merritt96, helmi99}. 
 %
+
+\section{Numerical methods}\label{sec:methods}
+
+\subsection{Potential choice}\label{sec:potential}
+
+The density distributions within dark matter halos formed in cosmological N-body simulations are generically triaxial \citep[e.g.,][]{jing02, bett07, zemp09, veraciro11}. With the inclusion of baryonic physics and sub-grid prescriptions for energy input due to supernovae and other feedback mechanisms, the inner potential ($\lesssim$$0.1R_{\rm vir}$ for a $\approx$$10^{12}~\msun$ halo mass) typically becomes more spherical, though the magnitude of this reshaping depends on the particular merger history and star formation efficiency within a given halo \citep[e.g.,][]{dubinski??, recent NiHao stuff}. It is less clear what happens to the outer halo where tidal streams are more readily found. %; for this reason, we ask what we would expect to happen to tidal streams if the halo in which they form is strongly triaxial.
+
+ \citet[][hereafter JS02]{jing02} found that a triaxial generalization of the classic NFW density profile \citep{navarro96} generates excellent fits to the density distributions within haloes in their high-resolution N-body simulations, and they provide probability distributions for the axis ratios of a large sample of these halos. JS02 finds median axis ratios of $c/a \approx 0.55$ and $b/a \approx 0.77$ where $a$ is the major axis, $b$ the intermediate, and $c$ the minor axis.\footnote{Note that JS02 use the opposite notation so that $c$ is the major and $a$ is the minor axis.} These are largely consistent with findings from more recent simulations \citep[e.g.,][]{??, NiHao} and consistent with constraints from weak lensing that place a lower limit on minor-to-major axis ratios of $c/a\gtrsim0.5$ \citep{vanuitert12}. JS02 finds significant scatter in the distributions of concentration parameter, $c_e$, or scale radius (depending on choice of parametrization). 
+
+All of these parameters are specified in terms of the \emph{density}; for orbit analysis, we need to determine the form of the potential in terms of these parameters, which, in general, requires numerical integration of the density at each position of interest. For computational efficiency, many authors instead express the triaxiality in the form of the potential, but this can lead to unphysical situations where the density becomes negative. \citet{leesuto03} derive a perturbative expansion of the potential integral for a triaxial NFW density and show that the expansion is accurate even for modest axis ratios (e.g., the median values shown above). 
+
+In this work, we use the triaxial potential expression from \citet{leesuto03}, parametrized in a slightly different manner. In terms of spherical coordinates\footnote{$(r,\phi,\theta)$ = (radius, azimuth, colatitude)} with the radius normalized by the scale radius, $u = r/r_s$
+\begin{align}
+	\Phi(u,\phi,\theta) &\approx \frac{v_c^2}{A}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]\\
+	A &= \left(\ln2 - \frac{1}{2}\right) + \left(\ln2-\frac{3}{4}\right) (e_b^2 + e_c^2)
+\end{align}
+where $e_b = \sqrt{1 - (b/a)^2}$, $e_c = \sqrt{1 - (c/a)^2}$, and $v_c$ is the circular velocity at the scale radius, $r_s$, for the spherical case. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 175~{\rm km}~{\rm s}^{-1}$ by taking the mean halo concentration for a ${\rm M}_{vir} \approx 10^{12}~\msun$ halo, $c_e\approx5$, from \cite{jing02} and by assuming $R_{vir}\approx200~{\rm kpc}$. Figure~\ref{fig:potential} shows equipotential contours of the potential in projection.
+
+This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the structure of orbits in the halos of such galaxies. Realistic Galactic potentials will have a significant component due to the disk and bulge, may have twisting inertia tensors (cite), radially changing axis ratios \citep[e.g.,][]{kazantzidis04,debattista08,veraciro11, NiHao}, significant substructure \citep{moore98,zemp09}, or time dependence \citep[either from bulk rotation, mass growth, mergers, etc.][]{bailin05}. We expect inclusion of any of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for a few simple demonstrations.
+
+\subsection{Orbit integration}\label{sec:integration}
+
+We use the Dormand-Prince 8th-order Runge-Kutta scheme \citep{prince81} to integrate orbits in the above potential. For all orbits we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-8}$ by the end of integration, however most orbits conserve energy to $\Delta E/E_0 \approx 10^{-13}$. Unless otherwise specified, the integration timesteps are chosen so that there are 512 steps per strongest orbital period component. 
+
 \subsection{Lyapunov exponents} \label{sec:lyap}
 
 % TODO: move most of this to appendix? leave only discussion?
 
-The simplest and perhaps most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent (MLE) of an orbit. Using our definition of $w$ from Equation~\ref{eq:coords}, we can write Hamilton's equations as 
-\begin{equation}
-	\dot{w}_i = \mathcal{J}_{ij}\,\frac{\partial H}{\partial w_j} \label{eq:ham}
-\end{equation}
-where $\mathcal{J}_{ij}$ is the $2N \times 2N$ canonical Poisson tensor (also called the symplectic matrix) defined by
-\begin{equation}
-	\mathcal{J}_{ij} = \left( \begin{array}{c:c} 0 & \ident \\ \hdashline -\ident & 0 \end{array} \right)
-\end{equation}
-with $N$-dimensional identity matrices $\ident$. If we consider a nearby phase-space position, $w_i'$, separated from $w_i$ by an infinitesimal deviation, $\delta w_i$, such that $w_i' = w_i + \delta w_i$. We can expand to linear order in the deviation about the parent orbit and write the equations of motion for the deviation as 
-\begin{align}
-	\dot{\delta w_i} = \mathcal{J}_{ij} \frac{\partial^2 H}{\partial w_j \partial w_k} \delta w_k =  \mathcal{J}_{ij}\, D_{jk} \, \delta w_k \label{eq:deviate}
-\end{align}
-where $D_{jk}$ is the Hessian matrix evaluated at the parent orbit. For chaotic orbits, the maximum eigenvalue of the solution matrix to Eq.~\ref{eq:deviate} is positive real, leading to exponential divergence of nearby orbits. 
-
-Computing the Lyapunov spectrum for a given orbit is often not necessary if one is only interested in characterizing the degree of chaos. Instead, it is often more efficient to compute the maximum Lyapunov exponent by estimating the finite-time maximum Lyapunov exponent (FTMLE), defined as 
-\begin{equation}
-	l_{\rm max}(t) = \frac{1}{t}\ln \frac{\|\delta \bs{w}(t)\|}{\|\delta \bs{w}_0\|}.\label{eq:lmax}
-\end{equation}
-The maximum Lyapunov exponent is the limit as $t\rightarrow \infty$ of the FTMLE
-\begin{equation}
-	\lambda_{\rm max} = \lim_{t\rightarrow\infty}l_{\rm max}(t). \label{eq:lyapmax}
-\end{equation}
-Numerically computing this quantity is not trivial because (1) obviously the limit to infinity is not possible and (2) the norm of the deviation vector $\|\delta \bs{w}(t)\|$ is expected to increase exponentially for chaotic orbits, leading to numerical problems. To circumvent these issues, it is sufficient to instead start a nearby orbit with some small initial deviation with norm $\delta_0$, integrate for a sufficiently small amount of time, $\tau$, then renormalize the deviation back to the initial norm (e.g., cite Bennetin et al. 1976, Tabor 1989). 
-%The following pseudocode outlines this procedure:\footnote{see Gary for Python implementation?}\\
-%\begin{algorithmic}[1]
-%\State {\bf define} orbital integration timestep, $h$, and number of steps, $K$
-%\State {\bf define} initial norm of deviation vector, $\delta_0$, to be sufficiently small
-%\State {\bf define} renormalization integration period, $\tau \ll hK$ 
-%\For{each timestep when integrating the main orbit, $\bs{w}(t)$}
-%\State step forward the orbit and deviation vector orbit by one timestep, $t_{i-1} \rightarrow t_i$
-%\If {a normalization timestep}
-%\State measure and store the length of the deviation vector, $\delta_i = \|\delta \bs{w}_i\|$
-%\State renormalize the length of the deviation vector, $\delta \bs{w}_i = \delta \bs{w}_i (\delta_0/\delta_i)$
-%\EndIf
-%\EndFor 
-%\end{algorithmic}
-The FTMLE after a given number of timesteps, $N$, is then estimated as
-\begin{equation}
-	l_N = \frac{1}{N\tau}\sum_i^N \ln \, \delta_i \label{eq:ftmle}
-\end{equation}
-where $\delta_i=\|\delta \bs{w}(t_i)\|$ and the MLE is
-\begin{equation}
-	\lambda_{\rm max} = \lim_{N\rightarrow \infty} l_N.
-\end{equation}
-
-For most regular orbits, deviations will grow close to linearly or as some power-law of time. 
-%As we have seen (Section~\ref{sec:introduction}), if the orbit is regular, there exists a local transformation to action-angle variables where the angle variables increase linearly with time, $\theta_n \propto \Omega_n t$. We can look at small variations around the orbit defined by the above equations:\footnote{Note the implied summation in repeated indices in the above expression.}
-%\begin{align}
-%	\frac{d (\delta \theta_n)}{dt} &= \frac{\partial \Omega_n}{\partial J_m} \delta J_m
-%\end{align}
-%These equations are trivially integrated:
-%\begin{align}
-%	\delta \theta_n(t) &= \delta \theta_n(0) + \left(\frac{\partial \Omega_n}{\partial J_m} \delta J_m \right) t
-%\end{align}
-%It's clear then that the norm of the deviation vector grows linearly with time:
-%\begin{align}
-%	\|\delta \bs{w}(t)\| &= \left[\sum_n (\delta \theta_n(t))^2 + \sum_n (\delta J_n)^2\right]^{1/2}\\
-%	&= \left[\sum_n \left(\delta \theta_n(0) + \frac{\partial \Omega_n}{\partial J_m} \delta J_m t\right)^2 + \sum_n (\delta J_n)^2\right]^{1/2}\\
-%	&\propto t.
-%\end{align}
-From Eq.~\ref{eq:lmax} and Eq.~\ref{eq:lyapmax} it is evident that any deviation vector that grows as a power law with time, $t^k$, will asymptote to 0 from the limit 
-\begin{equation}
-	\lambda_{\rm max} \propto \lim_{t\rightarrow \infty} k \frac{\ln t}{t} = 0.
-\end{equation}
-At long times, the numerically computed MLE should approach 0 as $t^{-1}$ for regular orbits. For chaotic orbits, the divergence is exponential, and the limit should converge to the rate of the exponential: the Lyapunov exponent. In practice, the MLE is often estimated as the mean of $l_N$ after the summation diverges from power-law behavior. 
+The simplest and perhaps most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent (MLE) of an orbit. 
 
 \subsection{Numerical estimation of fundamental frequencies}\label{sec:naff}
 
@@ -454,7 +391,82 @@ This work additionally relied on Columbia University's \emph{Hotfoot} and \emph{
 
 \bibliographystyle{apj}
 \bibliography{refs}
-\clearpage
+
+\appendix
+\section{Lyapunov exponents}
+
+%Using the definition of $w$ from Equation~\ref{eq:coords}, we can write Hamilton's equations as \footnote{A sum is implied with any repeated indices.}
+%\begin{equation}
+%	\dot{w}_i = \mathcal{J}_{ik}\,\frac{\partial H}{\partial w_k} \label{eq:ham}
+%\end{equation}
+%where $\mathcal{J}_{ik}$ is the $2N \times 2N$ canonical Poisson tensor (also called the symplectic matrix) defined by
+%\begin{equation}
+%	\mathcal{J}_{ik} = \left( \begin{array}{c:c} 0 & \ident \\ \hdashline -\ident & 0 \end{array} \right)
+%\end{equation}
+%with $N$-dimensional identity matrices $\ident$. We will consider a nearby phase-space position, $w_i'$, separated from $w_i$ by an infinitesimal deviation, $\delta w_i$, such that $w_i' = w_i + \delta w_i$. We can expand to linear order in the deviation about the parent orbit and write the equations of motion for the deviation as 
+%\begin{align}
+%	\dot{\delta w_i} &= \mathcal{J}_{ik} \, \frac{\partial^2 H}{\partial w_k \partial w_m} \, \delta w_m =  \mathcal{J}_{ik}\, D_{km} \, \delta w_m \\
+%	&= A_{im} \, \delta w_m
+%\end{align}
+%where $D_{km}$ is the Hessian matrix evaluated at the parent orbit. The general solution for this equation is
+%\begin{equation}
+%	\delta w_i(t) = B_{im}(t) \, \delta w_i(0)
+%\end{equation}
+%where $\delta w_i(0)$ are the initial conditions for the deviation vector and $B_{im}$
+% For chaotic orbits, the maximum eigenvalue of the solution matrix to Eq.~\ref{eq:deviate} is positive real, leading to exponential divergence of nearby orbits. 
+
+If one is only interested in characterizing the degree of chaos, computing the full Lyapunov spectrum for an orbit is often not necessary. It is often sufficient to compute an estimate of the maximum Lyapunov exponent by estimating the finite-time maximum Lyapunov exponent (FTMLE). Using the definition of $\boldsymbol{w}$ from Equation~\ref{eq:coords}, consider an orbit that is a small deviation away from the parent orbit, $\boldsymbol{w}' = \boldsymbol{w} + \delta\boldsymbol{w}$. If the parent orbit is chaotic, the norm of the infinitesimal deviation should grow exponentially with time with some characteristic rate, $\lambda$,
+\begin{equation}
+	\|\delta\boldsymbol{w}(t)\| = e^{\lambda \, t} \, \|\delta\boldsymbol{w}_0\|
+\end{equation}
+\citep[see, e.g.,][]{who?}. From this expression, we see that
+\begin{equation}
+	\lambda(t) = \frac{1}{t}\ln \frac{\|\delta \bs{w}(t)\|}{\|\delta \bs{w}_0\|} \label{eq:mle}
+\end{equation}
+where the maximum Lyapunov exponent is the limit as $t\rightarrow \infty$,
+\begin{equation}
+	\lambda_{\rm max} = \lim_{t\rightarrow\infty}\lambda(t). \label{eq:lmax}
+\end{equation}
+Numerically computing this quantity is not trivial because (1) obviously the limit to infinity is not possible and (2) the norm of the deviation vector $\|\delta \bs{w}(t)\|$ is expected to increase exponentially for chaotic orbits, leading to nonlinear evolution of the deviation and numerical problems. To circumvent these issues, it is sufficient to instead start a nearby orbit with some small initial deviation with norm $\delta_0$, integrate for a sufficiently small amount of time, $\tau$, then renormalize the deviation back to the initial norm (e.g., TODO: cite Bennetin et al. 1976). There is no general way to determine $\tau$ except to perform convergence tests.
+%The following pseudocode outlines this procedure:\footnote{see Gary for Python implementation?}\\
+%\begin{algorithmic}[1]
+%\State {\bf define} orbital integration timestep, $h$, and number of steps, $K$
+%\State {\bf define} initial norm of deviation vector, $\delta_0$, to be sufficiently small
+%\State {\bf define} renormalization integration period, $\tau \ll hK$ 
+%\For{each timestep when integrating the main orbit, $\bs{w}(t)$}
+%\State step forward the orbit and deviation vector orbit by one timestep, $t_{i-1} \rightarrow t_i$
+%\If {a normalization timestep}
+%\State measure and store the length of the deviation vector, $\delta_i = \|\delta \bs{w}_i\|$
+%\State renormalize the length of the deviation vector, $\delta \bs{w}_i = \delta \bs{w}_i (\delta_0/\delta_i)$
+%\EndIf
+%\EndFor 
+%\end{algorithmic}
+The FTMLE after a given number of timesteps, $N$, is then estimated as
+\begin{equation}
+	\lambda_N = \frac{1}{t_N}\sum_i^N \ln \frac{\|\delta \bs{w}(t_i)\|}{\|\delta \bs{w}_0\|} \label{eq:ftmle}
+\end{equation}
+and the MLE is estimated after a very long time to approximate the limit of Equation~\ref{eq:lmax}.
+
+For most regular orbits, deviations will grow linearly or as a power-law of time. As we have seen in Section~\ref{sec:nldreview}, if the orbit is regular, there exists a local transformation to action-angle variables where the angle variables increase linearly with time, $\theta_i \propto \Omega_i t$. We can look at small variations around the angle-space orbit,
+\begin{align}
+	\frac{d (\delta \theta_i)}{dt} &= \frac{\partial \Omega_i}{\partial J_k} \delta J_k
+\end{align}
+These equations are trivially integrated:
+\begin{align}
+	\delta \theta_i(t) &= \delta \theta_i(0) + \left(\frac{\partial \Omega_i}{\partial J_k} \delta J_k \right) t
+\end{align}
+It's clear then that the norm of the deviation vector grows linearly with time:
+\begin{align}
+	\|\delta \bs{w}(t)\| &= \left[\sum_i (\delta \theta_i(t))^2 + \sum_i (\delta J_i)^2\right]^{1/2}\\
+	&= \left[\sum_i \left(\delta \theta_i(0) + \frac{\partial \Omega_i}{\partial J_k} \delta J_k t\right)^2 + \sum_i (\delta J_i)^2\right]^{1/2}\\
+	&\propto t.
+\end{align}
+From Equations~\ref{eq:mle} and \ref{eq:lmax} it is evident that any deviation vector that grows as a power law with time, $t^k$, will asymptote to 0 from the limit 
+\begin{equation}
+	\lambda_{\rm max} \propto \lim_{t\rightarrow \infty} k \frac{\ln t}{t} = 0.
+\end{equation}
+At long times, the numerically computed MLE for a regular orbit should approach 0 as $t^{-1}$. For chaotic orbits, the divergence is exponential, and the limit should converge to the rate of the exponential: the Lyapunov exponent. In practice, the MLE is often estimated as the mean of $\lambda_N$ after the summation diverges from power-law behavior. For weakly chaotic orbits, reliable computation of the MLE may take integration of thousands of orbital periods.
+
 
 % Figure 1
 %\begin{figure*}[!p]
