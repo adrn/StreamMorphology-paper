@@ -3,11 +3,8 @@
 
 % packages
 \usepackage{amssymb,amsmath,amsbsy}
+\usepackage{booktabs}
 \usepackage{bbold}
-\usepackage{arydshln}
-\usepackage{algpseudocode}
-\renewcommand\algorithmicthen{}
-\renewcommand\algorithmicdo{}
 \usepackage{mathrsfs}
 \usepackage{subfigure}
 \usepackage[backref,breaklinks,colorlinks,citecolor=blue]{hyperref}
@@ -126,12 +123,12 @@ where $q_i$ and $p_i$ are conjugate coordinates in the sense that
 \end{align}
 for all $t$. The motion in any component, $w_i(t)$, can be represented as a Fourier sum,
 \begin{equation}
-	w_i(t) = \sum_k^\infty a_k \, e^{i\,\omega_k\,t}; \, (a_k \in \mathbb{C}).
+	w_i(t) = \sum_k^\infty a_k \, e^{i\,\omega_k\,t}; \, (a_k \in \mathbb{C}). \label{eq:fourier}
 \end{equation}
 
 A \emph{regular orbit} is a set of such time series that can be transformed to a special set of canonical coordinates known as angle-action coordinates. In these coordinates, the position variables are angles, $\boldsymbol{\theta}$, that increase linearly with time with rates set by $N$ constant, fundamental frequencies, $\boldsymbol{\Omega} = (\Omega_1, ..., \Omega_N)$. The frequencies in the Fourier sum of any individual component of motion (the $\omega_k$ in Equation~1) are just linear, integer combinations of the fundamental frequencies, $\boldsymbol{\Omega}$ --- that is, for a regular orbit, any Fourier component frequency may be written
 \begin{align}
-	\omega_k &= \boldsymbol{n_k} \cdot \boldsymbol{\Omega}; \, (\boldsymbol{n}_k \in \mathbb{Z}^3).
+	\omega_k &= \boldsymbol{n_k} \cdot \boldsymbol{\Omega}; \, (\boldsymbol{n}_k \in \mathbb{Z}^3). \label{eq:fourierfreq}
 \end{align}
 The conjugate momentum coordinates --- the actions,  $\boldsymbol{J}$ --- are constants of motion. Even stronger, the actions are isolating integrals and any pair are in involution such that
 \begin{equation}
@@ -209,97 +206,86 @@ In this work, we use the triaxial potential expression from \citet{leesuto03}, p
 	\Phi(u,\phi,\theta) &\approx \frac{v_c^2}{A}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]\\
 	A &= \left(\ln2 - \frac{1}{2}\right) + \left(\ln2-\frac{3}{4}\right) (e_b^2 + e_c^2)
 \end{align}
-where $e_b = \sqrt{1 - (b/a)^2}$, $e_c = \sqrt{1 - (c/a)^2}$, and $v_c$ is the circular velocity at the scale radius, $r_s$, for the spherical case. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 175~{\rm km}~{\rm s}^{-1}$ by taking the mean halo concentration for a ${\rm M}_{vir} \approx 10^{12}~\msun$ halo, $c_e\approx5$, from \cite{jing02} and by assuming $R_{vir}\approx200~{\rm kpc}$. Figure~\ref{fig:potential} shows equipotential contours of the potential in projection.
+where $e_b = \sqrt{1 - (b/a)^2}$, $e_c = \sqrt{1 - (c/a)^2}$, and $v_c$ is the circular velocity at the scale radius, $r_s$, for the spherical case. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 175~{\rm km}~{\rm s}^{-1}$ by taking the mean halo concentration for a ${\rm M}_{vir} \approx 10^{12}~\msun$ halo, $c_e\approx5$, from \cite{jing02} and by assuming $R_{vir}\approx200~{\rm kpc}$. Figure~\ref{fig:potential} shows equipotential contours of this potential in projection.
 
 This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the structure of orbits in the halos of such galaxies. Realistic Galactic potentials will have a significant component due to the disk and bulge, may have twisting inertia tensors (cite), radially changing axis ratios \citep[e.g.,][]{kazantzidis04,debattista08,veraciro11, NiHao}, significant substructure \citep{moore98,zemp09}, or time dependence \citep[either from bulk rotation, mass growth, mergers, etc.][]{bailin05}. We expect inclusion of any of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for a few simple demonstrations.
 
 \subsection{Orbit integration}\label{sec:integration}
 
-We use the Dormand-Prince 8th-order Runge-Kutta scheme \citep{prince81} to integrate orbits in the above potential. For all orbits we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-8}$ by the end of integration, however most orbits conserve energy to $\Delta E/E_0 \approx 10^{-13}$. Unless otherwise specified, the integration timesteps are chosen so that there are 512 steps per strongest orbital period component. 
+We use the Dormand-Prince 8th-order Runge-Kutta scheme \citep{prince81} to integrate orbits in the above potential. Specifically, we use a \texttt{Python} wrapper over the \texttt{C} implementation by \cite{hairer93}. For all orbits we ensure that energy is conserved to $\Delta E/E_0 \leq 10^{-8}$ by the end of integration, however most orbits conserve energy to $\Delta E/E_0 \approx 10^{-13}$. Unless otherwise specified the integration timesteps are chosen so that there are 512 steps per strongest orbital period component, but the integrator uses adaptive stepping between each main step in order to satisfy a specified tolerance (we set the absolute tolerance to $\approx$100 times machine precision, $\texttt{atol} = 10^{-13}$). 
 
 \subsection{Lyapunov exponents} \label{sec:lyap}
 
-% TODO: move most of this to appendix? leave only discussion?
+The most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent (MLE) of an orbit. The MLE measures the mean rate of divergence of two infinitesimally separated orbits and is only strictly defined in terms of a limit that goes to infinite time. Thus, we can never truly compute the MLE and it can take integration for many thousands of orbital periods to compute a converged numerical approximation of the MLE for a moderately chaotic orbit. In this work, we use the algorithm introduced by \cite{wolf85} for computing the MLE (for more a more detailed description of this algorithm, see Appendix~\ref{sec:lyapapdx}).
 
-The simplest and perhaps most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent (MLE) of an orbit. 
-
-\subsection{Numerical estimation of fundamental frequencies}\label{sec:naff}
-
-% TODO: move most to appendix, leave only discussion?
-
-Bounded, regular orbits in a triaxial potential will have three fundamental frequencies, $\bs{\Omega}$, that determine the periodic behavior of motion (Eq.~\ref{eq:aafreq}). This implies that for any canonical coordinate, $q$, the motion in this coordinate can be decomposed as 
+The MLE, $\lambda_{\rm max}$, is interpreted as a rate that determines the nature of exponential divergence of infinitesimally close chaotic orbits. It is therefore useful to consider the corresponding $e$-folding time, 
 \begin{equation}
-	q(t) = \sum^\infty_k a_k e^{i \omega_k t}
+	t_{\rm \lambda} = \frac{1}{\lambda_{\rm max}}.
 \end{equation}
-where these frequencies, $\omega_k$, are linear, integer combinations of the fundamental frequencies
-\begin{equation}
-	\omega_k = \bs{n}_k \cdot \bs{\Omega},
-\end{equation}
-the $a_k$ are complex amplitudes, and the $\bs{n}_k$ are integer vectors. \cite{laskar93} introduced a method for recovering the fundamental frequencies of an orbit that effectively uses a Hanning-filtered fast-Fourier transform (FFT) of complex combinations of the motion (e.g., $x(t) + i v_x(t)$). It has been shown that using a Hanning filter makes the accuracy in determining the frequencies scale as $\inttime^{-4}$ instead of $\inttime^{-1}$ for a standard FFT \citep{laskar99}, where $\inttime$ is the integration time. In each complex time series, once the frequency is found, the amplitude of the term is found by projecting back on to the function itself. The component is then subtracted from the time series, and this procedure continues iteratively until some breaking condition (for example, the amplitude of the next term is below some threshold). We follow \cite{valluri98} and refer to this method as ``Numerical Approximation of Fundamental Frequencies'' (NAFF) even though it differs slightly from the original method from Laskar.
+We will use this as the prediction from the Lyapunov exponent for the timescale over which chaos should be dynamically important for a given orbit. 
 
-If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may act consistently periodic over long windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically when comparing two separate sections of orbit. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit over a given period, and these will vary dramatically if comparing two consecutive integration periods. Therefore, the frequency diffusion rate per orbit, $\fdrate$, is a good predictor for how chaotic an orbit is:
+\subsection{Numerical approximation of fundamental frequencies}\label{sec:naff}
+
+Bounded, regular orbits in a triaxial potential will have three fundamental frequencies, $\bs{\Omega}$, that determine the periodic behavior of motion. The motion in any canonical coordinate can therefore be decomposed as a Fourier sum (Equation~\ref{eq:fourier}) where the Fourier frequencies are linear, integer combinations of the fundamental frequencies (Equation~\ref{eq:fourierfreq}). \cite{laskar93} introduced a method for recovering the fundamental frequencies of an orbit that effectively uses a Hamming-filtered fast-Fourier transform (FFT) of complex combinations of the motion (e.g., $x(t) + i v_x(t)$). It has been shown that using a filter makes the accuracy in determining the frequencies converge much faster than the typical $\inttime^{-1}$ expected for a standard FFT \citep{laskar99}, where $\inttime$ is the integration time. Once the strongest frequencies of the time series are found, the spectrum must be searched for the three fundamental frequencies.
+
+This method is referred to as ``Numerical Approximation of Fundamental Frequencies'' (NAFF) and has been used extensively in planetary dynamics \citep{} and galaxy dynamics \citep{valluri98}, especially in the study of orbits in triaxial systems. We have implemented and tested our own open-source implementation of NAFF in \texttt{Python}.\footnote{This code is publicly available through the \texttt{Gary} package, \url{http://...}} Though our implementation differs slightly from the original definition and from that used in \cite{valluri98}, we still refer to the method as NAFF. For more details about NAFF, see Appendix~\ref{sec:naffapdx} or \cite{papaphilippou96, laskar, etc.}.
+
+If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may appear consistently periodic over long windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically when comparing two separate sections of orbit. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit over a given period. We define the frequency diffusion rate per orbit, $\fdrate$, as
 \begin{equation}
-	\fdrate = \max_{\bs{a}} \, (\bs{\Omega}_{T_1} - \bs{\Omega}_{T_2}) / N_T \label{eq:fdrate}
+	\fdrate = \max_{\bs{a}} \, (\bs{\Omega}_{T_2} - \bs{\Omega}_{T_1}) / N_T \label{eq:fdrate}
 \end{equation}
 where $\bs{\Omega}_{T_1}$ and $\bs{\Omega}_{T_2}$ are the fundamental frequencies computed from two consecutive sections of orbit, $N_T$ is the number of orbital periods within a single section of orbit computed from the most significant fundamental frequency, and the maximum is taken with respect to the corresponding amplitudes, $\bs{a}$, of the fundamental frequency components. The frequency diffusion rate as defined above (e.g., measured in the frequency with the largest amplitude) is better correlated with the strength of chaos in an orbit \citep{valluri??} but differs from the original definition of \cite{valluri98}.
-%; we have found that for extremely chaotic orbits --- where peaks in the FFT overlap --- NAFF fails to recover any frequencies
 
-NAFF has been applied to many problems in Solar System and Galactic dynamics, especially in the study of orbits in triaxial systems. For more details about the method, see \cite{papaphilippou96, laskar, etc.}. We have implemented and tested our own implementation of NAFF in \texttt{Python}. This code is publicly available through the \texttt{Gary} package.\footnote{link to repo} Figure~\ref{fig:logfreqs} shows a test of the implementation in which we reproduce the frequency map at a fixed energy of an axisymmetric, logarithmic potential \cite[][pg. 260, Figure~3.45]{binneytremaine}. Plotted are the (Cartesian) frequency ratios recovered for a grid of iso-energy, box orbits integrated in the potential
+From this rate, we can compute a timescale over which we would expect order-unity changes to the fundamental frequencies of an orbit,
 \begin{equation}
-	\Phi(x,y,z) = \frac{1}{2}\ln\left(x^2 + (y/0.9)^2 + (z/0.7)^2 + 0.1\right). \label{eq:logpotential}
+	t_\Omega = \frac{2 \pi}{\bs{\Omega}_{T_1}} \frac{1}{\fdrate}.
 \end{equation}
-In such a map, stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.
 
-NAFF recovers the fundamental frequencies for an orbit faster (with a fewer number of terms) when the coordinates used are ``close'' to the angle variables \cite[PL96;][]{papaphilippou96}. PL96 show that a good choice of coordinates for tube orbits are the Poincar\'e symplectic polar coordinates, a set of canonical coordinates similar to cylindrical coordinates. When computing the frequencies for tube orbits, we first align the circulation about the $z$-axis through rotation, transform to Poincar\'e polar coordinates, then use NAFF to measure the fundamental frequencies. We could equivalently use the Cartesian time series, but the convergence of terms is slower (the amplitudes of successive terms decrease slower for Cartesian coordinates). We have tested that our implementation of NAFF returns the same fundamental frequencies in either case for a set of tube orbits. For box orbits, the motion is close to separable in each Cartesian component and we therefore use Cartesian coordinates for estimating the frequencies for these orbits.
+% =====================================================================
+%	Results
+%
+\section{Results}
 
-[Can see lots of cool structure, but rates are tiny! Why does this manifest itself over 10-20 periods?]
+In previous work, we found that tidal debris from a simulated globular cluster (Palomar 5) on an orbit with a long Lyapunov time can form large ``fans'' of debris similar to those seen for progenitor systems on strongly chaotic orbits \citep{pearson15, fardal14}. Here, to illustrate the methods described above, we repeat the calculation of the Lyapunov exponent for the Pal 5, stream-fanning orbit of \cite{pearson15} with a longer integration time and compute the frequency diffusion rate. From these, we measure the Lyapunov time and frequency diffusion time. 
 
-\subsection{Comparison of methods}\label{sec:comparison}
+Figure~\ref{fig:pal5} shows the finite-time Lyapunov exponent computed for the Pal 5 orbit --- shaded region shows the ``converged'' part of the estimate that is used to compute the maximum Lyapunov exponent. By inverting the rate, we find $t_\lambda = XX~{\rm Gyr}$, consistent with our finding in \cite{pearson15}. We then compute the frequency diffusion rate (Equation~\ref{eq:fdrate}) using two consecutive integration windows with length $\approx$50 orbital periods. We find $\fdrate = 10^{-XX}$, which corresponds to a frequency diffusion time, $t_\Omega = XX~{\rm Gyr}$. Though this orbit is computed in a different potential than will be used below, this demonstrates the apparent discrepancy between the timescales over which chaos is estimated to be relevant (XX's of Gyrs) and the integration time over which stream-fanning becomes apparent ($<8$ Gyr). Below, we [...] try to understand by looking at grids of orbits...
 
-We choose two nearby short-axis tube orbits in the potential described in Section~\ref{sec:potential} in order to demonstrate the two methods described above. The orbits were chosen from a grid of initial conditions in the $x$-$z$ plane (described in later sections) because they are very close in phase-space but display very different behavior. In particular, Orbit A is regular or at least weakly chaotic and Orbit B is strongly chaotic. Figure~\ref{fig:two-orbits} shows the two orbits in projection --- Orbit A is shown in the left column and Orbit B the right. Two consecutive integration periods for each orbit are shown in the two rows; note the change in appearance of Orbit B (right column). The initial conditions for the two orbits in physical units and Cartesian coordinates are:
-\begin{align}
-	\bs{x}_{0}^{(A)} &= (27.85, 0, 23.35)~{\rm kpc}\\
-	\bs{v}_{0}^{(A)} &= (0, 115.37, 0)~{\rm km~s}^{-1}\\
-	\bs{x}_{0}^{(B)} &= (27.85, 0, 23.10)~{\rm kpc}\\
-	\bs{v}_{0}^{(B)} &= (0, 116.43, 0)~{\rm km~s}^{-1}.
-\end{align}
+\subsection{Part I: Lyapunov and frequency diffusion times}\label{sec:results1}
 
-Figure~\ref{fig:lyap-orbits} shows $l_N$ computed for the two orbits described above. The MLE estimate continues towards zero for the regular orbit (left) but saturates for the chaotic orbit (right). For mildly chaotic or ``sticky'' orbits, it can take integration periods of many thousands of orbits to determine a reliable estimate of the Lyapunov exponent. In comparison, owing to the precision of NAFF, detecting small frequency diffusion rates can be done with only $\sim$100 orbital periods. Figure~\ref{fig:fdiff-orbits} shows the three fundamental frequencies computed for a sliding window of 12 sections of orbit (each section is $\sim$100 orbital periods in length) for Orbit A (left) and Orbit B (right). Dashed horizontal line is the estimate of the uncertainty in the numerical computation of the frequencies from Orbit A. The value of each frequency in the first window is subtracted from each subsequent window. The frequencies only show minor deviations for Orbit A (left panel) whereas there is significant diffusion in Orbit B (right panel).
+We generate isoenergy grids of initial conditions along the $xz$ ($y=0$) plane\footnote{$x$ is the major and $z$ the minor axis.} with energy (per unit mass) chosen to span a range of distances comparable to the scale radius of the potential (Section~\ref{sec:potential}), $E=-(397.2~{\rm km~s}^{-1})^2$ (in physical units). We fix $v_x = v_z = 0$, and compute $v_y$ from the energy. The majority of the orbits generated on this grid are tube orbits, which preserve a sense of rotation about one of the principal axes of the potential and are generally centrophobic. Tube orbits are generally less stochastic than box orbits --- the other major class of orbits in triaxial potentials --- which tend to plunge deep into the inner regions of the potential, however there are appreciable regions of stochastic tube orbits. Thin tidal streams are thought to form along tube orbits rather than box orbits because of the fast disruption expected for stellar systems on radially plunging orbits. The major classes of stable tube orbits circulate about either the major or minor axis. The most prominent orbits in this grid are the short-axis and outer long-axis tubes, but this grid generates all of the major orbit classes: short-axis tubes, long-axis inner tubes, long-axis outer tubes, stochastic intermediate-axis, and box orbits. 
 
-\section{Results}\label{sec:results}
+To compute the Lyapunov exponents, we integrate all orbits in the grid for 1000 orbital periods and use the method described in Section~\ref{sec:lyap}. Figure~\ref{fig:lyapmap} shows the grid of initial conditions (in the $xz$ plane) --- each pixel corresponds to an orbit, and the logarithm of the Lyapunov time (in units of Gyr) is mapped to greyscale intensity. The darker pixels have shorter Lyapunov times and are more chaotic. By numerically estimating the MLE over this fixed integration window, the majority of orbits appear to be regular because they have exceedingly long Lyapunov times. 
 
-\subsection{Orbital properties: frequencies, frequency diffusion, and Lyapunov exponents}
+For each orbit, we also separately integrate for $\approx$100 orbital periods and use NAFF to compute the fundamental frequencies for the two consecutive sections of 50 orbital periods. Figure~\ref{fig:freqdiff} shows the same grid of initial conditions, but now the greyscale intensity is set by the logarithm of the frequency diffusion time. The darker pixels have shorter frequency diffusion times and are more chaotic. This map reveals the intersection of this particular energy hypersurface with the rich structure of resonant surfaces present in this potential. This map highlights the accuracy of NAFF --- weak chaos is detected over $\approx$100 orbital periods, compared to the many thousands of orbits it would take to detect such features with the maximum Lyapunov exponent. The tube orbits in this potential are mostly regular or only mildly chaotic --- the largest regular regions are associated with the short-axis and long-axis tube orbits --- however islands of stronger chaos do appear, especially at the intersections of resonances where resonance overlap occurs. 
 
-We start by studying the properties of individual orbits in the potential described above. We generate isoenergy grids of initial conditions along the $xz$ ($y=0$) plane\footnote{$x$ is the major and $z$ the minor axis.} with energy $E=XXX$. We fix $v_x = v_z = 0$, and compute $v_y$ from the energy. The majority of the orbits generated on this grid are tube orbits, which preserve a sense of rotation about one of the principal axes of the potential and are generally centrophobic. Tube orbits are generally less stochastic than box orbits --- the other major class of orbits in triaxial potentials --- which tend to plunge deep into the inner regions of the potential, however there are appreciable regions of stochastic tube orbits. Thin tidal streams are thought to form along tube orbits rather than box orbits because of the fast disruption expected for stellar systems on radially plunging orbits. The major classes of stable tube orbits circulate about either the major or minor axis. The most prominent orbits in this grid are the short-axis and outer long-axis tubes, but this grid generates all of the major orbit classes: short-axis tubes, long-axis inner tubes, long-axis outer tubes, stochastic intermediate-axis, and box orbits. 
+The strongest chaotic regions appear in both of the above grids (Figure~\ref{fig:lyapmap} and Figure~\ref{fig:freqdiff}), but the timescales [...]. Figure~\ref{fig:lyapvfreqdiff} shows the Lyapunov time plotted against the frequency diffusion time [...]. frequency diffusion rate is more accurate and thus more sensitive to mild chaos. It is unclear whether these regions will be dynamically important on realistic timescales, but we have confirmed from two independent methods that there are regions of strongly chaotic orbits even in this simple, triaxial potential.
 
-We compute the Lyapunov exponents for all orbits in the grid by integrating the orbits for 1000 orbital periods and use the method described in Section~\ref{sec:lyap} to estimate the maximum Lyapunov exponent. Figure~\ref{fig:lyapmap} shows the grid of initial conditions (in the $x--z$ plane) --- each pixel corresponds to an orbit, and the greyscale intensity is related to the logarithm of the Lyapunov time, $t_\lambda = \lambda_{\rm max}^{-1}$. This map shows that by numerically estimating the MLE over this fixed integration window, the majority of orbits appear to be regular or have long Lyapunov times.
+The frequency diffusion time grid reveals the intricate resonant structure of the potential considered, but the majority of the orbits have predicted chaotic timescales that correspond to many hundreds or thousands of orbital times. In the next section, we compute the mixing rates for finite-volume ensembles of orbits and compare the density evolution of the ensembles to the predictions from the single-orbit chaos diagnostics of this section.
 
-%\begin{figure}[!h]
-%\centering
-%	\includegraphics[width=0.4\columnwidth] {figures/lyap_map_xz.png}
-%	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
-%	\label{fig:lyapmap}
-%\end{figure}
-
-For all orbits, we also integrate instead for $\approx$200 orbital periods (Section~\ref{sec:integration}) and use NAFF to compute the fundamental frequencies for the two consecutive sections of 100 orbital periods. Figure~\ref{fig:freqmap} (left) shows a map of the fundamental frequency ratios for all tube orbits from the input grid (we plot the frequencies estimated from the first 100 orbital periods). This panel demonstrates again that many of the orbits are regular: the transformed, even-spaced sampling of the initial conditions is preserved in the frequency transformation, implying that the frequencies for many orbits do not change appreciably. Also apparent is resonant trapping, which manifests as over-dense, linear features in the frequency map. For approximately 2\% of the orbits, NAFF fails to recover the frequencies (similar difficulties were reported in \cite{valluri98} and \cite{papaphilippou96} for recovering certain tube orbit frequencies).
-
-%\begin{figure}[h]
-%\centering
-%	\includegraphics[width=0.45\columnwidth] {figures/freqmap_xz.png}
-%	\includegraphics[width=0.45\columnwidth] {figures/diffusion_map_xz.png}
-%	\caption{(\emph{Left} Frequency map of ... For short-axis tubes, the frequencies plotted are the radial frequency, $\Omega_r$, the azimuthal frequency around the $z$ axis, $\Omega_\phi$, and the oscillation along the $z$ axis, $\Omega_z$. For long-axis tubes, the frequencies plotted are the radial frequency, $\Omega_r$, the azimuthal frequency around the $x$ axis, $\Omega_\phi$, and the oscillation along the $x$ axis, $\Omega_x$. Box orbits are not shown.} 
-%	\label{fig:freqmap}
-%\end{figure}
-
-For each orbit, we also compute the frequency diffusion rate per orbit, $\fdrate$ (Equation~\ref{eq:fdrate}), using the frequencies computed for the two integrated sections of orbit. Figure~\ref{fig:freqmap} (right) shows the grid of initial conditions for all orbits colored by $\log_{10}(\fdrate)$ (white points are strongly chaotic, black are regular). A rich structure of resonances appears in this frequency diffusion map that were not seen in the Lyapunov exponent map: this highlights the accuracy of NAFF. We again see that the tube orbits in this potential are mostly regular or only mildly chaotic, however islands of stronger chaos do appear, especially at the intersections of unstable resonances. The unstable (white) regions in these maps reveal the Arnold web of resonances at this energy. These unstable regions are interconnected and it is therefore possible for a tube orbit that starts, for example, in the lower left-hand region of one of these maps to end up as a box orbit at some point in it its history (but the timescale for this to happen is likely prohibitively long). 
-
-The strongest chaotic regions appear in both the Lyapunov exponent and frequency diffusion rate (Figure~\ref{fig:lyapmap} and Figure~\ref{fig:freqmap}, right), but the frequency diffusion rate is more accurate and thus more sensitive to mild chaos. It is unclear whether these regions will be dynamically important on realistic timescales, but we have confirmed from two independent methods that there are regions of strongly chaotic orbits even in this simple, triaxial potential.
-
-\subsection{Ensemble properties: mixing of debris}
+\subsection{Part II: Ensemble properties and mixing} \label{sec:results2}
 
 % TODO: with 3 N-body simulations of regular, weakly chaotic, strongly chaotic, show that ensembles reproduce qualitative behavior
 
-The Lyapunov time and frequency diffusion rate measure the timescales over which chaos is relevant \emph{local} to a given orbit --- that is, these quantities are measures of how infinitesimal deviations will diverge, on average, from some parent orbit of interest. Tidal debris is disrupted from progenitor systems with finite spreads in orbital properties (e.g., energy). For a disrupting, globular-cluster-scale progenitor, the typical energy dispersion of the debris is 0.1--1\% of the progenitor orbital energy, but for a dwarf-galaxy-scale progenitor, the dispersion can be 5--20\%. This raises an important consideration: do finite deviations diverge faster than predicted from local measures of chaos? Does the Lyapunov time or frequency rate predict the timescale over which a finite phase-space volume (e.g., tidal debris) stays ``coherent''?
+The Lyapunov time and frequency diffusion rate measure the timescales over which chaos is relevant \emph{local} to a given orbit --- that is, these quantities are measures of how infinitesimal deviations will diverge, on average, from some parent orbit of interest. Tidal debris is disrupted from progenitor systems with finite spreads in orbital properties (e.g., energy). For a disrupting, globular-cluster-scale progenitor, the typical energy dispersion of the debris is 0.1--1\% of the progenitor orbital energy, but for a dwarf-galaxy-scale progenitor, the dispersion can be 5--20\%. This raises an important consideration: do finite deviations diverge faster than predicted from local measures of chaos? Does the Lyapunov or frequency diffusion time predict the timescale over which a finite phase-space volume (e.g., tidal debris) stays ``coherent''?
+
+We start by considering three particular orbits chosen from the orbit grid of Section~\ref{sec:results1}: a regular orbit, a weakly chaotic orbit, and a strongly chaotic orbit. The orbits were chosen at random from a single column of the orbit grid and the initial conditions and chaos diagnostics are listed in Table~\ref{tbl:three-orbits}. [... N-body simulations, expectation that only strongly chaotic orbit show strange morph, yadda]
+
+\begin{table*}[ht]
+\begin{center}
+	\begin{tabular}{c | c c c c c c c c }
+		ID & $x$ & $y$ & $z$ & $v_x$ & $v_y$ & $v_z$ & $t_\lambda$ & $t_\Omega$ \\\toprule
+		R & 10. & 0. & 0. & 0. & 0. & 0. & XX & YY\\
+		\midrule
+		W & 10. & 0. & 0. & 0. & 0. & 0. & XX & YY\\
+		\midrule
+		S & 10. & 0. & 0. & 0. & 0. & 0. & XX & YY\\
+		\bottomrule
+		\end{tabular}
+	\caption{TODO. \label{tbl:three-orbits}}
+\end{center}
+\end{table*}
+
+% TODO: table with initial conditions
 
 It is computationally intractable to run full N-body simulations of stellar system disruption for large grids of orbital initial conditions and thus we take a simplified approach for analyzing these questions. We instead consider small ensembles of particles meant to represent debris disrupted from a single tidal disruption event. For a given set of orbital initial conditions --- the ``parent'' orbit --- we find the position of the nearest pericenter, initialize a small ensemble of test particle orbits around this position, then follow the orbits of all test particles for an integration time equal to XXX times the longest fundamental orbital period. The physical scale of the ensemble is set by the tidal radius in position and velocity scale in velocity and are therefore set by the mass scale of the progenitor \citep[e.g.,][]{johnston98, apw14}. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and the magnitude of the offsets are assumed to be Normally distributed away from the parent orbit:
 \begin{align}
@@ -348,7 +334,7 @@ Our goal is to characterize the morphology of tidal debris along orbits generic 
 
 We measure the state of mixing of debris along the same grid of initial conditions as described above by computing the KL divergence (KLD) between the configuration-space density of the ensemble and the configuration-space density expected if the ensemble particles were uniformly distributed over the parent orbit energy hypersurface (Section~\ref{sec:ensemble}). From the time evolution of the KLD for a given ensemble around an orbit from the orbit grid, we estimate the mixing rate [TODO]. Figure~\ref{fig:kldmap} shows the same grids of initial conditions as plotted in Figures~\ref{fig:lyapmap} and \ref{fig:freqmap}, but now the intensity of the pixels is set by the [TODO].
 
-\subsection{Frequency variance}\label{sec:freqvar}
+\subsection{Part III: Short-time frequency evolution}\label{sec:results3}
 
 Both the Lyapunov exponent and the frequency diffusion rate measure mean, long-term rates of chaotic diffusion. As discussed in Section~\ref{sec:nldreview}, frequency diffusion may occur either across a resonance layer or along a stochastic layer. If a weakly chaotic orbit is confined (by other nearby, non-overlapping resonances or stable regions), the mean drift of an orbit in frequency space will be small if computed over timescales long compared to the orbital time but short compared to the Arnold diffusion time. For the potential considered in this paper, these are precisely the timescales for which the frequency diffusion rate of the previous section were computed ($\sim$100's of orbital periods). This window length was chosen in order to have a strong enough signal in the frequency spectrum of chaotic orbits to measure the most significant frequencies using NAFF. 
 
@@ -393,7 +379,7 @@ This work additionally relied on Columbia University's \emph{Hotfoot} and \emph{
 \bibliography{refs}
 
 \appendix
-\section{Lyapunov exponents}
+\section{Lyapunov exponents} \label{sec:lyapapdx}
 
 %Using the definition of $w$ from Equation~\ref{eq:coords}, we can write Hamilton's equations as \footnote{A sum is implied with any repeated indices.}
 %\begin{equation}
@@ -467,54 +453,40 @@ From Equations~\ref{eq:mle} and \ref{eq:lmax} it is evident that any deviation v
 \end{equation}
 At long times, the numerically computed MLE for a regular orbit should approach 0 as $t^{-1}$. For chaotic orbits, the divergence is exponential, and the limit should converge to the rate of the exponential: the Lyapunov exponent. In practice, the MLE is often estimated as the mean of $\lambda_N$ after the summation diverges from power-law behavior. For weakly chaotic orbits, reliable computation of the MLE may take integration of thousands of orbital periods.
 
+\section{Numerical Approximation of Fundamental Frequencies}\label{sec:naffapdx}
+
+Figure~\ref{fig:logfreqs} shows a test of the implementation in which we reproduce the frequency map at a fixed energy of an axisymmetric, logarithmic potential \cite[][pg. 260, Figure~3.45]{binneytremaine}. Plotted are the (Cartesian) frequency ratios recovered for a grid of iso-energy, box orbits integrated in the potential
+\begin{equation}
+	\Phi(x,y,z) = \frac{1}{2}\ln\left(x^2 + (y/0.9)^2 + (z/0.7)^2 + 0.1\right). \label{eq:logpotential}
+\end{equation}
+In such a map, stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.
+
+NAFF recovers the fundamental frequencies for an orbit faster (with a fewer number of terms) when the coordinates used are ``close'' to the angle variables \cite[PL96;][]{papaphilippou96}. PL96 show that a good choice of coordinates for tube orbits are the Poincar\'e symplectic polar coordinates, a set of canonical coordinates similar to cylindrical coordinates. When computing the frequencies for tube orbits, we first align the circulation about the $z$-axis through rotation, transform to Poincar\'e polar coordinates, then use NAFF to measure the fundamental frequencies. We could equivalently use the Cartesian time series, but the convergence of terms is slower (the amplitudes of successive terms decrease slower for Cartesian coordinates). We have tested that our implementation of NAFF returns the same fundamental frequencies in either case for a set of tube orbits. For box orbits, the motion is close to separable in each Cartesian component and we therefore use Cartesian coordinates for estimating the frequencies for these orbits.
 
 % Figure 1
-%\begin{figure*}[!p]
-%\begin{center}
-%\includegraphics[width=\textwidth]{figures/potential.pdf}
-%\caption{Rotation curve along $x$, $y$, and $z$ axes for the triaxial, NFW potential } \label{fig:potential}
-%\end{center}
-%\end{figure*}
+% TODO: should I show density? cool 3D render of density?
+\begin{figure*}[!p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/potential.pdf}
+\caption{Equipotential contours for the triaxial NFW potential considered in this work. There are eight contour levels evenly spaced and linear in the value of the potential. } \label{fig:potential}
+\end{center}
+\end{figure*}
 
 % Figure 2
-%\begin{figure*}[!p]
-%\begin{center}
-%\includegraphics[width=\textwidth]{figures/orbit-tree.pdf}
-%\caption{A rough classification of the types of orbits found in triaxial potentials. Regular orbits are classified by the number of resonance relations obeyed: conditionally periodic (\emph{none}), uni-resonant (\emph{one}), bi-resonant (\emph{two}). Irregular or chaotic orbits are simply separated into two classes: strongly and weakly chaotic, defined by the timescales of interest in a problem. When the characteristic chaotic timescale is much longer than, for example, the age of the universe, the orbit is only weakly chaotic. } \label{fig:orbit-tree}
-%\end{center}
-%\end{figure*}
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/lyap-orbits.pdf}
+\caption{ FTMLE (Equation~\ref{eq:ftmle}) computed over YYYY orbital periods for the stream-fanning Palomar 5 orbit of \cite{pearson15}. The FTMLE saturates to the Lyapunov exponent in the shaded region and is estimated to be $\lambda_{\rm max} \approx XXX \, {\rm Gyr}^{-1}$, corresponding to a Lyapunov time of $t_\lambda \approx XX \, {Gyr}$. Over-plotted on both panels are lines (dashed, blue) that show $t^{-0.9}$ behavior.} \label{fig:pal5}
+\end{center}
+\end{figure*}
 
 % Figure 3
-%\begin{figure*}[p]
-%\begin{center}
-%\includegraphics[width=\textwidth]{figures/log-freqmap.png}
-%\caption{Ratio of cartesian frequencies for a grid of iso-energy box orbits integrated in the potential of Equation~\ref{eq:logpotential}. Stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.} \label{fig:logfreqs}
-%\end{center}
-%\end{figure*}
-%
-%% Figure 4
-%\begin{figure*}[!p]
-%\begin{center}
-%\includegraphics[width=\textwidth]{figures/two-orbits.pdf}
-%\caption{ Two orbits integrated in the triaxial potential described in Section~\ref{sec:potential}. Left panels (black) show two consecutive sections of orbit, where the integration time for each section (rows) is set to 100 times the maximum orbital period. Right panels (red) shows the same for the chaotic orbit. The appearance of the orbit in configuration space changes appreciably over timescales of tens of orbital periods. } \label{fig:two-orbits}
-%\end{center}
-%\end{figure*}
-%
-%% Figure 5
-%\begin{figure*}[p]
-%\begin{center}
-%\includegraphics[width=\textwidth]{figures/lyap-orbits.pdf}
-%\caption{ FTMLE (Equation~\ref{eq:ftmle}) computed over 1000 orbital periods (the maximum orbital period) for Orbit A (left) and Orbit B (right). For Orbit A, the FTMLE asymptotes towards zero with a characteristic power-law slope. For Orbit B, the FTMLE begins to saturate to a constant; the Lyapunov exponent estimated for this orbit is $\lambda_{\rm max} \approx 0.07 \, {\rm Gyr}^{-1}$ corresponding to a Lyapunov time of $t_\lambda \approx 14 \, {Gyr}$. Over-plotted on both panels are lines (dashed, blue) that show $t^{-0.9}$ behavior.} \label{fig:lyap-orbits}
-%\end{center}
-%\end{figure*}
-%
-%% Figure 6
-%\begin{figure*}[p]
-%\begin{center}
-%\includegraphics[width=\textwidth]{figures/freq-diff-orbits.pdf}
-%\caption{ Difference in frequencies computed for successive sections of 100 orbital periods from the frequencies computed in the initial section for Orbit A (left) and Orbit B (right). The three lines in each panel are for the three fundamental frequencies. Dashed (red) horizontal line shows the estimate of the uncertainty for the frequencies computed for Orbit A. After many hundreds of orbital periods, the frequency deviation is not appreciable indicating again that the orbit is regular or only very weakly chaotic. The frequency deviations computed for Orbit B, however, show a clear increasing trend, indicating that the frequencies are diffusing with time. } \label{fig:fdiff-orbits} % The frequency diffusion rate defined in Equation~\ref{eq:fdrate} measures the initial slope of this trend.
-%\end{center}
-%\end{figure*}
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/lyap_map.png}
+\caption{  } \label{fig:lyapmap} 
+\end{center}
+\end{figure*}
 %
 %% Figure 7
 %\begin{figure*}[p]
@@ -539,5 +511,13 @@ At long times, the numerically computed MLE for a regular orbit should approach 
 %%	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
 %%	\label{fig:kldmap}
 %%\end{figure}
+
+% Figure ??
+%\begin{figure*}[p]
+%\begin{center}
+%\includegraphics[width=\textwidth]{figures/log-freqmap.png}
+%\caption{Ratio of cartesian frequencies for a grid of iso-energy box orbits integrated in the potential of Equation~\ref{eq:logpotential}. Stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.} \label{fig:logfreqs}
+%\end{center}
+%\end{figure*}
 
 \end{document}
