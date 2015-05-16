@@ -230,16 +230,17 @@ Bounded, regular orbits in a triaxial potential will have three fundamental freq
 
 This method is referred to as ``Numerical Approximation of Fundamental Frequencies'' (NAFF) and has been used extensively in planetary dynamics \citep{} and galaxy dynamics \citep{valluri98}, especially in the study of orbits in triaxial systems. We have implemented and tested our own open-source implementation of NAFF in \texttt{Python}.\footnote{This code is publicly available through the \texttt{Gary} package, \url{http://...}} Though our implementation differs slightly from the original definition and from that used in \cite{valluri98}, we still refer to the method as NAFF. For more details about NAFF, see Appendix~\ref{sec:naffapdx} or \cite{papaphilippou96, laskar, etc.}.
 
-If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may appear consistently periodic over long windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically when comparing two separate sections of orbit. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit over a given period. We define the frequency diffusion rate per orbit, $\fdrate$, as
+If an orbit is chaotic, the motion can no longer be expressed in terms of a single set of fundamental frequencies because the actions and frequencies of the orbit change with time. For a weakly chaotic orbit, the orbit may appear consistently periodic over long windows of time. NAFF will pick out a set of frequencies for such orbits that correspond to the largest peaks in the power spectrum of the stochastic orbits, however these peaks will change character with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically when comparing two separate sections of orbit. The frequencies picked out by NAFF for such orbits will therefore represent the average periodic nature of the orbit over a given period. We define the fractional frequency diffusion rate per orbit, $\fdrate$, as
 \begin{equation}
-	\fdrate = \max_{\bs{a}} \, (\bs{\Omega}_{T_2} - \bs{\Omega}_{T_1}) / N_T \label{eq:fdrate}
+	\fdrate = \max_{\bs{a}} \, \left(\frac{\bs{\Omega}_{T_2} - \bs{\Omega}_{T_1}}{\bs{\Omega}_{T_1}}\right) \times \frac{1}{N_T}\label{eq:fdrate}
 \end{equation}
 where $\bs{\Omega}_{T_1}$ and $\bs{\Omega}_{T_2}$ are the fundamental frequencies computed from two consecutive sections of orbit, $N_T$ is the number of orbital periods within a single section of orbit computed from the most significant fundamental frequency, and the maximum is taken with respect to the corresponding amplitudes, $\bs{a}$, of the fundamental frequency components. The frequency diffusion rate as defined above (e.g., measured in the frequency with the largest amplitude) is better correlated with the strength of chaos in an orbit \citep{valluri??} but differs from the original definition of \cite{valluri98}.
 
-From this rate, we can compute a timescale over which we would expect order-unity changes to the fundamental frequencies of an orbit,
+From this rate, we can compute a timescale for the diffusion of the fundamental frequencies of an orbit. For a small ensemble of orbits, the relevant timescale is the time over which the change in frequencies for a single orbit is comparable to the spread of frequencies in the ensemble. We therefore define the frequency diffusion time with an unspecified parameter, $f$,
 \begin{equation}
-	t_\Omega = \frac{2 \pi}{\bs{\Omega}_{T_1}} \frac{1}{\fdrate}.
+	t_\Omega = \frac{2 \pi}{\bs{\Omega}_{T_1}} \frac{f}{\fdrate}.
 \end{equation}
+When $f = 1$, this is the timescale over which we expect order-unity changes to the frequencies, whereas $f = 0.01$ corresponds to $1\%$ changes.
 
 % =====================================================================
 %	Results
