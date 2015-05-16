@@ -264,37 +264,41 @@ The frequency diffusion time grid reveals the intricate resonant structure of th
 
 \subsection{Part II: Ensemble properties and mixing} \label{sec:results2}
 
-% TODO: with 3 N-body simulations of regular, weakly chaotic, strongly chaotic, show that ensembles reproduce qualitative behavior
-
 The Lyapunov time and frequency diffusion rate measure the timescales over which chaos is relevant \emph{local} to a given orbit --- that is, these quantities are measures of how infinitesimal deviations will diverge, on average, from some parent orbit of interest. Tidal debris is disrupted from progenitor systems with finite spreads in orbital properties (e.g., energy). For a disrupting, globular-cluster-scale progenitor, the typical energy dispersion of the debris is 0.1--1\% of the progenitor orbital energy, but for a dwarf-galaxy-scale progenitor, the dispersion can be 5--20\%. This raises an important consideration: do finite deviations diverge faster than predicted from local measures of chaos? Does the Lyapunov or frequency diffusion time predict the timescale over which a finite phase-space volume (e.g., tidal debris) stays ``coherent''?
 
-We start by considering three particular orbits chosen from the orbit grid of Section~\ref{sec:results1}: a regular orbit, a weakly chaotic orbit, and a strongly chaotic orbit. The orbits were chosen at random from a single column of the orbit grid and the initial conditions and chaos diagnostics are listed in Table~\ref{tbl:three-orbits}. [... N-body simulations, expectation that only strongly chaotic orbit show strange morph, yadda]
+We start by considering three particular orbits chosen from the orbit grid of Section~\ref{sec:results1}: a regular orbit (R), a weakly chaotic orbit (W), and a strongly chaotic orbit (S). The orbits were chosen at random from a single column of the orbit grid based on their frequency diffusion time, and the initial conditions and chaos diagnostics are listed in Table~\ref{tbl:three-orbits}. We use the Self-Consistent Field (SCF) basis function expansion code \citep{hernquist92} to run N-body simulations of tidal stream formation from globular-cluster-mass progenitor systems on these three orbits. [TODO: mass scale 2.5E4 and mass contained within??] For each simulation, the progenitor consists of a $10^4$ particle Plummer sphere and the background triaxial NFW potential is turned on slowly over 250 Myr to reduce artificial gravitational shocking. We start the progenitor systems at apocenter and evolve for $\approx$16 orbital periods so that each simulation finishes again at subsequent apocenter. Figure~\ref{fig:nbodysims} shows the final particle distributions rotated so that the angular momentum of the progenitor orbit is aligned with the $z$-axis. A thin, cold stream forms on the regular orbit, a more diffuse stream on the mildly chaotic orbit, and a ``fanned'' stream on the strongly chaotic orbit. Given the long Lyapunov and frequency diffusion times of the mildly chaotic orbit, it is surprising that stream formed on this orbit appears to be more diffuse than the regular orbit stream. 
 
 \begin{table*}[ht]
 \begin{center}
-	\begin{tabular}{c | c c c c c c c c }
-		ID & $x$ & $y$ & $z$ & $v_x$ & $v_y$ & $v_z$ & $t_\lambda$ & $t_\Omega$ \\\toprule
-		R & 10. & 0. & 0. & 0. & 0. & 0. & XX & YY\\
+	\begin{tabular}{c | c c c c c c | c c }
+		{\bf ID} & $\bs{x}$ & $\bs{y}$ & $\bs{z}$ & $\bs{v_x}$ & $\bs{v_y}$ & $\bs{v_z}$ & $\bs{t_\lambda}$ & $\bs{t_\Omega}$ \\\toprule
+		R & 27.30 & 0 & 1.10 & 0 & 183.61 & 0 & XX & YY\\
 		\midrule
-		W & 10. & 0. & 0. & 0. & 0. & 0. & XX & YY\\
+		W & 27.30 & 0 & 20.30 & 0 & 121.20 & 0 & XX & YY\\
 		\midrule
-		S & 10. & 0. & 0. & 0. & 0. & 0. & XX & YY\\
+		S & 27.30 & 0 & 21.90 & 0 & 111.22 & 0 & XX & YY\\
 		\bottomrule
 		\end{tabular}
-	\caption{TODO. \label{tbl:three-orbits}}
+	\caption{Orbits from the $xz$ grid with a range of chaotic timescales --- R is a regular orbit, W a weakly chaotic orbit, and S a strongly chaotic orbit. Positions ($x$, $y$, $z$) are given in kpc, velocities ($v_x$, $v_y$, $v_z$) in km~s$^{-1}$, and times ($t_\lambda$, $t_\Omega$) in Gyr. \label{tbl:three-orbits}}
 \end{center}
 \end{table*}
 
-% TODO: table with initial conditions
-
-It is computationally intractable to run full N-body simulations of stellar system disruption for large grids of orbital initial conditions and thus we take a simplified approach for analyzing these questions. We instead consider small ensembles of particles meant to represent debris disrupted from a single tidal disruption event. For a given set of orbital initial conditions --- the ``parent'' orbit --- we find the position of the nearest pericenter, initialize a small ensemble of test particle orbits around this position, then follow the orbits of all test particles for an integration time equal to XXX times the longest fundamental orbital period. The physical scale of the ensemble is set by the tidal radius in position and velocity scale in velocity and are therefore set by the mass scale of the progenitor \citep[e.g.,][]{johnston98, apw14}. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and the magnitude of the offsets are assumed to be Normally distributed away from the parent orbit:
+It is computationally intractable to run full N-body simulations for the large grid of orbital initial conditions used for the maps of the previous section and we therefore take a simplified approach for studying how finite-volume debris spreads along each of these orbits. We instead consider small ensembles of particles meant to represent debris disrupted from a single tidal disruption event. For a given set of orbital initial conditions --- the ``parent'' orbit --- we find the position of the nearest pericenter, initialize a small ensemble of test particle orbits around this position, then follow the orbits of all test particles for an integration time equal to XXX times the longest fundamental orbital period. The physical scale of the ensemble is set by the tidal radius in position and velocity scale in velocity and are therefore set by the mass scale of the progenitor \citep[e.g.,][]{johnston98, apw14}. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and the magnitude of the offsets are assumed to be Normally distributed away from the parent orbit:
 \begin{align}
 	\delta\bs{x}_i &\sim \mathcal{N}(0, r_{\rm tide})\\
 	\delta\bs{v}_i &\sim \mathcal{N}(0, \sigma_v)\\
 	r_{\rm tide} &= \|\bs{x}_0\| \left(\frac{m}{3M_{\rm enc}(\|\bs{x}_0\|)}\right)^{1/3} \\
 	\sigma_v &= \|\bs{v}_0\|\left(\frac{m}{3M_{\rm enc}(\|\bs{x}_0\|)}\right)^{1/3} 
 \end{align}
-where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, $m$ is the mass scale of the debris, and $\|\cdot \|$ is the Euclidean norm. For this work, we take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass to estimate the above debris scales.
+where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, $m$ is the mass scale of the debris, and $\|\cdot \|$ is the Euclidean norm. We take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass of the host potential to estimate the above debris scales.
+
+
+
+
+Over long times, a chaotic orbit will ergodically mix over the surface of its energy hypersurface (dimensionality 5 in a triaxial potential) whereas a (non-resonant) regular orbit will mix over the surface of its 3-torus.
+
+ We instead use ensembles with small spreads in energy so that we expect that most ensemble particle orbits around a parent chaotic orbit will reach a fully mixed state but now the final distribution will have some thickness around this surface. Around a typical regular orbit, each individual orbit will fill its torus ergodically --- a surface with lower dimension than the energy hypersurface --- and thus, a small enough ensemble should never reach the fully mixed state as defined above because it will remain confined to a subspace of lower dimensionality.
+
 
 [TODO: wait, actually, they differ in a log -- why doesn't this change things more? I guess this is saying like, mean(log(dens)) ~ log(mean(dens))??? confuzzled]
 As the particle ensembles evolve in time, we follow the mean configuration-space density of each to quantify the degree of mixing of the ensembles. This is similar to the method of \citet{merritt96} who measured the evolution of the relative entropy between the configuration-space density of isoenergy ensembles, $\rho(\bs{x},t)$, and the density of an ensemble that is uniformly distributed over the energy hypersurface, $\rho_{E_0}(\bs{x})$. In our case, the
@@ -487,37 +491,30 @@ NAFF recovers the fundamental frequencies for an orbit faster (with a fewer numb
 \caption{  } \label{fig:lyapmap} 
 \end{center}
 \end{figure*}
-%
-%% Figure 7
-%\begin{figure*}[p]
-%\begin{center}
-%\includegraphics[width=\textwidth]{figures/D_KL.pdf}
-%\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:DKL}
-%\end{center}
-%\end{figure*}
-%
-%% Figure 8
-%\begin{figure}[p]
-%\centering
-%	\includegraphics[width=\columnwidth] {figures/lyap_map_xz.png}
-%	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
-%	\label{fig:lyapmap}
-%\end{figure}
-%
-%% Figure 9
-%%\begin{figure}[!h]
-%%\centering
-%%	\includegraphics[width=0.4\columnwidth] {figures/kld-map.png}
-%%	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
-%%	\label{fig:kldmap}
-%%\end{figure}
 
-% Figure ??
-%\begin{figure*}[p]
-%\begin{center}
-%\includegraphics[width=\textwidth]{figures/log-freqmap.png}
-%\caption{Ratio of cartesian frequencies for a grid of iso-energy box orbits integrated in the potential of Equation~\ref{eq:logpotential}. Stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.} \label{fig:logfreqs}
-%\end{center}
-%\end{figure*}
+% Figure 4
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/fdiff_map.png}
+\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:freqdiff}
+\end{center}
+\end{figure*}
+
+% Figure 5
+\begin{figure*}[p]
+\begin{center}
+%\includegraphics[width=\textwidth]{figures/lyap_vs_fdiff.png}
+\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:lyapvfreqdiff}
+\end{center}
+\end{figure*}
+
+% Figure 6
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/nbody.png}
+\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:nbodysims}
+\end{center}
+\end{figure*}
+
 
 \end{document}
