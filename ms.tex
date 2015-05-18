@@ -186,7 +186,7 @@ We use the Dormand-Prince 8th-order Runge-Kutta scheme \citep{prince81} to integ
 
 The most well-known method for assessing chaotic motion is to analyze the Lyapunov spectrum or maximum Lyapunov exponent (MLE) of an orbit. The MLE measures the mean rate of divergence of two infinitesimally separated orbits and is only strictly defined in terms of a limit that goes to infinite time. Thus, we can never truly compute the MLE and it can take integration for many thousands of orbital periods to compute a converged numerical approximation of the MLE for a moderately chaotic orbit. In this work, we use the algorithm introduced by \cite{wolf85} for computing the MLE (for more a more detailed description of this algorithm, see Appendix~\ref{sec:lyapapdx}).
 
-The MLE, $\lambda_{\rm max}$, is interpreted as a rate that determines the nature of exponential divergence of infinitesimally close chaotic orbits. It is therefore useful to consider the corresponding $e$-folding time, 
+The MLE, $\lambda_{\rm max}$, is interpreted as a rate that sets the exponential divergence of infinitesimally close chaotic orbits. It is therefore useful to consider the corresponding $e$-folding time, 
 \begin{equation}
 	t_{\rm \lambda} = \frac{1}{\lambda_{\rm max}}.
 \end{equation}
@@ -227,7 +227,7 @@ To compute the Lyapunov exponents, we integrate all orbits in the grid for 1000 
 
 For each orbit, we also separately integrate for $\approx$100 orbital periods and use NAFF to compute the fundamental frequencies for the two consecutive sections of 50 orbital periods. Figure~\ref{fig:freqdiff} shows the same grid of initial conditions, but now the greyscale intensity is set by the logarithm of the frequency diffusion time. The darker pixels have shorter frequency diffusion times and are more chaotic. This map reveals the intersection of this particular energy hypersurface with the rich structure of resonant surfaces present in this potential. This map highlights the accuracy of NAFF --- weak chaos is detected over $\approx$100 orbital periods, compared to the many thousands of orbits it would take to detect such features with the maximum Lyapunov exponent. The tube orbits in this potential are mostly regular or only mildly chaotic --- the largest regular regions are associated with the short-axis and long-axis tube orbits --- however islands of stronger chaos do appear, especially at the intersections of resonances where resonance overlap occurs. 
 
-The strongest chaotic regions appear in both of the above grids (Figure~\ref{fig:lyapmap} and Figure~\ref{fig:freqdiff}), but the timescales [...]. Figure~\ref{fig:lyapvfreqdiff} shows the Lyapunov time plotted against the frequency diffusion time [...]. frequency diffusion rate is more accurate and thus more sensitive to mild chaos. It is unclear whether these regions will be dynamically important on realistic timescales, but we have confirmed from two independent methods that there are regions of strongly chaotic orbits even in this simple, triaxial potential.
+The strongest chaotic regions appear in both of the above grids (Figure~\ref{fig:lyapmap} and Figure~\ref{fig:freqdiff}), but the timescales [...]. frequency diffusion rate is more accurate and thus more sensitive to mild chaos. It is unclear whether these regions will be dynamically important on realistic timescales, but we have confirmed from two independent methods that there are regions of strongly chaotic orbits even in this simple, triaxial potential.
 
 The frequency diffusion time grid reveals the intricate resonant structure of the potential considered, but the majority of the orbits have predicted chaotic timescales that correspond to many hundreds or thousands of orbital times. In the next section, we compute the mixing rates for finite-volume ensembles of orbits and compare the density evolution of the ensembles to the predictions from the single-orbit chaos diagnostics of this section.
 
@@ -235,7 +235,7 @@ The frequency diffusion time grid reveals the intricate resonant structure of th
 
 The Lyapunov time and frequency diffusion rate measure the timescales over which chaos is relevant \emph{local} to a given orbit --- that is, these quantities are measures of how infinitesimal deviations will diverge, on average, from some parent orbit of interest. Tidal debris is disrupted from progenitor systems with finite spreads in orbital properties (e.g., energy). For a disrupting, globular-cluster-scale progenitor, the typical energy dispersion of the debris is 0.1--1\% of the progenitor orbital energy, but for a dwarf-galaxy-scale progenitor, the dispersion can be 5--20\%. This raises an important consideration: do finite deviations diverge faster than predicted from local measures of chaos? Does the Lyapunov or frequency diffusion time predict the timescale over which a finite phase-space volume (e.g., tidal debris) stays ``coherent''?
 
-We start by considering three particular orbits chosen from the orbit grid of Section~\ref{sec:results1}: a regular orbit (R), a weakly chaotic orbit (W), and a strongly chaotic orbit (S). The orbits were chosen at random from a single column of the orbit grid based on their frequency diffusion time, and the initial conditions and chaos diagnostics are listed in Table~\ref{tbl:three-orbits}. We use the Self-Consistent Field (SCF) basis function expansion code \citep{hernquist92} to run N-body simulations of tidal stream formation from globular-cluster-mass progenitor systems on these three orbits. [TODO: mass scale 2.5E4 and mass contained within??] For each simulation, the progenitor consists of a $10^4$ particle Plummer sphere and the background triaxial NFW potential is turned on slowly over 250 Myr to reduce artificial gravitational shocking. We start the progenitor systems at apocenter and evolve for $\approx$16 orbital periods so that each simulation finishes again at subsequent apocenter. Figure~\ref{fig:nbodysims} shows the final particle distributions rotated so that the angular momentum of the progenitor orbit is aligned with the $z$-axis. A thin, cold stream forms on the regular orbit, a more diffuse stream on the mildly chaotic orbit, and a ``fanned'' stream on the strongly chaotic orbit. Given the long Lyapunov and frequency diffusion times of the mildly chaotic orbit, it is surprising that stream formed on this orbit appears to be more diffuse than the regular orbit stream. 
+We start by considering three particular orbits chosen from the orbit grid of Section~\ref{sec:results1}: a regular orbit (R), a weakly chaotic orbit (W), and a strongly chaotic orbit (S). The orbits were chosen at random from a single column of the orbit grid based on their frequency diffusion time, and the initial conditions and chaos diagnostics are listed in Table~\ref{tbl:three-orbits}. We use the Self-Consistent Field (SCF) basis function expansion code \citep{hernquist92} to run N-body simulations of tidal stream formation from globular-cluster-mass progenitor systems on these three orbits. [TODO: mass scale 2.5E4 and mass contained within??] For each simulation, the progenitor consists of a $10^4$ particle Plummer sphere and the background triaxial NFW potential is turned on slowly over 250 Myr to reduce artificial gravitational shocking. We start the progenitor systems at apocenter and evolve for $\approx$16 orbital periods so that each simulation finishes again at subsequent apocenter. Figure~\ref{fig:nbodysims} shows the final particle distributions rotated so that the angular momentum of the progenitor orbit is aligned with the $z$-axis. A thin stream forms on the regular orbit (left column), a more diffuse stream on the mildly chaotic orbit (middle column), and a ``fanned'' stream on the strongly chaotic orbit (right column). Given the long Lyapunov and frequency diffusion times of the mildly chaotic orbit, it is surprising that stream formed on this orbit appears to be more diffuse than the regular orbit stream. 
 
 \begin{table*}[ht]
 \begin{center}
@@ -252,7 +252,7 @@ We start by considering three particular orbits chosen from the orbit grid of Se
 \end{center}
 \end{table*}
 
-It is computationally intractable to run full N-body simulations for the large grid of orbital initial conditions used for the maps of the previous section and we therefore take a simplified approach for studying how finite-volume debris spreads along each of these orbits. We instead consider small ensembles of particles meant to represent debris disrupted from a single tidal disruption event. For a given set of orbital initial conditions --- the ``parent'' orbit --- we find the position of the nearest pericenter, initialize a small ensemble of test particle orbits around this position, then follow the orbits of all test particles for an integration time equal to XXX times the longest fundamental orbital period. The physical scale of the ensemble is set by the tidal radius in position and velocity scale in velocity and are therefore set by the mass scale of the progenitor \citep[e.g.,][]{johnston98, apw14}. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and the magnitude of the offsets are assumed to be Normally distributed away from the parent orbit:
+It is computationally intractable to run full N-body simulations for the large grid of orbital initial conditions used for the maps of the previous section and we therefore take a simplified approach for studying how finite-volume debris spreads along each of these orbits. We instead consider small ensembles of particles meant to represent debris disrupted from a single tidal disruption event. For a given set of orbital initial conditions --- the ``parent'' orbit --- we find the position of the nearest pericenter, initialize a small ensemble of test particle orbits around this position, then follow the orbits of all test particles for an integration time equal to 20 orbital periods. The physical scale of the ensemble is set by the tidal radius in position and velocity scale in velocity and are therefore set by the mass scale of the progenitor \citep[e.g.,][]{johnston98, apw14}. If $(\bs{x}_0,\bs{v}_0)$ are the parent orbit initial conditions at pericenter, then $(\delta\bs{x}_i,\delta\bs{v}_i)$ is the deviation vector of the $i$th particle and the magnitude of the offsets are assumed to be Normally distributed away from the parent orbit:
 \begin{align}
 	\delta\bs{x}_i &\sim \mathcal{N}(0, r_{\rm tide})\\
 	\delta\bs{v}_i &\sim \mathcal{N}(0, \sigma_v)\\
@@ -261,66 +261,21 @@ It is computationally intractable to run full N-body simulations for the large g
 \end{align}
 where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, $m$ is the mass scale of the debris, and $\|\cdot \|$ is the Euclidean norm. We take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass of the host potential to estimate the above debris scales.
 
+Small ensembles of (conditionally-periodic) regular orbits will reach a fully phase-mixed state in a timescale  $\approx\sigma_\Omega^{-1}$, where $\sigma_\Omega$ is the dispersion in frequency-space of the ensemble --- each individual orbit will fill the surface of its torus ergodically, but the ensemble will only mix due to sheering from slight variations in their fundamental frequencies \citep{merritt96, helmi99}. Ensembles of chaotic orbits behave quite differently. Over long times, a chaotic orbit in an autonomous Hamiltonian will ergodically mix over the energy hypersurface (a 5D surface, compared to the 3D stable tori). Generically, a small ensemble of chaotic orbits will lose their coherence much faster than for regular orbits, however computing the rate and amount of spreading is not a fully understood problem. Certain ensembles may be trapped between resonances for long times and thus remain in a state of pseudo-coherence for long times, whereas others may rapidly diffuse \citep[see, e.g.,][]{merritt96}. This phenomenon is generic to potentials that are not globally stochastic so that there are regions of stability and chaos intermingled throughout phase-space. 
 
-
-
-Over long times, a chaotic orbit will ergodically mix over the surface of its energy hypersurface (dimensionality 5 in a triaxial potential) whereas a (non-resonant) regular orbit will mix over the surface of its 3-torus.
-
- We instead use ensembles with small spreads in energy so that we expect that most ensemble particle orbits around a parent chaotic orbit will reach a fully mixed state but now the final distribution will have some thickness around this surface. Around a typical regular orbit, each individual orbit will fill its torus ergodically --- a surface with lower dimension than the energy hypersurface --- and thus, a small enough ensemble should never reach the fully mixed state as defined above because it will remain confined to a subspace of lower dimensionality.
-
-
-[TODO: wait, actually, they differ in a log -- why doesn't this change things more? I guess this is saying like, mean(log(dens)) ~ log(mean(dens))??? confuzzled]
-As the particle ensembles evolve in time, we follow the mean configuration-space density of each to quantify the degree of mixing of the ensembles. This is similar to the method of \citet{merritt96} who measured the evolution of the relative entropy between the configuration-space density of isoenergy ensembles, $\rho(\bs{x},t)$, and the density of an ensemble that is uniformly distributed over the energy hypersurface, $\rho_{E_0}(\bs{x})$. In our case, the
-
- [but isoenergy so constant...yadda yadda].
-
-to quantify the degree of mixing of the ensemble by computing the ``distance'' between the configuration space density of the ensemble at a given time, $\rho(\bs{x},t)$, with that of a distribution that is uniformly distributed over the energy hypersurface, $\rho_{E_0}(\bs{x})$, where $E_0$ is the energy of the parent orbit and thus hypersurface of interest. Our method differs in a few ways from that of MV96. First, MV96 use isoenergy ensembles of particles for following the density because this is the only way to guarantee that, if chaotic, nearly all orbits in the ensemble will lie on chaotic orbits. We instead use ensembles with small but finite spreads in energy; we still expect that most ensemble particle orbits around a parent chaotic orbit will reach a fully mixed state but now the final distribution will have some thickness around this surface. Around a typical regular orbit, each individual orbit will fill its torus ergodically --- a surface with lower dimension than the energy hypersurface --- and thus, a small enough ensemble should never reach the fully mixed state as defined above because it will remain confined to a subspace of lower dimensionality. In practice, only strongly chaotic systems will get close to $\rho_{E_0}(\bs{x})$ in a reasonable amount of time; we expect the rate to depend on how stochastic the parent orbit is (e.g., as measured by the Lyapunov time or frequency diffusion rate) and also on how ``trapped'' the chaotic region is (a small chaotic region wedged between stable tori will take longer to appear chaotic, even if internally the frequency diffusion rate is large). However, the difference in configuration space density between an ensemble undergoing chaotic mixing versus an ensemble around a regular orbit may be detectable over a much shorter timescale. The fully-mixed, normalized, configuration-space density that fills a given energy hypersurface, $E_0$, is easily found by projecting the simple distribution function, $f$, into configuration space:
-\begin{align}
-	f(\bs{x}, \bs{v}) &= f_0 \, \delta(H(\bs{x}, \bs{v}) - E_0)\\
-	\rho_{E_0}(\bs{x}) &= \int \dd^3v \, f(\bs{x}, \bs{v})\\
-	&= \int \dd^3v \, f_0 \, \delta(H - E_0)\\
-	&= 4\pi \int \dd v \, v^2 \, f_0 \, \delta\left(v^2/2 + \Phi(\bs{x}) - E_0\right)\\
-	&= A \sqrt{E_0 - \Phi(\bs{x})}\label{eq:mixeddensity}
-\end{align}
-where $A$ is a constant determined such that $\int \dd^3\bs{x} \, \rho_{E_0}(\bs{x}) = 1$, and $\delta(\cdot)$ is the Dirac delta function. 
-
-For each ensemble, we compute the Kullback-Leibler divergence \citep[KL divergence;][]{kullback51} between the configuration-space density and the fully-mixed density (Equation~\ref{eq:mixeddensity}) by estimating the configuration space density $\rho(\bs{x},t_j)$ using kernel density estimation (KDE)\footnote{We use an implementation from the Python package scikit-learn \citep{scikitlearn}.} with the ensemble of particle positions at a given time $t_j$, We use Monte Carlo integration to evaluate the KL divergence rather than evaluate the integral over a three dimensional grid. The KL divergence, $D_{\rm KL}$, is a measure of the relative (Shannon) entropy between two normalized density functions, $p(x)$ and $q(x)$,
-\begin{equation}
-	D_{\rm KL} = \int \dd x \, p(x) \ln \frac{p(x)}{q(x)}
-\end{equation}
-Instead, we are computing the three dimensional integral
-\begin{align}
-	D_{\rm KL}(t_j) &= \int \dd^3 \bs{x} \, \rho(\bs{x},t_j) \ln \frac{\rho(\bs{x},t_j)}{\rho_{E_0}(\bs{x})}
-\end{align}
-where we only have an estimate of the density $\rho_{\rm KDE}(\bs{x},t_j) \approx \rho(\bs{x},t_j)$. Using samples from this KDE estimated density, $\bs{x}_i$, the KL divergence is
-\begin{align}
-	D_{\rm KL}(t_j) &\approx \frac{1}{N} \sum_i^N \ln \frac{\rho_{\rm KDE}(\bs{x}_i,t_j)}{\rho_{E_0}(\bs{x}_i)}\\
-	\bs{x}_i &\sim \rho_{\rm KDE}(\bs{x},t_j)\label{eq:sampled_from}
-\end{align}
-where Equation~\ref{eq:sampled_from} indicates that the $\bs{x}_i$ are samples from the KDE density. For any computation of the density estimate, we use 10-fold cross-validation to find the optimal kernel bandwidth, $\sigma_{\rm KDE}$, by maximizing the likelihood of withheld particles.
-
-Figure~\ref{fig:DKL} shows $D_{\rm KL}$ as a function of time for the two orbits of Section~\ref{sec:comparison}. The chaotic orbit (Orbit B, dashed line) ensemble mixes much faster than the regular orbit (Orbit A, solid line) ensemble. The KLD is related to the logarithm of the mean density of the debris so that a difference of 1 in the KLD roughly corresponds to a factor of 10 difference in mean density of the debris. Figure XX shows particle positions at apocenter after 2, 16, and 32 orbital periods of evolution for ensembles of 1000 particles generated around Orbit A and B. For visualization, the final positions are rotated to lie on the $x$ axis and the angular momentum vector of the parent orbit at the given time is aligned with the $z$ axis.
-
-From the decay of the KLD, we measure a mixing rate by [TODO: how?].
-
-Our goal is to characterize the morphology of tidal debris along orbits generic to triaxial potentials. For example, it has been shown that along some chaotic orbits, tidal streams form large, diffuse ``fans'' of debris \citep[e.g.][]{fardal14, pearson15}, however, it is unknown how the observable properties of the debris (e.g., density or length of the stream) depend on the degree of stochasticity. Further, quantifying the degree of stochasticity with, for example, the frequency diffusion rate represents a \emph{local} measure of chaos and it is unclear how this generalizes to the small but finite spreads in orbital characteristics common to debris that is tidally disrupted from globular clusters or dwarf satellite galaxies. To answer this question would require a massive exploration of parameter space --- both in potential and in orbits --- and thus would require a prohibitive number of N-body simulations to truly analyze the disruption process in all situations.
-
-We measure the state of mixing of debris along the same grid of initial conditions as described above by computing the KL divergence (KLD) between the configuration-space density of the ensemble and the configuration-space density expected if the ensemble particles were uniformly distributed over the parent orbit energy hypersurface (Section~\ref{sec:ensemble}). From the time evolution of the KLD for a given ensemble around an orbit from the orbit grid, we estimate the mixing rate [TODO]. Figure~\ref{fig:kldmap} shows the same grids of initial conditions as plotted in Figures~\ref{fig:lyapmap} and \ref{fig:freqmap}, but now the intensity of the pixels is set by the [TODO].
+We find that chaotic mixing of small orbit ensembles is detectable over short times, even when the predicted chaotic timescales (from the Lyapunov and frequency diffusion times) are long. For each ensemble of orbits, we compute the Figure~\ref{fig:ensemblemap} shows the grid of initial conditions described in Section~\ref{fig:results1}, but now the greyscale indicates the [...]. After just 20 orbital periods, much of the structure apparent in the frequency diffusion time grid (Figure~\ref{fig:freqdiff}) is visible in this grid, even though [...].
 
 \subsection{Part III: Short-time frequency evolution}\label{sec:results3}
 
-Stochastic motion or the diffusion of an orbit in actions and frequencies may occur either \emph{across} the resonance layers or \emph{along} the stochastic layers (Arnold diffusion). For weakly chaotic orbits, motion across a resonance layer typically occurs with a frequency close to the libration frequency of the nearby stable orbits in the resonance layer. Thus, if the resonance libration frequency is comparable to the orbital frequency, motion across a resonance can modulate the frequency spectrum of an orbit over an orbital time. However, the stochastic layers are often bounded in the direction orthogonal to the resonance by other stable, resonant regions so that the frequencies or actions can't change by large factors (unless there is resonance overlap and the motion is strongly chaotic). The rate of diffusion along stochastic layers via Arnold diffusion depends on the local resonant structure and is hard to predict, however, this has been done analytically for simple potentials \citep[e.g.,][]{chirikov??}. For systems with $N>2$ dof, the stochastic layers connect and form an intricate network of stochasticity known as the Arnold web; the implication of this connectivity is that an orbit may dramatically change its appearance as it navigates through the Arnold web, though the timescales for this to occur are typically many 1000s of orbital periods.
+Why does chaos manifest itself after just 20 orbital periods around orbits with predicted chaotic timescales equal to hundreds or thousands of orbital periods? To understand this, we first return to a review of nonlinear dynamics. Stochastic motion or chaotic diffusion of an orbit in actions and frequencies may occur either \emph{across} a resonance layers or \emph{along} the stochastic layers that surround the resonances in mildly stochastic potentials (Arnold diffusion). For weakly chaotic orbits, motion across a resonance layer typically occurs with a frequency close to the libration frequency of the nearby stable orbits in the resonance layer. Thus, if the resonance libration frequency is comparable (within a factor of a few) to the orbital frequency, motion across a resonance can modulate the frequency spectrum of an orbit over an orbital time. However, the stochastic layers are often bounded in the direction orthogonal to the resonance by other stable, resonant regions so that the frequencies or actions can't change by large factors (unless there is resonance overlap and the motion is strongly chaotic). The rate of diffusion along stochastic layers via Arnold diffusion depends on the local resonant structure and is hard to predict, however, this has been done analytically for simple potentials \citep[e.g.,][]{chirikov??}. For systems with $N>2$ dof, the stochastic layers connect and form an intricate network of stochasticity known as the Arnold web; an orbit that ergodically mixes over its energy hypersurface must traverse this web, though the timescales typical for this phenomenon are many thousands of orbital periods.
 
-Both the Lyapunov exponent and the frequency diffusion rate measure mean, long-term rates of chaotic diffusion. As discussed in Section~\ref{sec:nldreview}, frequency diffusion may occur either across a resonance layer or along a stochastic layer. If a weakly chaotic orbit is confined (by other nearby, non-overlapping resonances or stable regions), the mean drift of an orbit in frequency space will be small if computed over timescales long compared to the orbital time but short compared to the Arnold diffusion time. For the potential considered in this paper, these are precisely the timescales for which the frequency diffusion rate of the previous section were computed ($\sim$100's of orbital periods). This window length was chosen in order to have a strong enough signal in the frequency spectrum of chaotic orbits to measure the most significant frequencies using NAFF. 
+Both the Lyapunov exponent and the frequency diffusion rate measure mean, long-term rates of chaotic diffusion. If a weakly chaotic orbit is confined (by other nearby, non-overlapping resonances or stable regions), the mean drift of an orbit in frequency space may be small if computed over timescales long compared to the orbital time but short compared to the Arnold diffusion time. For the potential considered in this paper, it turns out that these are precisely the timescales for which the frequency diffusion rate of the previous section were computed ($\approx$100's of orbital periods). This window length was chosen in order to have a strong enough signal in the frequency spectrum of chaotic orbits to measure the most significant frequencies using NAFF, however, it erases the small-scale variation of the frequencies. 
 
-In this section, we instead wish to resolve the short-time behavior of the frequency diffusion (corresponding to motion across resonance layers). For each orbit, we now instead use a rolling window to analyze the evolution of the frequency spectrum on shorter times. We use a window with a width of 50 orbital periods and shift the window by half an orbital period between each calculation of the most significant frequencies. [Why this window width? Stride?]
+As a demonstration, we consider the three orbits of Section~\ref{sec:results2} (initial conditions are listed in Table~\ref{tbl:three-orbits}). To resolve the short-time behavior of the frequency diffusion (corresponding to motion across resonance layers) we compute the frequencies in a series of rolling windows for ensembles of  orbits centered on the three parent orbits. We create the ensembles with the same procedure as described in Section~\ref{sec:results2} but only sample 100 orbits. We use a window with a width equal to 50 orbital periods and shift the window by half an orbital period between each calculation of the most significant frequencies (for a smaller window size, NAFF fails to recover the frequencies for the strongly chaotic orbit). Figure~\ref{fig:three-orbits-freqs} shows plots of the two strongest frequencies: the frequencies for each ensemble orbit computed in the first window are shown as green circles, whereas the frequencies in the final window are shown as red squares. The frequencies computed for all intermediate windows are shown as black points. The trajectory... chaotic evolution of frequencies...blah.. TODO
 
-%\begin{figure}[!h]
-%\centering
-%	\includegraphics[width=0.4\columnwidth] {figures/kld-map.png}
-%	\caption{Not the final figures. Need to re-make with same axis limits, remove labels, put in same PDF file...etc.} 
-%	\label{fig:kldmap}
-%\end{figure}
+Chaotic ensembles quickly expand to fill allowed volume, then ...
+
+Figure~\ref{fig:freqvar_map} ... 
 
 \section{Discussion}\label{sec:discussion}
 
@@ -345,7 +300,7 @@ This also has implications for modeling the accretion histories of galaxies. Deb
 We have shown that ...
 
 \acknowledgements
-The authors wish to thank ... Robyn Sanderson, David Hogg, Dan D'Orazio, David Merritt, and the \emph{Stream Team} for useful comments and discussion.
+The authors wish to thank ... Robyn Sanderson, Dan D'Orazio, David Merritt, and the \emph{Stream Team} for useful comments and discussion.
 APW is supported by a National Science Foundation Graduate Research Fellowship under Grant No.\ 11-44155. 
 This research made use of Astropy, a community-developed core \texttt{Python} package for Astronomy \citep{astropy13}.
 This work additionally relied on Columbia University's \emph{Hotfoot} and \emph{Yeti} compute clusters, and we acknowledge the Columbia HPC support staff for assistance.
@@ -436,7 +391,7 @@ Figure~\ref{fig:logfreqs} shows a test of the implementation in which we reprodu
 \end{equation}
 In such a map, stable resonances appear as linear over-densities and unstable resonances appear as linear under-densities. The regularity of the points in this map reflects the input grid of initial conditions. Points that appear to be erratically scattered are chaotic orbits where the frequencies are changing with time.
 
-NAFF recovers the fundamental frequencies for an orbit faster (with a fewer number of terms) when the coordinates used are ``close'' to the angle variables \cite[PL96;][]{papaphilippou96}. PL96 show that a good choice of coordinates for tube orbits are the Poincar\'e symplectic polar coordinates, a set of canonical coordinates similar to cylindrical coordinates. When computing the frequencies for tube orbits, we first align the circulation about the $z$-axis through rotation, transform to Poincar\'e polar coordinates, then use NAFF to measure the fundamental frequencies. We could equivalently use the Cartesian time series, but the convergence of terms is slower (the amplitudes of successive terms decrease slower for Cartesian coordinates). We have tested that our implementation of NAFF returns the same fundamental frequencies in either case for a set of tube orbits. For box orbits, the motion is close to separable in each Cartesian component and we therefore use Cartesian coordinates for estimating the frequencies for these orbits.
+NAFF recovers the fundamental frequencies for an orbit faster (with a fewer number of terms) when the coordinates used are ``close'' to the angle variables \cite[PL96;][]{papaphilippou96}. PL96 show that a good choice of coordinates for tube orbits are the Poincar\'e symplectic polar coordinates, a set of canonical coordinates similar to cylindrical coordinates. When computing the frequencies for tube orbits, we first align the circulation about the $z$-axis through rotation, transform to Poincar\'e polar coordinates, then use NAFF to measure the fundamental frequencies. We could equivalently use the Cartesian time series, but the convergence of terms is slower (the amplitudes of successive terms decrease slower for Cartesian coordinates). We have tested that our implementation of NAFF returns the same fundamental frequencies in either case for a set of tube orbits. For box orbits, the motion is close to separable in each Cartesian component and we therefore use Cartesian coordinates for estimating the frequencies for these orbits. [TODO: Demo figure of log potential??? convince out implementation is good?]
 
 % Figure 1
 % TODO: should I show density? cool 3D render of density?
@@ -450,8 +405,8 @@ NAFF recovers the fundamental frequencies for an orbit faster (with a fewer numb
 % Figure 2
 \begin{figure*}[p]
 \begin{center}
-\includegraphics[width=\textwidth]{figures/lyap-orbits.pdf}
-\caption{ FTMLE (Equation~\ref{eq:ftmle}) computed over YYYY orbital periods for the stream-fanning Palomar 5 orbit of \cite{pearson15}. The FTMLE saturates to the Lyapunov exponent in the shaded region and is estimated to be $\lambda_{\rm max} \approx XXX \, {\rm Gyr}^{-1}$, corresponding to a Lyapunov time of $t_\lambda \approx XX \, {Gyr}$. Over-plotted on both panels are lines (dashed, blue) that show $t^{-0.9}$ behavior.} \label{fig:pal5}
+\includegraphics[width=\textwidth]{figures/pal5-lyap.png}
+\caption{ FTMLE (Equation~\ref{eq:ftmle}) computed over YYYY orbital periods for the stream-fanning Palomar 5 orbit of \cite{pearson15}. The FTMLE saturates to the Lyapunov exponent in the shaded region and is estimated to be $\lambda_{\rm max} \approx XXX \, {\rm Gyr}^{-1}$, corresponding to a Lyapunov time of $t_\lambda \approx XX \, {Gyr}$. } \label{fig:pal5}
 \end{center}
 \end{figure*}
 
@@ -474,16 +429,43 @@ NAFF recovers the fundamental frequencies for an orbit faster (with a fewer numb
 % Figure 5
 \begin{figure*}[p]
 \begin{center}
-%\includegraphics[width=\textwidth]{figures/lyap_vs_fdiff.png}
-\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:lyapvfreqdiff}
+\includegraphics[width=\textwidth]{figures/nbody.png}
+\caption{Particle positions from the final snapshots of N-body simulations of a globular-cluster-mass satellite disrupting in a triaxial NFW potential (Section~\ref{sec:potential}). Each satellite is evolved for 20 orbital periods, and begins and ends at apocenter. For visualization, the positions have been aligned so that the angular momentum of the progenitor at the final snapshot are aligned with the $z$-axis. Top row shows the positions projected onto the resulting $xy$ plane, bottom row shows the positions projected onto the $yz$ plane. From left to right, the columns indicate that the progenitor is on a regular, mildly chaotic, or strongly chaotic orbit. Even on the mildly chaotic orbit --- where the predicted chaotic timescale is XX Gyr or XX orbital periods --- the resulting tidal stream is more diffuse than the regular case. } \label{fig:nbodysims}
 \end{center}
 \end{figure*}
 
 % Figure 6
 \begin{figure*}[p]
 \begin{center}
-\includegraphics[width=\textwidth]{figures/nbody.png}
-\caption{This is really just a placeholder that shows what I want to show here...} \label{fig:nbodysims}
+\includegraphics[width=\textwidth]{figures/ensembles.png}
+\caption{TODO: these look like they have been evolved on slightly different orbits or for slightly different amount of time? } \label{fig:ensembles}
+\end{center}
+\end{figure*}
+
+% Figure 7
+\clearpage
+\begin{figure*}[p]
+\begin{center}
+%\includegraphics[width=\textwidth]{figures/ensemble_map.png}
+\caption{ } \label{fig:ensemblemap}
+\end{center}
+\end{figure*}
+
+% Figure 8
+\clearpage
+\begin{figure*}[p]
+\begin{center}
+%\includegraphics[width=\textwidth]{figures/}
+\caption{ } \label{fig:three-orbits-freqs}
+\end{center}
+\end{figure*}
+
+% Figure 9
+\clearpage
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/freqvar.png}
+\caption{ } \label{fig:freqvar_map}
 \end{center}
 \end{figure*}
 
