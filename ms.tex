@@ -30,7 +30,7 @@
 
 \begin{document}
 
-\title{Chaotic diffusion of tidal streams}
+\title{Chaotic mixing of tidal debris}
 \author{Adrian M. Price-Whelan\altaffilmark{\colum,\adrn},
 	    Kathryn V. Johnston\altaffilmark{\colum},
 	    Monica Valluri\altaffilmark{\mich},
@@ -105,6 +105,10 @@ This paper is organized as follows. We review relevant nonlinear dynamics in Sec
 
 \section{Review of nonlinear dynamics}\label{sec:nldreview}
 
+In order to explore the question of how chaos manifests over timescales much shorter than that predicted from generic chaos indicators, we must first understand the structure and behavior of orbits in gravitational potentials.
+
+\subsection{Orbits in integrable potentials}
+
 An orbit in an $N$ degree of freedom (dof) Hamiltonian, $H$, is a set of $2N$ quasi-periodic time series, 
 \begin{equation}
 (w_1(t),...,w_{2N}(t)) = (q_1(t),...,q_{N}(t),p_1(t),...,p_{N}(t)) \label{eq:coords}
@@ -130,9 +134,13 @@ where $\boldsymbol{n}_k$ is a vector of $N$ integers. The conjugate momentum coo
 \end{equation}
 where $[\cdot,\cdot]$ is the Poisson bracket. This implies that for an $N$ dof system, a regular orbit has $N$ independent constants of motion and the motion is therefore restricted to an $N$-dimensional manifold embedded in the 2$N$ dimensional phase space. In fact, the topology of angle-action space is toroidal and any regular orbit in an $N$ dof Hamiltonian can be understood as motion on the surface of an $N$-torus. Each set of actions, $(J_1,...,J_N)$ (or frequencies), uniquely labels a torus, and regular orbits are sometimes referred to in terms of their orbital tori. 
 
-A Hamiltonian or potential is said to be \emph{globally integrable} when the number of isolating integrals of motion is equal to the number of degrees of freedom and a transformation to angle-action coordinates may be done globally --- for example, the transformation to angle-action coordinates may be written as a function of arbitrary phase-space coordinates and the functional form is independent of phase-space position. The condition for global integrability is very restrictive and it seems that the likelihood that a Hamiltonian is globally integrable decreases as the number of degrees of freedom increase \citep[e.g.,][]{lichtenberg83}. In a globally integrable potential, the Hamiltonian may be written solely in terms of the actions, $H = H(\boldsymbol{J})$. Galactic potentials are almost certainly not globally integrable, but it is useful to understand the orbit structure in integrable systems before extending to more general potentials. Only one globally integrable triaxial mass model is known that generates motion that is qualitatively similar to that seen in Galaxies: the St\"ackel or ``Perfect Ellipsoid'' model \citep[e.g.,][]{kuzmin73, deZeeuw85}. The four general classes of orbits in this potential are box, inner long-axis tube, outer long-axis tube, and short-axis tube orbits. The tube orbits preserve a sense of rotation about either the long or short axis and are therefore centrophobic, whereas the box orbits may approach arbitrarily close to the center of the potential and are centrophilic.
+A Hamiltonian or potential is said to be \emph{globally integrable} when the number of isolating integrals of motion is equal to the number of degrees of freedom and a transformation to angle-action coordinates may be done globally --- for example, the transformation to angle-action coordinates may be written as a function of arbitrary phase-space coordinates and the functional form is independent of phase-space position. The condition for global integrability is very restrictive and it seems that the likelihood that a Hamiltonian is globally integrable decreases as the number of degrees of freedom increase \citep[e.g.,][]{lichtenberg83}. In a globally integrable potential, the Hamiltonian may be written solely in terms of the actions, $H = H(\boldsymbol{J})$. Galactic potentials are almost certainly not globally integrable, but it is useful to understand the orbit structure in integrable systems before extending to more general potentials. Only one globally integrable triaxial mass model is known that generates motion that is qualitatively similar to that seen in Galaxies: the St\"ackel or ``Perfect Ellipsoid'' model \citep[e.g.,][]{kuzmin73, deZeeuw85}. The four general classes of orbits in this potential are box, inner long-axis tube, outer long-axis tube, and short-axis tube orbits. The tube orbits preserve a sense of rotation about either the long or short axis and are therefore centrophobic, whereas the box orbits may approach arbitrarily close to the center of the potential (centrophilic) and may change the sense of rotation about any axis.
 
 The frequencies of a generic, non-resonant orbit are incommensurable --- that is, $\bs{n} \cdot \bs{\Omega} \neq 0$ for any integer vector, $\bs{n}$, with reasonable magnitude.\footnote{A more precise condition is stated in terms of a diophantine condition, e.g., $|\bs{n} \cdot \boldsymbol{\Omega}| > \alpha \, |n|^{-\gamma}$ where $\alpha, \gamma>0$.} Conditionally-periodic orbits uniformly cover the surface of their orbital torus. If instead there exists a relation of the form $\boldsymbol{n} \cdot \boldsymbol{\Omega} = 0$ then the orbit is a resonant orbit. For resonant orbits, the existence of an additional \emph{local} constant of motion reduces the dimensionality of the orbit. We refer to orbits that obey a single resonance relation as \emph{uni-resonant} orbits, and if an additional resonance relation exists, \emph{bi-resonant}. The resonant structure of a potential --- the relative importance of particular resonance numbers --- is difficult to compute, but determines the global behavior of orbits in the potential. For a triaxial potential the resonances define planes in frequency-space, but resonance surfaces in action-space are generic 2D surfaces. 
+
+\subsection{Orbits in non-integrable potentials}
+
+[TODO: take cartoons from talk and include here for description]
 
 The orbit structure of non-integrable potentials can be understood by considering a Hamiltonian that is a small perturbation away from being globally integrable --- that is, a Hamiltonian that may be written
 \begin{equation}
@@ -141,10 +149,14 @@ The orbit structure of non-integrable potentials can be understood by considerin
 where $H_0(\bs{J})$ represents an integrable Hamiltonian, and $\epsilon$ is a small parameter that determines the perturbation strength \citep[a complete description of perturbation theory applied to nonlinear Hamiltonians is given in][]{lichtenberg83}. When $0 < |\epsilon| \ll 1$, resonant surfaces become ``thick'' resonant layers, within which orbits are qualitatively similar to the parent resonant orbit \citep[e.g.,][]{merritt99} and the stable regions are surrounded by stochastic layers where chaotic motion occurs. Chaotic orbits are characterized by exhibiting random behavior despite being generated by entirely deterministic equations of motion. Stochastic layers form gaps in action space where tori are destroyed; the orbits that exist in these regions therefore can not be represented in angle-action coordinates, as their actions and frequencies are not constant and diffuse chaotically with time. For small values of $\epsilon$, many regular orbits survive and only small chaotic islands are introduced. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed. Next, the uni-resonant tori are destroyed, and finally the bi-resonant tori --- these are least susceptible to destruction from perturbations \citep[e.g., see][]{valluri98}.
 
 When $\epsilon$ is large, there is no general prediction for the resulting behavior, however it seems that more complicated and physically motivated triaxial potential models for galaxies follow the intuition gained from the small-perturbation picture described above, at least for certain parameter choices \citep{valluri, merritt, dehnen, etc.}. We therefore expect a large number of regular orbits will survive --- the so-called KAM tori --- however the tori that survive will be separated by regions of chaotic motion. Any transformations to angle-action coordinates must be defined locally due to the destruction of tori caused by the onset of chaotic motion. [... how and where to end this section?]
-%
-%Analytic transformations to angle-action coordinates are only known for a handful of simple, integrable potentials. Much effort has gone in to developing general methods for transforming either from position-velocity to angle-action coordinates, $(\bs{x},\bs{v})\rightarrow(\bs{\theta},\bs{J})$ \citep{many}, or vice-versa, $(\bs{\theta},\bs{J})\rightarrow(\bs{x},\bs{v})$ \citep{many}.
+
+\subsection{The behavior of chaotic orbits in non-integrable potentials}
+
+[??]
 
 \section{Numerical methods}\label{sec:methods}
+
+Our goal is to map the orbit structure of arbitrary potentials, with an emphasis on identifying the chaotic orbits and and understanding the evolution of these orbits over short times. In this section, we describe the methods we will use to detect and quantify the strength of chaos for large grids of orbits.
 
 \subsection{Potential choice}\label{sec:potential}
 
@@ -156,10 +168,25 @@ All of these parameters are specified in terms of the \emph{density}; for orbit 
 
 In this work, we use the triaxial potential expression from \citet{leesuto03}, parametrized in a slightly different manner. In terms of spherical coordinates\footnote{$(r,\phi,\theta)$ = (radius, azimuth, colatitude)} with the radius normalized by the scale radius, $u = r/r_s$
 \begin{align}
-	\Phi(u,\phi,\theta) &\approx \frac{v_c^2}{A}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]\\
+	\Phi(u,\phi,\theta) &\approx \frac{v_c^2}{A}\left[F_1(u) + \frac{1}{2}(e_b^2 + e_c^2)F_2(u) + \frac{1}{2} [(e_b\sin\theta \sin\phi)^2 + (e_c\cos\theta)^2] F_3(u) \right]\label{eq:potential}\\
 	A &= \left(\ln2 - \frac{1}{2}\right) + \left(\ln2-\frac{3}{4}\right) (e_b^2 + e_c^2)
 \end{align}
-where $e_b = \sqrt{1 - (b/a)^2}$, $e_c = \sqrt{1 - (c/a)^2}$, and $v_c$ is the circular velocity at the scale radius, $r_s$, for the spherical case. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 175~{\rm km}~{\rm s}^{-1}$ by taking the mean halo concentration for a ${\rm M}_{vir} \approx 10^{12}~\msun$ halo, $c_e\approx5$, from \cite{jing02} and by assuming $R_{vir}\approx200~{\rm kpc}$. Figure~\ref{fig:potential} shows equipotential contours of this potential in projection.
+where $e_b = \sqrt{1 - (b/a)^2}$, $e_c = \sqrt{1 - (c/a)^2}$, and $v_c$ is the circular velocity at the scale radius, $r_s$, for the spherical case. The functions $F_i(u)$ are given in the appendix of \cite{leesuto03}. We chose $r_s=20~{\rm kpc}$ and $v_c = 175~{\rm km}~{\rm s}^{-1}$ by taking the mean halo concentration for a ${\rm M}_{vir} \approx 10^{12}~\msun$ halo, $c_e\approx5$, from \cite{jing02} and by assuming $R_{vir}\approx200~{\rm kpc}$. Figure~\ref{fig:potential} shows equipotential contours of this potential in projection, and Table~\ref{tbl:potential} summarizes the potential parameters.
+
+\begin{table*}[ht]
+\begin{center}
+	\begin{tabular}{ c  c }
+	         Parameter & Value\\\toprule
+		$v_c$ & 175~km~s$^{-1}$\\
+		$r_s$ & 20~kpc\\
+		$a$ & 1\\
+		$b$ & 0.77\\
+		$c$ & 0.55\\
+		\bottomrule
+		\end{tabular}
+	\caption{Summary of potential parameters for the triaxial NFW potential (Equation~\ref{eq:potential}) used in this work. Triaxiality is introduced in the density to ensure the density is physical at all radii. Velocity scale, scale radius, and axis ratios are chosen to match the median halo parameters for a $M_{\rm vir} \approx 10^{12}~\msun$ halo from \citep{jing02}. \label{tbl:potential}}
+\end{center}
+\end{table*}
 
 This potential is a simple and unrealistic model for the total potential of a Milky-Way-like galaxy, however it represents a conservative choice for exploring the structure of orbits in the halos of such galaxies. Realistic galactic potentials will have a significant component due to the disk and bulge, may have twisting inertia tensors \citep{romanowsky98}, radially changing axis ratios \citep[e.g.,][]{kazantzidis04,debattista08,veraciro11,butsky15}, significant substructure \citep{moore98,zemp09}, or time dependence \citep[either from bulk rotation, mass growth, mergers, etc.; see, e.g.,][]{bailin05}. We expect inclusion of any of these effects to increase the amount and influence of chaos; see the Discussion (Section~\ref{sec:discussion}) for a few simple demonstrations.
 
@@ -256,7 +283,7 @@ Why does chaos manifest itself after just 16 orbital periods around orbits with 
 
 Both the Lyapunov exponent and the frequency diffusion rate measure mean, long-term rates of chaotic diffusion. If a weakly chaotic orbit is confined (by other nearby, non-overlapping resonances or stable regions), the mean drift of an orbit in frequency space may be small if computed over timescales long compared to the orbital time but short compared to the Arnold diffusion time. For the potential considered in this paper, it turns out that these are comparable to the timescales for which the frequency diffusion rate of the previous section were computed ($\approx$100-1000 orbital periods). This window length was chosen in order to have a strong enough signal in the frequency spectrum of chaotic orbits to measure the most significant frequencies using NAFF, however, it erases the small-scale variation of the frequencies. 
 
-As a demonstration of the small-scale frequency modulation, we consider the three orbits of Section~\ref{sec:results2} (initial conditions are listed in Table~\ref{tbl:three-orbits}). To resolve the short-time behavior of the frequency diffusion (corresponding to motion across resonance layers) we compute the frequencies in a series of rolling windows along each orbit. We use a window with a width equal to 35 orbital periods and shift the window by half an orbital period between each calculation of the most significant frequencies --- this is the smallest window size we could choose before NAFF begins to consistently fail to recover the frequencies for the strongly chaotic orbit.  Figure~\ref{fig:three-orbits-freqs} shows plots of the frequency ratios as computed in each window of time --- plotted are the percent deviations of the frequency ratios from the median value over all windows. The difference between the first window (green +) and the last window (red x) is 50 orbital periods. The frequencies of the weakly chaotic orbit (panel labeled $W$) evolve quickly but are bounded to a small volume with fractional size $\approx$0.3\% (presumably by nearby resonant surfaces). This is comparable to the frequency spread in globular cluster tidal debris (0.1--0.5\%).
+As a demonstration of the small-scale frequency modulation, we consider again the three orbits of Section~\ref{sec:results2} (initial conditions are listed in Table~\ref{tbl:three-orbits}). Figure~\ref{fig:fdiff-zooms} shows zoomed-reruns of the frequency diffusion time map of Figure~\ref{fig:freqdiff} centered on the three orbits --- the pixel positions are now shown relative to the three parent orbits. The frequency diffusion times shown in these grids were computed with two consecutive windows of length 35 orbital periods (shorter than the windows used in the previous, large grid of Figure~\ref{fig:freqdiff}). The resonant structure around the mildly chaotic orbit (white regions in panel W) bound the orbit to a small region, whereas for the strongly chaotic orbit (S), the entire region surrounding the orbit is strongly chaotic. To resolve the short-time behavior of the frequency diffusion (corresponding to motion across resonance layers) we compute the frequencies in a series of rolling windows along each orbit. We use a window with a width equal to 35 orbital periods and shift the window by half an orbital period between each calculation of the most significant frequencies --- this is the smallest window size we could choose before NAFF begins to consistently fail to recover the frequencies for the strongly chaotic orbit.  Figure~\ref{fig:three-orbits-freqs} shows plots of the frequency ratios as computed in each window of time --- plotted are the percent deviations of the frequency ratios from the median value over all windows. The difference between the first window (green +) and the last window (red x) is 50 orbital periods. The frequencies of the weakly chaotic orbit (panel labeled $W$) evolve quickly but are bounded to a small volume with fractional size $\approx$0.3\% (presumably by nearby resonant surfaces). This is comparable to the frequency spread in globular cluster tidal debris (0.1--0.5\%).
 
 We see now where the discrepancy between chaotic timescales and the observable effects of chaos arise in tidal debris: even if the large-scale diffusion of frequencies is slow, an orbit may explore a small region of frequency space over much shorter times. The frequency diffusion time (Equation~\ref{eq:fdtime}) is an estimate of the time over which the mean value of the frequencies evolves, however the \emph{variance} of the frequencies over short times is dynamically relevant for small ensembles. This small-scale variability is insignificant for the evolution of global structure in, for example, an elliptical galaxy, but is signifiant for the morphological evolution of tidal debris with small spreads in frequencies.
 
@@ -458,6 +485,15 @@ NAFF recovers the fundamental frequencies for an orbit faster (with a fewer numb
 \begin{center}
 \includegraphics[width=\textwidth]{figures/ensemblemap-skewness.png}
 \caption{ } \label{fig:ensemblemap-skewness}
+\end{center}
+\end{figure*}
+
+% Figure ??
+\clearpage
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=1.1\textwidth]{figures/fdiff_zooms.png}
+\caption{ } \label{fig:fdiff-zooms}
 \end{center}
 \end{figure*}
 
