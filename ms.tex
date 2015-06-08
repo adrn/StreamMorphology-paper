@@ -150,7 +150,7 @@ where $H_0(\bs{J})$ represents an integrable Hamiltonian, and $\epsilon$ is a sm
 
 When $\epsilon$ is large, there is no general prediction for the resulting behavior, however it seems that more complicated and physically motivated triaxial potential models for galaxies follow the intuition gained from the small-perturbation picture described above, at least for certain parameter choices \citep{valluri, merritt, dehnen, etc.}. We therefore expect a large number of regular orbits will survive --- the so-called KAM tori --- however the tori that survive will be separated by regions of chaotic motion. Any transformations to angle-action coordinates must be defined locally due to the destruction of tori caused by the onset of chaotic motion. [... how and where to end this section?]
 
-\subsection{The behavior of chaotic orbits in non-integrable potentials}
+\subsection{The behavior of chaotic orbits in non-integrable potentials}\label{sec:behavior-chaotic}
 
 [??]
 
@@ -225,9 +225,7 @@ where the maximum is taken with respect to the corresponding amplitudes, $a_i$, 
 %
 \section{Results}
 
-In previous work, we found that tidal debris from a simulated globular cluster (Palomar 5) on an orbit with a long Lyapunov time can form large ``fans'' of debris similar to those seen for progenitor systems on strongly chaotic orbits \citep{pearson15, fardal14}. Here, to illustrate the methods described above, we repeat the calculation of the Lyapunov exponent for the Pal 5, stream-fanning orbit of \cite{pearson15}. We use a longer integration time (equivalent to 10000 orbital periods) for the Lyapunov time calculation and additionally compute the frequency diffusion time. 
-
-Figure~\ref{fig:pal5} shows the finite-time Lyapunov exponent computed for the Pal 5 orbit --- the shaded region shows the ``converged'' part of the estimate that is used to compute the maximum Lyapunov exponent. By inverting the rate, we find $t_\lambda \approx 12~{\rm Gyr} \approx 40\,{\rm T}$, shorter than our finding in \cite{pearson15} (from a shorter integration time) but still longer (by a factor of two) than the N-body simulations that display stream fanning. This discrepancy highlights the difficulty in reliably computing the Lyapunov exponent as it can take many thousands of orbital periods to converge. We compute the frequency diffusion rate (Equation~\ref{eq:fdrate}) using two consecutive integration windows with length $\approx$50 orbital periods. From this, we compute a frequency diffusion time $t_\Omega = 35~{\rm T}$ by assuming $f=0.005$ (the spread in frequencies in a $10^4~\msun$ globular cluster on this orbit is $\approx$0.5\%). Though this orbit is computed in a different potential than will be used below, this demonstrates the apparent discrepancy between the timescales over which chaos is estimated to be relevant and the integration time over which stream-fanning becomes apparent. % Below, we [...] try to understand by looking at grids of orbits...
+In Section~\ref{sec:results1}, we generate grids of orbits in the potential described above to map the orbit structure of the potential. We classify each orbit in terms of the strength of chaos along the orbit as computed using the methods of Section~\ref{sec:methods}. With this initial classification, in Section~\ref{sec:results2} we follow the evolution of ensembles of orbits generated around each orbit in the initial grid. We find that the configuration-space density of ensembles around weakly chaotic orbits evolve faster (e.g., in mean density) than expected given the timescales over which chaos is computed to be relevant for the parent orbits. In Section~\ref{sec:results3}, we explain this phenomenon in the context of how chaotic diffusion occurs (e.g., Section~\ref{sec:sec:behavior-chaotic}).
 
 \subsection{Part I: Lyapunov and frequency diffusion times}\label{sec:results1}
 
@@ -412,15 +410,7 @@ NAFF recovers the fundamental frequencies for an orbit faster (with a fewer numb
 \end{center}
 \end{figure*}
 
-% Figure 2
-\begin{figure*}[p]
-\begin{center}
-\includegraphics[width=\textwidth]{figures/pal5-lyap.png}
-\caption{ FTMLE (Equation~\ref{eq:ftmle}) computed over XXX orbital periods for the stream-fanning Palomar 5 orbit of \cite{pearson15}. The FTMLE saturates to the Lyapunov exponent in the shaded region and is estimated to be $\lambda_{\rm max} \approx XXX \, {\rm Gyr}^{-1}$, corresponding to a Lyapunov time of $t_\lambda \approx XX \, {Gyr}$. [TODO: add labels, remake with better font, remove blue line, add axis labels, add shaded region, check on all numbers for paragraph] } \label{fig:pal5}
-\end{center}
-\end{figure*}
-
-% Figure 3
+% Figure ??
 \begin{figure*}[p]
 \begin{center}
 \includegraphics[width=\textwidth]{figures/lyap_map.png}
@@ -428,7 +418,7 @@ NAFF recovers the fundamental frequencies for an orbit faster (with a fewer numb
 \end{center}
 \end{figure*}
 
-% Figure 4
+% Figure ??
 \begin{figure*}[p]
 \begin{center}
 \includegraphics[width=\textwidth]{figures/fdiff_map.png}
@@ -436,7 +426,7 @@ NAFF recovers the fundamental frequencies for an orbit faster (with a fewer numb
 \end{center}
 \end{figure*}
 
-% Figure 5
+% Figure ??
 \begin{figure*}[p]
 \begin{center}
 \includegraphics[width=\textwidth]{figures/nbody.png}
@@ -444,7 +434,7 @@ NAFF recovers the fundamental frequencies for an orbit faster (with a fewer numb
 \end{center}
 \end{figure*}
 
-% Figure 6
+% Figure ??
 \begin{figure*}[p]
 \begin{center}
 \includegraphics[width=\textwidth]{figures/ensembles.png}
