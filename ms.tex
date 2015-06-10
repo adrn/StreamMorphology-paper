@@ -10,6 +10,8 @@
 \usepackage[backref,breaklinks,colorlinks,citecolor=blue]{hyperref}
 \usepackage[yyyymmdd]{datetime}
 \renewcommand{\dateseparator}{-}
+\usepackage{lscape}
+\usepackage{rotating}
 
 % commands
 \newcommand{\given}{\,|\,}
@@ -110,11 +112,7 @@ This paper is organized as follows. We review relevant nonlinear dynamics in Sec
 
 \section{Review of nonlinear dynamics}\label{sec:nldreview}
 
-In order to explore the question of how chaos manifests over timescales much shorter than that predicted from generic chaos indicators, we must first understand the structure and behavior of orbits in gravitational potentials.
-
-\subsection{Orbits in integrable potentials}
-
-An orbit in an $N$ degree of freedom (dof) Hamiltonian, $H$, is a set of $2N$ quasi-periodic time series, 
+In order to explore the question of how chaos manifests over timescales much shorter than that predicted from generic chaos indicators, we must first understand the structure and behavior of orbits in complex gravitational potentials. An orbit in an $N$ degree of freedom (dof) Hamiltonian, $H$, is a set of $2N$ quasi-periodic time series, 
 \begin{equation}
 (w_1(t),...,w_{2N}(t)) = (q_1(t),...,q_{N}(t),p_1(t),...,p_{N}(t)) \label{eq:coords}
 \end{equation}
@@ -137,27 +135,35 @@ where $\boldsymbol{n}_k$ is a vector of $N$ integers. The conjugate momentum coo
 \begin{equation}
 	[J_i, J_j] = 0
 \end{equation}
-where $[\cdot,\cdot]$ is the Poisson bracket. This implies that for an $N$ dof system, a regular orbit has $N$ independent constants of motion and the motion is therefore restricted to an $N$-dimensional manifold embedded in the 2$N$ dimensional phase space. In fact, the topology of angle-action space is toroidal and any regular orbit in an $N$ dof Hamiltonian can be understood as motion on the surface of an $N$-torus. Each set of actions, $(J_1,...,J_N)$ (or frequencies), uniquely labels a torus, and regular orbits are sometimes referred to in terms of their orbital tori. 
+where $[\cdot,\cdot]$ is the Poisson bracket. This implies that for an $N$ dof system, a regular orbit has $N$ independent constants of motion and the motion is therefore restricted to an $N$-dimensional manifold embedded in the 2$N$ dimensional phase space. The topology of angle-action space is toroidal and any regular orbit in an $N$ dof Hamiltonian can be understood as motion on the surface of an $N$-torus. Each set of actions, $(J_1,...,J_N)$ (or frequencies), uniquely labels a torus, and regular orbits are sometimes referred to in terms of their orbital tori. 
+
+\subsection{Orbits in integrable potentials}
 
 A Hamiltonian or potential is said to be \emph{globally integrable} when the number of isolating integrals of motion is equal to the number of degrees of freedom and a transformation to angle-action coordinates may be done globally --- for example, the transformation to angle-action coordinates may be written as a function of arbitrary phase-space coordinates and the functional form is independent of phase-space position. The condition for global integrability is very restrictive and it seems that the likelihood that a Hamiltonian is globally integrable decreases as the number of degrees of freedom increase \citep[e.g.,][]{lichtenberg83}. In a globally integrable potential, the Hamiltonian may be written solely in terms of the actions, $H = H(\boldsymbol{J})$. Galactic potentials are almost certainly not globally integrable, but it is useful to understand the orbit structure in integrable systems before extending to more general potentials. Only one globally integrable triaxial mass model is known that generates motion that is qualitatively similar to that seen in Galaxies: the St\"ackel or ``Perfect Ellipsoid'' model \citep[e.g.,][]{kuzmin73, deZeeuw85}. The four general classes of orbits in this potential are box, inner long-axis tube, outer long-axis tube, and short-axis tube orbits. The tube orbits preserve a sense of rotation about either the long or short axis and are therefore centrophobic, whereas the box orbits may approach arbitrarily close to the center of the potential (centrophilic) and may change the sense of rotation about any axis.
 
-The frequencies of a generic, non-resonant orbit are incommensurable --- that is, $\bs{n} \cdot \bs{\Omega} \neq 0$ for any integer vector, $\bs{n}$, with reasonable magnitude.\footnote{A more precise condition is stated in terms of a diophantine condition, e.g., $|\bs{n} \cdot \boldsymbol{\Omega}| > \alpha \, |n|^{-\gamma}$ where $\alpha, \gamma>0$.} Conditionally-periodic orbits uniformly cover the surface of their orbital torus. If instead there exists a relation of the form $\boldsymbol{n} \cdot \boldsymbol{\Omega} = 0$ then the orbit is a resonant orbit. For resonant orbits, the existence of an additional \emph{local} constant of motion reduces the dimensionality of the orbit. We refer to orbits that obey a single resonance relation as \emph{uni-resonant} orbits, and if an additional resonance relation exists, \emph{bi-resonant}. The resonant structure of a potential --- the relative importance of particular resonance numbers --- is difficult to compute, but determines the global behavior of orbits in the potential. For a triaxial potential the resonances define planes in frequency-space, but resonance surfaces in action-space are generic 2D surfaces. 
+The frequencies of a generic, non-resonant orbit are incommensurable --- that is, $\bs{n} \cdot \bs{\Omega} \neq 0$ for any integer vector, $\bs{n}$, with reasonable magnitude.\footnote{A more precise condition is stated in terms of a diophantine condition, e.g., $|\bs{n} \cdot \boldsymbol{\Omega}| > \alpha \, |n|^{-\gamma}$ where $\alpha, \gamma>0$.} These conditionally-periodic orbits uniformly cover the surface of an orbital torus. If instead there exists a relation of the form $\boldsymbol{n} \cdot \boldsymbol{\Omega} = 0$ the orbit is a resonant orbit. For resonant orbits, the existence of an additional \emph{local} constant of motion reduces the dimensionality of the orbit. We refer to orbits that obey a single resonance relation as \emph{uni-resonant} orbits, and if an additional resonance relation exists, \emph{bi-resonant}. The resonant structure of a potential --- the relative importance of particular resonance numbers --- is difficult to compute, but determines the global behavior of orbits in the potential. For a triaxial potential the resonances define planes in frequency-space, but resonance surfaces in action-space are generic 2D surfaces. In plots of frequency ratios, the resonances appear as lines; Figure~\ref{fig:cartoons} (left panel) shows a cartoon portrait of a portion of frequency-space for an integrable potential with resonance lines, non-resonant, and resonant orbits marked. For an integrable potential, all non-resonant orbits are regular.
 
-\subsection{Orbits in non-integrable potentials}
+\subsection{Orbits in near- and non-integrable potentials}
 
-\todo{APW}{take cartoons from talk and include here for description}
-
-The orbit structure of non-integrable potentials can be understood by considering a Hamiltonian that is a small perturbation away from being globally integrable --- that is, a Hamiltonian that may be written
+The orbit structure of near-integrable potentials can be understood by considering a Hamiltonian that is a small perturbation away from being globally integrable --- that is, a Hamiltonian that may be written
 \begin{equation}
 	H(\boldsymbol{J}, \boldsymbol{\theta}) = H_0(\boldsymbol{J}) + \epsilon \, H_1(\boldsymbol{J}, \boldsymbol{\theta})
 \end{equation}
-where $H_0(\bs{J})$ represents an integrable Hamiltonian, and $\epsilon$ is a small parameter that determines the perturbation strength \citep[a complete description of perturbation theory applied to nonlinear Hamiltonians is given in][]{lichtenberg83}. When $0 < |\epsilon| \ll 1$, resonant surfaces become ``thick'' resonant layers, within which orbits are qualitatively similar to the parent resonant orbit \citep[e.g.,][]{merritt99} and the stable regions are surrounded by stochastic layers where chaotic motion occurs. Chaotic orbits are characterized by exhibiting random behavior despite being generated by entirely deterministic equations of motion. Stochastic layers form gaps in action space where tori are destroyed; the orbits that exist in these regions therefore can not be represented in angle-action coordinates, as their actions and frequencies are not constant and diffuse chaotically with time. For small values of $\epsilon$, many regular orbits survive and only small chaotic islands are introduced. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed. Next, the uni-resonant tori are destroyed, and finally the bi-resonant tori --- these are least susceptible to destruction from perturbations \citep[e.g., see][]{valluri98}.
+where $H_0(\bs{J})$ represents an integrable Hamiltonian, and $\epsilon$ is a small parameter that determines the perturbation strength \citep[a complete description of perturbation theory applied to nonlinear Hamiltonians is given in][]{lichtenberg83}. When $0 < |\epsilon| \ll 1$, resonant surfaces become ``thick'' resonant layers, within which orbits are qualitatively similar to the parent resonant orbit \citep[e.g.,][]{merritt99}, and these layers regions are then generically surrounded by stochastic layers where chaotic motion occurs. Chaotic orbits are characterized by exhibiting random behavior despite being generated by entirely deterministic equations of motion. Stochastic layers form gaps in action space where tori are destroyed; the orbits that exist in these regions therefore can not be represented in angle-action coordinates, as their actions and frequencies are not constant and diffuse chaotically with time. 
 
-When $\epsilon$ is large, there is no general prediction for the resulting behavior, however it seems that more complicated and physically motivated triaxial potential models for galaxies follow the intuition gained from the small-perturbation picture described above, at least for certain parameter choices \citep{valluri, merritt, dehnen, etc.}. We therefore expect a large number of regular orbits will survive --- the so-called KAM tori --- however the tori that survive will be separated by regions of chaotic motion. Any transformations to angle-action coordinates must be defined locally due to the destruction of tori caused by the onset of chaotic motion. [... how and where to end this section?]
+Figure~\ref{fig:cartoons} (middle panel) shows a cartoon of frequency space for a near-integrable potential (a small perturbation away from the potential in the left panel). Much of the structure that was present in the integrable potential remains in the near-integrable case, but the differences are highlighted. Orbits in the resonant layers surrounding the resonances (grey) are near-resonant orbits that will librate around the resonance. Chaotic orbits in the stochastic layer (red) behave erratically depending on the surrounding resonance structure. If the stochastic layer is small and the chaotic orbit is therefore confined in some way, it may behave nearly regular for long periods of time.
+
+For small values of $\epsilon$, many regular orbits survive and only small chaotic regions are introduced, especially where resonances overlap. As the strength of the perturbation increases, eventually all tori associated with conditionally-periodic motion will be destroyed. Figure~\ref{fig:cartoons} (right panel) qualitatively shows this phenomenon --- the resonant and resonant-layer orbits may still be regular, but many or all of the conditionally-periodic orbits can be chaotic. As the perturbation strength increases, next the uni-resonant tori are destroyed, and finally the bi-resonant tori --- these are least susceptible to destruction from perturbations \cite[for a more quantitative illustration of this transition from integrability to global chaos, see Figure~9 in][]{valluri98}.
+
+When $\epsilon$ is large, there is no general prediction for the resulting behavior, however it seems that more complicated and physically motivated triaxial potential models for galaxies follow the intuition gained from the small-perturbation picture described above, at least for certain parameter choices \citep{valluri, merritt, dehnen, etc.}. We therefore expect a large number of regular orbits will survive --- the so-called KAM tori --- however the tori that survive will be separated by regions of chaotic motion. Any transformations to angle-action coordinates must be defined locally due to the destruction of tori caused by the onset of chaotic motion. 
 
 \subsection{The behavior of chaotic orbits in non-integrable potentials}\label{sec:behavior-chaotic}
 
-[??]
+Chaotic orbits ...
+
+Small ensembles of (conditionally-periodic) regular orbits will reach a fully phase-mixed state in a timescale  $\approx\sigma_\Omega^{-1}$, where $\sigma_\Omega$ is the dispersion in frequency-space of the ensemble --- each individual orbit will fill the surface of its torus ergodically, but the ensemble will only mix due to sheering from slight variations in their fundamental frequencies \citep{merritt96, helmi99}. Ensembles of chaotic orbits behave quite differently. Over long times, a chaotic orbit in an autonomous Hamiltonian will ergodically mix over the energy hypersurface (a 5D surface, compared to the 3D stable tori). Generically, a small ensemble of chaotic orbits will lose coherence much faster than for regular orbits, however analytically computing the rate and amount of spreading is very difficult even for simple potentials \cite[see, e.g.,][]{chirikov??}. Certain ensembles may be trapped between resonances for long times and thus remain in a state of pseudo-coherence for long times, whereas others may rapidly diffuse \citep[see, e.g.,][]{merritt96}. This phenomenon is generic to potentials that are not globally stochastic in which regions of stability and chaos are intermingled throughout phase-space. 
+
+\todo{apw}{concluding paragraph...}
 
 \section{Numerical methods}\label{sec:methods}
 
@@ -276,8 +282,6 @@ It is computationally intractable to run full N-body simulations for the large g
 \end{align}
 where $M_{\rm enc}(r)$ is the mass enclosed of the host potential within radius $r$, $m$ is the mass scale of the debris, and $\|\cdot \|$ is the Euclidean norm. We take $m=10^4~\msun$ to represent globular-cluster-like progenitors, and use the spherically-averaged enclosed mass of the host potential to estimate the above debris scales. Figure~\ref{fig:ensembles} shows such ensembles initialized around the three orbits described above and evolved for 16 orbital periods (same as the N-body simulations); the morphology of the ensembles is visually similar to the ``oldest'' (first stripped) debris in the N-body simulations.
 
-Small ensembles of (conditionally-periodic) regular orbits will reach a fully phase-mixed state in a timescale  $\approx\sigma_\Omega^{-1}$, where $\sigma_\Omega$ is the dispersion in frequency-space of the ensemble --- each individual orbit will fill the surface of its torus ergodically, but the ensemble will only mix due to sheering from slight variations in their fundamental frequencies \citep{merritt96, helmi99}. Ensembles of chaotic orbits behave quite differently. Over long times, a chaotic orbit in an autonomous Hamiltonian will ergodically mix over the energy hypersurface (a 5D surface, compared to the 3D stable tori). Generically, a small ensemble of chaotic orbits will lose coherence much faster than for regular orbits, however analytically computing the rate and amount of spreading is very difficult even for simple potentials \cite[see, e.g.,][]{chirikov??}. Certain ensembles may be trapped between resonances for long times and thus remain in a state of pseudo-coherence for long times, whereas others may rapidly diffuse \citep[see, e.g.,][]{merritt96}. This phenomenon is generic to potentials that are not globally stochastic in wich regions of stability and chaos are intermingled throughout phase-space. 
-
 We find that chaotic mixing of small orbit ensembles is detectable over short times, even when the predicted chaotic timescales (from the Lyapunov and frequency diffusion times) are long and therefore that the mean, single-orbit chaos indicators are not well-suited for determining the importance of chaotic diffusion on tidal stream evolution. For example, Figure~\ref{fig:ensemble-density} shows the evolution of the configuration-space density for ensembles evolved around the three orbits (R, W, S) described above. At each time step, we use kernel density estimation (KDE)\footnote{We use an Epanechnikov kernel with a bandwidth set to 1 kpc. We use an implementation from the Python package \texttt{scikit-learn} \citep{scikitlearn}.} with the ensemble of particle positions to estimate the configuration-space density field. We evaluate the density at the positions of each particle, $\rho_i$, and compare to the mean initial density, $\mean{\rho_0}$. Figure~\ref{fig:ensemble-density} shows histograms of the logarithm of $\rho_i/\mean{\rho_0}$ at three different times: after evolution for 4 (left), 8 (middle), and 16 (right) orbital periods. Both the mean density and shape of the density distribution changes over time and the nature of the evolution depends on the strength of chaos along the orbit. The regular orbit distribution stays relatively compact indicating that the density stays fairly uniformly high throughout the stream. For the weakly chaotic orbit, already after 8 orbits the density distribution shows a large tail to smaller densities --- this is ``fanned'' debris --- but maintains a significant number of particles in relatively high densities. The strongly chaotic orbit evolves much faster to low density. Stars with separations much larger than the bandwidth have unresolved density measurements --- this is why there appears to be a pile-up of stars at $\log_{10}\left[\rho_i / \mean{\rho_0}\right] \approx -3$. \todo{apw}{do we need to adjust bandwidth as the density evolves?}
 
 The distributions all start with a peak at high density and a tail to lower density but evolve to the inverse state with a peak at low density and a tail to higher densities --- the skewness of a distribution is sensitive to exactly this property. Figure~\ref{fig:density-skewness} shows the mean density (top row) and skewness (bottom row) computed at 256 evenly-spaced intervals from the initial ensemble distribution to the distribution after 16 orbital periods. Both quantities (mean density and skewness) are correlated with the strength of chaos surrounding the parent orbit. 
@@ -298,12 +302,17 @@ We now repeat the above analysis of the short-time evolution of frequencies, but
 
 \section{Discussion}\label{sec:discussion}
 
-Since all known tidal streams have been discovered as kinematic over-densities of stars, this implies (1) [something about accretion history], (2) the long, thin tidal streams we see may represent a sampling from ``special'' orbits in the Galactic potential where the mixing time is long, and (3) previous assumptions that connect the length and size of streams to their evolution time may be invalid.
+\subsection{Existence of streams}
+
+We have considered here a simple triaxial gravitational potential chosen to mimic the median properties of dark matter halos formed in dark-matter-only simulations (or the large-scale properties of halos formed in simulations with baryonic effects). We have found that 
+
+\subsection{Cautions}
+
+Since all known tidal streams have been discovered as spatial over-densities of stars, this implies (1) [something about accretion history], (2) the long, thin tidal streams we see may represent a sampling from ``special'' orbits in the Galactic potential where the mixing time is long, and (3) previous assumptions that connect the length and size of streams to their evolution time may be invalid.
 
 Recovering the potential of triaxial systems is not trivial. Danger of orbit fitting because chaotic orbits can reproduce morphologies of regular orbits.
 
-\subsection{Potential}
-
+[discussion of potential choice?]
 Why not disk + bulge? What do we expect when we add?
 
 Real disk will be self-consistent with halo, so this isn't really a fair test, but still...
@@ -313,7 +322,7 @@ Other effects: radial dependence of axis ratios, time dependence, etc.
 Moved from intro:
 This also has implications for modeling the accretion histories of galaxies. Debris morphology is often separated into two classes --- streams (usually from high angular momentum progenitor orbits) and shells (from radially plunging orbits) --- but in practice the distinction may not be as clear due to other mixing effects.
 
-\section{Conclusions}\label{sec:conclusions}
+\section{Summary and Conclusions}\label{sec:conclusions}
 We have shown that ...
 
 \acknowledgements
@@ -410,12 +419,20 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 
 NAFF recovers the fundamental frequencies for an orbit faster (with a fewer number of terms) when the coordinates used are ``close'' to the angle variables \cite[PL96;][]{papaphilippou96}. PL96 show that a good choice of coordinates for tube orbits are the Poincar\'e symplectic polar coordinates, a set of canonical coordinates similar to cylindrical coordinates. When computing the frequencies for tube orbits, we first align the circulation about the $z$-axis through rotation, transform to Poincar\'e polar coordinates, then use NAFF to measure the fundamental frequencies. We could equivalently use the Cartesian time series, but the convergence of terms is slower (the amplitudes of successive terms decrease slower for Cartesian coordinates). We have tested that our implementation of NAFF returns the same fundamental frequencies in either case for a set of tube orbits. For box orbits, the motion is close to separable in each Cartesian component and we therefore use Cartesian coordinates for estimating the frequencies for these orbits. [TODO: Demo figure of log potential??? convince our implementation is good?]
 
-% Figure 1
-% TODO: should I show density? cool 3D render of density?
+% Figure ??
+\begin{sidewaysfigure}[!p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/cartoons.pdf}
+\caption{} 
+\label{fig:cartoons}
+\end{center}
+\end{sidewaysfigure}
+
+% Figure ??
 \begin{figure*}[!p]
 \begin{center}
 \includegraphics[width=\textwidth]{figures/potential.pdf}
-\caption{Equipotential contours for the triaxial NFW potential considered in this work. There are eight contour levels evenly spaced and linear in the value of the potential. } \label{fig:potential}
+\caption{Equipotential contours for the triaxial NFW potential considered in this work. There are eight contour levels evenly spaced and linear in the value of the potential. \todo{apw}{should I show density as well or instead?}} \label{fig:potential}
 \end{center}
 \end{figure*}
 
