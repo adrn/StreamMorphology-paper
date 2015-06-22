@@ -73,6 +73,8 @@
 
 \begin{abstract}
 
+\todo{apw}{write the abstract...}
+
 % Context
 %The large-scale, smooth components of galactic gravitational potentials are thought to be triaxial in shape.
 %Triaxial potentials that match observational constraints and measurements of the radial profile and axis ratios of dark matter halos in cosmological simulations are almost certainly not globally integrable. 
@@ -295,7 +297,7 @@ where $M(<r)$ is the mass enclosed of the host potential within radius $r$, $m$ 
 
 We find that chaotic mixing of small orbit ensembles is detectable over short times, even when the predicted chaotic timescales (from the Lyapunov and frequency diffusion times) are long and therefore that the mean, single-orbit chaos indicators are not well-suited for determining the importance of chaotic diffusion on tidal stream evolution. For example, Figure~\ref{fig:ensemble-density} shows the evolution of the configuration-space density for ensembles evolved around the three orbits (R, W, S) described above. At each time step, we use kernel density estimation (KDE)\footnote{We use an implementation from the Python package \texttt{scikit-learn} \citep{scikitlearn}.} with the ensemble of particle positions to estimate the configuration-space density field. We use an Epanechnikov kernel with an adaptive bandwidth: at each evaluation of the density, we use 10-fold cross-validation to find the optimal kernel bandwidth. We evaluate the density at the positions of each particle, $\rho_i$, and compare to the mean initial density, $\mean{\rho_0}$. Figure~\ref{fig:ensemble-density} shows histograms of the logarithm of $\rho_i/\mean{\rho_0}$ for each of the three orbit ensembles at three different times: the initial density distribution (labeled $0~\periods$), and after evolution for 4 and 16 orbital periods. The distributions all shift towards lower densities as time progresses, however other subtle effects are noticeable. The regular orbit distribution stays relatively compact at all times indicating that the density stays fairly uniformly high throughout the stream. For the weakly chaotic orbit, the distribution is somewhat wider with a larger tail to lower densities --- this is the debris that begins to fan out. The strongly chaotic orbit evolves much faster to low density. 
 
-\todo{apw}{These paragraphs need work, but waiting for results from the cluster...}
+\todo{apw}{These paragraphs need work, but still waiting for numerical results from the cluster...}
 The density distributions do not change shape dramatically, even for the strongly chaotic ensemble; we therefore use the mean density as a metric for studying the density evolution of orbit ensembles. Figure~\ref{fig:densities} shows the mean density of the ensemble particles computed at 128 evenly-spaced intervals from the initial ensemble distribution to the distribution after 16 orbital periods. It is clear that the density of the regular orbit ensemble evolves slower than the weakly chaotic ensemble, and the strongly chaotic ensemble quickly becomes diffuse.
 
 Motivated by the noticeable discrepancy between the regular and weakly chaotic orbit ensembles --- even though the chaotic timescale of the weakly chaotic ensemble parent orbit is thousands of orbital periods --- we compute the final mean density for orbit ensembles generated around each orbit in the grid described in Section~\ref{sec:results1}. For all ensembles, we integrate the orbits for 16 (parent) orbital periods and store the mean density at the end of integration for each. Figure~\ref{fig:ensemblemap-meandensity} again shows the grid of initial conditions (Section~\ref{sec:results1}), but now the greyscale indicates the final mean density. \todo{apw}{talk about the structure here, compare to freq. diff time map -- even though freq. diff time are long, can still resolve structure in these maps.}
@@ -314,7 +316,7 @@ We repeat the above analysis of the short-time evolution of frequencies for all 
 \end{equation}
 where, as in Equation~\ref{eq:fdtime}, the outer maximum is taken with respect to the amplitude of the frequency in the power-spectrum, $a_k$, and the inner maximum and minimum are taken over time, $j$. This is a measure of the magnitude of the short-time frequency evolution for a single orbit. For tidal debris with small spreads in orbital properties, nearby orbits will have similar behavior; for example, the central marker in Figure~\ref{fig:fdiff-zooms} shows the size of a globular-cluster-like system in configuration space. When the magnitude of the short-time frequency variability is comparable to the spread in orbital frequencies within the debris, the debris effectively has a larger spread in frequencies (the effective frequency distribution is the convolution of the initial spread with a distribution that scales with the scale-length of the short-time variation). Therefore, the debris will ``fan'' or spread out over a few dynamical times and appear dynamically hotter.
 
-\todo{apw}{new figure and paragraph repeating this for an ensemble of orbits, with frequencies for each ensemble orbit computed in the windows. show that final distribution of frequencies is spread more for weakly chaotic orbit}
+\todo{apw}{new figure and paragraph repeating this for an ensemble of orbits, with frequencies for each ensemble orbit computed in the windows. show that final distribution of frequencies is spread more for weakly chaotic orbit (still waiting for queued code to finish on the cluster...)}
 
 Figure~\ref{fig:freqvar_map} shows the grid of initial conditions, now colored by the (fractional) amplitude of the short-time frequency variation, $A_\Omega$ (Equation~\ref{eq:frac-freq-amp}). When the fractional excursions of the frequencies are of order $10^{-3}$--$10^{-2}$ or larger, globular cluster debris will appear more diffuse due to enhanced density evolution from fast, small-scale chaotic diffusion. Comparing this to the timescales of Figure~\ref{fig:lyapmap} and Figure~\ref{fig:freqdiff}, it is clear that the small-scale variations of the frequencies of a progenitor orbit over a given window of time provides a better prediction of the resulting morphology of tidal debris. 
 
@@ -370,7 +372,7 @@ The large-scale shapes of galactic gravitational potentials are thought to be tr
 
 We have numerically computed the magnitude of chaos for a large grid of iso-energy orbits in a triaxial gravitational potential using two independent methods that have been used extensively to classify and characterize chaotic orbits: the Lyapunov exponent and frequency diffusion rate. From each of these indicators, we compute a timescale over which chaos is likely to be important and find that the majority of orbits have chaotic timescales greater than 100s of orbital periods, however with the frequency diffusion rate we are still able to resolve weak chaos. We then study the density evolution of small ensembles of orbits generated around each orbit in the grid used for the previous experiment and find that along some orbits classified as weakly chaotic --- with chaotic timescales of 100s of orbital periods --- the orbit ensembles display enhanced density evolution and reach a lower overall density faster than orbit ensembles around nearby regular orbits. We propose an explanation for this apparent discrepancy by considering the nature of chaotic diffusion: the classical chaos indicators are most sensitive to the  slow, Arnold diffusion process that can cause large changes to orbital properties, but small-scale frequency evolution occurs over much shorter times as chaotic orbits stochastically diffuse across the stochastic layers that surround many resonances. We propose a new measure of chaos with tidal stream morphological evolution in mind: the amplitude of small-scale, fractional changes in frequencies over a given number of orbital periods along a stream progenitor orbit. When this amplitude is comparable to or larger than the typical spread in orbital properties of tidal debris from the progenitor, the phase-space density of the debris will evolve faster to a state of lower density relative to nearby regular orbits.
 
-\todo{apw}{Concluding paragraph that drives home the importance of this...}
+\todo{apw}{Concluding paragraph that drives home the importance of this work...}
 The timescales in this paper are not meant to be interpreted physically, as the potential is a very crude approximation to the total potential of a Milky-Way-like galaxy. The key point is that even when the mean chaos indicators predict a long chaotic timescale, streams may display enhanced density evolution over much shorter times. Tidal debris is sensitive to the small-scale, short-time evolution of orbital properties (e.g., the fundamental frequencies) induced by weak chaos.
 
 \acknowledgements
@@ -494,15 +496,15 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 % Figure ??
 \begin{figure*}[p]
 \begin{center}
-\includegraphics[width=\textwidth, trim={0 1cm 0 0}]{figures/lyap_map.png}
-\caption{ A grid of isoenergy orbits initialized on the $xz$ plane. Each pixel in this image represents a single orbit, and the greyscale corresponds to the logarithm of the Lyapunov time (in units of orbital periods). Orbits are integrated for a total of 10000 orbital periods. Chaotic orbits with $t_\lambda \gtrsim 1000~\periods$ appear regular because the integration time for each orbit is insufficient to resolve weak chaos. Three orbits are highlighted with square markers --- from top to bottom, these are the strongly chaotic (S), weakly chaotic (W), and regular (R) orbits of Table~\ref{tbl:three-orbits} (see Section~\ref{sec:results2}).} \label{fig:lyapmap} 
+\includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/lyap_map.png}
+\caption{ A grid of isoenergy orbits initialized on the $xz$ plane. Each pixel in this image represents a single orbit, and the greyscale corresponds to the logarithm of the Lyapunov time (in units of orbital periods). Orbits are integrated for a total of 10000 orbital periods. Chaotic orbits with $t_\lambda \gtrsim 1000~\periods$ appear regular because the integration time for each orbit is insufficient to resolve weak chaos. Three orbits are highlighted with square markers --- from top to bottom, these are the strongly chaotic (S), weakly chaotic (W), and regular (R) orbits of Table~\ref{tbl:three-orbits} (see Section~\ref{sec:results2}). \todo{apw}{Need better markers for the 3 orbits -- don't show up in greyscale (printed)}} \label{fig:lyapmap} 
 \end{center}
 \end{figure*}
 
 % Figure ??
 \begin{figure*}[p]
 \begin{center}
-\includegraphics[width=\textwidth, trim={0 1cm 0 0}]{figures/fdiff_map.png}
+\includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/fdiff_map.png}
 \caption{The same grid of initial conditions as Figure~\ref{fig:lyapmap}, but now each pixel is colored by the logarithm of the frequency diffusion time (again in units of orbital periods). The frequencies are computed in two consecutive windows, each of which has length equal to 40 orbital periods. The frequencies are measured precisely so that small changes in the frequencies can be detected over just $\approx$10s of orbits. Three orbits are highlighted with square markers --- from top to bottom, these are the strongly chaotic (S), weakly chaotic (W), and regular (R) orbits of Table~\ref{tbl:three-orbits} (see Section~\ref{sec:results2}).} \label{fig:freqdiff}
 \end{center}
 \end{figure*}
@@ -519,7 +521,8 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 \begin{figure*}[p]
 \begin{center}
 \includegraphics[width=\textwidth]{figures/ensembles.png}
-\caption{Final particle positions after integrating unbound, globular-cluster-sized ensembles of orbits generated around each of the three N-body orbits (Figure~\ref{fig:nbodysims}). The ensembles each contain 1000 particles and begin at pericenter rather than apocenter because they are meant to represent debris disrupted during a single (the first) pericentric passage. The particle positions qualitatively match the morphology of the ``oldest'' debris from the N-body simulations, though there are many more particles in these ensembles than are disrupted during the first pericentric passage of the simulations. } \label{fig:ensembles}
+\caption{Final particle positions after integrating unbound, globular-cluster-sized ensembles of orbits generated around each of the three N-body orbits (Figure~\ref{fig:nbodysims}). The ensembles each contain 1000 particles and begin at pericenter rather than apocenter because they are meant to represent debris disrupted during a single (the first) pericentric passage. The particle positions qualitatively match the morphology of the ``oldest'' debris from the N-body simulations, though there are many more particles in these ensembles than are disrupted during the first pericentric passage of the simulations. } 
+\label{fig:ensembles}
 \end{center}
 \end{figure*}
 
@@ -528,7 +531,7 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 \begin{figure*}[p]
 \begin{center}
 \includegraphics[width=\textwidth]{figures/ensemble-density.png}
-\caption{ Distributions of the values of the estimated configuration-space density field evaluated at the positions of the ensemble particles after 0, 4, and 16 orbital periods for each of the three orbits of Figures~\ref{fig:nbodysims} and \ref{fig:ensembles}. The density distribution of the regular orbit ensemble stays compact and decreases slowly. The density of the weakly chaotic ensemble initially evolves faster to lower density and has a larger tail to lower densities. The strongly chaotic ensemble evolves fast to a state of low density.} \label{fig:ensemble-density}
+\caption{ Distributions of the values of the estimated configuration-space density field evaluated at the positions of the ensemble particles after 0, 4, and 16 orbital periods for each of the three orbits of Figures~\ref{fig:nbodysims} and \ref{fig:ensembles}. The density distribution of the regular orbit ensemble stays compact and decreases slowly. The density of the weakly chaotic ensemble initially evolves faster to lower density and has a larger tail to lower densities. The strongly chaotic ensemble evolves fast to a state of low density. \todo{apw}{add border to histograms? get rid of colors (maybe just light to dark grey?)}} \label{fig:ensemble-density}
 \end{center}
 \end{figure*}
 
@@ -537,7 +540,7 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 \begin{figure*}[p]
 \begin{center}
 \includegraphics[width=\textwidth]{figures/ensemble-densities.png}
-\caption{This is an alternate visualization of the density evolution of orbit ensembles around the three orbits of Figure~\ref{fig:ensemble-density}, showing only the evolution of the mean density for the orbits (normalized by the initial density of the ensemble).} 
+\caption{This is an alternate visualization of the density evolution of orbit ensembles around the three orbits of Figure~\ref{fig:ensemble-density}, showing only the evolution of the mean density for the orbits (normalized by the initial density of the ensemble). \todo{apw}{change linestyles so this survives being printed (-, --, -.)}} 
 \label{fig:densities}
 \end{center}
 \end{figure*}
@@ -546,8 +549,8 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 \clearpage
 \begin{figure*}[p]
 \begin{center}
-\includegraphics[width=\textwidth, trim={0 1cm 0 0}]{figures/ensemble-map.png}
-\caption{The same grid of initial conditions as Figure~\ref{fig:lyapmap} and other previous figures, but now we consider the density evolution of small ensembles of orbits around each of the orbits in this grid. We generate globular-cluster-scale ensembles of orbits around each ``parent'' orbit in the grid (Section~\ref{sec:results2}) and follow the density of the ensemble as a function of time using kernel density estimation (KDE) with an adaptive Epanechnikov kernel. Three orbits are highlighted with square markers --- from top to bottom, these are the strongly chaotic (S), weakly chaotic (W), and regular (R) orbits of Table~\ref{tbl:three-orbits} (see Section~\ref{sec:results2}).} 
+\includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/ensemble-map.png}
+\caption{\todo{all}{Ignore this for now! Waiting for results from latest run on cluster...}The same grid of initial conditions as Figure~\ref{fig:lyapmap} and other previous figures, but now we consider the density evolution of small ensembles of orbits around each of the orbits in this grid. We generate globular-cluster-scale ensembles of orbits around each ``parent'' orbit in the grid (Section~\ref{sec:results2}) and follow the density of the ensemble as a function of time using kernel density estimation (KDE) with an adaptive Epanechnikov kernel. Three orbits are highlighted with square markers --- from top to bottom, these are the strongly chaotic (S), weakly chaotic (W), and regular (R) orbits of Table~\ref{tbl:three-orbits} (see Section~\ref{sec:results2}). \todo{apw}{remake once new run on the cluster is complete}} 
 \label{fig:ensemblemap-meandensity}
 \end{center}
 \end{figure*}
@@ -557,7 +560,7 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 \begin{figure*}[p]
 \begin{center}
 \includegraphics[width=1.1\textwidth]{figures/fdiff_zooms.png}
-\caption{Zooms of the frequency diffusion time map of Figure~\ref{fig:freqdiff} around the three orbits highlighted in that figure and used in Figures~\ref{fig:nbodysims}--\ref{fig:ensemble-density} --- as in Figure~\ref{fig:freqdiff}, each pixel represents an orbit, and the greyscale of the pixel is set by the frequency diffusion time. Around each orbit, we initialize a new grid of $\approx$40,000 orbits to resolve the small-scale resonant structure around each orbit. Each orbit in the sub-grid is integrated for 80 orbital periods and the frequency diffusion time is computed from the two consecutive sections of 40 orbital periods. The marker at the center indicates the scale (e.g., tidal radius) of a $M \approx 10^4~\msun$ globular cluster at the given position in the initial condition grid. The regular orbit (R) is near a resonance (white line), the weakly chaotic orbit (W) is surrounded by an intricate resonant structure and may be in a region of resonance overlap, and the strongly chaotic orbit (S) is embedded in a region of strong stochasticity. }
+\caption{Zooms of the frequency diffusion time map of Figure~\ref{fig:freqdiff} around the three orbits highlighted in that figure and used in Figures~\ref{fig:nbodysims}--\ref{fig:ensemble-density} --- as in Figure~\ref{fig:freqdiff}, each pixel represents an orbit, and the greyscale of the pixel is set by the frequency diffusion time. Around each orbit, we initialize a new grid of $\approx$40,000 orbits to resolve the small-scale resonant structure around each orbit. Each orbit in the sub-grid is integrated for 80 orbital periods and the frequency diffusion time is computed from the two consecutive sections of 40 orbital periods. The marker at the center indicates the scale (e.g., tidal radius) of a $M \approx 10^4~\msun$ globular cluster at the given position in the initial condition grid. The regular orbit (R) is near a resonance (white line), the weakly chaotic orbit (W) is surrounded by an intricate resonant structure and may be in a region of resonance overlap, and the strongly chaotic orbit (S) is embedded in a region of strong stochasticity. \todo{apw}{Move colorbar to bottom or top?}}
 \label{fig:fdiff-zooms}
 \end{center}
 \end{figure*}
@@ -577,7 +580,7 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 \begin{figure*}[p]
 \begin{center}
 \includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/freqvar-map.png}
-\caption{The same grid of initial conditions as in previous figures, but now each pixel is colored by the amplitude of short-time frequency variations, $A_\Omega$ (Equation~\ref{eq:frac-freq-amp}). The amplitude is a fractional measurement, so that a value of $10^{-2}$ corresponds to a 1\% change in frequencies. To compute the short-time frequency evolution, the frequencies are computed in a sliding window of width 40 orbital periods, and the window is shifted by half of an orbital period between each computation of the frequencies. The frequency evolution is computed for the equivalent of 16 orbital periods. The weakly chaotic orbit has $A_\Omega = XX$, corresponding to YY\% variations in the frequencies over a few orbital periods and hence the observed enhanced density evolution. The three orbits, R, W, S, are highlighted with square markers (S is top, W is middle, R is bottom). } 
+\caption{The same grid of initial conditions as in previous figures, but now each pixel is colored by the amplitude of short-time frequency variations, $A_\Omega$ (Equation~\ref{eq:frac-freq-amp}). The amplitude is a fractional measurement, so that a value of $10^{-2}$ corresponds to a 1\% change in frequencies. To compute the short-time frequency evolution, the frequencies are computed in a sliding window of width 40 orbital periods, and the window is shifted by half of an orbital period between each computation of the frequencies. The frequency evolution is computed for the equivalent of 16 orbital periods. The weakly chaotic orbit has $A_\Omega \approx 0.2\%$ over just 16 orbital periods --- this explains the enhanced density evolution observed in the N-body simulations and ensemble integrations (Figures~\ref{fig:nbodysims}-\ref{fig:ensembles}). The three orbits, R, W, S, are highlighted with square markers (S is top, W is middle, R is bottom). } 
 \label{fig:freqvar_map}
 \end{center}
 \end{figure*}
