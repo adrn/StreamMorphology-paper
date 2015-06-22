@@ -579,6 +579,36 @@ In such a map, stable resonances appear as linear over-densities and unstable re
 \clearpage
 \begin{figure*}[p]
 \begin{center}
+\includegraphics[width=\textwidth]{figures/ensemble-freq-evolution-regular.png}
+\caption{Evolution of the fundamental frequency ratios, $r_{1,3} = \Omega_1 / \Omega_3$ and $r_{2,3} = \Omega_2 / \Omega_3$, over 16 orbital periods for an ensemble of 1000 orbits generated around the regular orbit, R, with mass scale $m=10^4~\msun$ (Section~\ref{sec:results2}). Fundamental frequencies are computed with a window width of $\approx$40 orbital periods, and the window is shifted by one orbital period between each computation (each grey point represents the fundamental frequency ratios computed in a single window). Plotted are the per cent deviations of the frequency ratios from the value in the initial window for the parent orbit. Left panel shows frequencies of each ensemble orbit for first time window. Middle panel shows the evolution of the frequencies over 16 orbital periods. Right panel shows final frequency values. For this orbit (R), all panels are identical because the orbit is regular (the frequencies don't evolve).} 
+\label{fig:regular-ensemble-freq-evolution}
+\end{center}
+\end{figure*}
+
+% Figure ??
+\clearpage
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/ensemble-freq-evolution-mildly_chaotic.png}
+\caption{Same as Figure~\ref{fig:regular-ensemble-freq-evolution}, but for the weakly chaotic orbit (W). Frequencies now display short-time variations (compare left to right panels). Points in middle panel show the trajectories of each ensemble orbit in frequency-space.} 
+\label{fig:mildly_chaotic-ensemble-freq-evolution}
+\end{center}
+\end{figure*}
+
+% Figure ??
+\clearpage
+\begin{figure*}[p]
+\begin{center}
+\includegraphics[width=\textwidth]{figures/ensemble-freq-evolution-chaotic.png}
+\caption{Same as Figures~\ref{fig:regular-ensemble-freq-evolution}--\ref{fig:mildly_chaotic-ensemble-freq-evolution}, but for the strongly chaotic orbit (S). Frequencies are now explore a huge volume representing $>$100\% deviations from the initial value of the parent orbit. Frequencies evolve quickly around resonances --- especially the $\bs{n}=(2,-3,0)$, $\bs{n}=(1,-1,0)$, and $\bs{n}=(1,0,1)$ resonances --- which appear as linear features in these panels.} 
+\label{fig:chaotic-ensemble-freq-evolution}
+\end{center}
+\end{figure*}
+
+% Figure ??
+\clearpage
+\begin{figure*}[p]
+\begin{center}
 \includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/freqvar-map.png}
 \caption{The same grid of initial conditions as in previous figures, but now each pixel is colored by the amplitude of short-time frequency variations, $A_\Omega$ (Equation~\ref{eq:frac-freq-amp}). The amplitude is a fractional measurement, so that a value of $10^{-2}$ corresponds to a 1\% change in frequencies. To compute the short-time frequency evolution, the frequencies are computed in a sliding window of width 40 orbital periods, and the window is shifted by half of an orbital period between each computation of the frequencies. The frequency evolution is computed for the equivalent of 16 orbital periods. The weakly chaotic orbit has $A_\Omega \approx 0.2\%$ over just 16 orbital periods --- this explains the enhanced density evolution observed in the N-body simulations and ensemble integrations (Figures~\ref{fig:nbodysims}-\ref{fig:ensembles}). The three orbits, R, W, S, are highlighted with square markers (S is top, W is middle, R is bottom). } 
 \label{fig:freqvar_map}
