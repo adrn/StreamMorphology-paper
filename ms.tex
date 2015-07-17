@@ -81,8 +81,8 @@ This paper examines the influence of chaos on the phase-space morphology of cold
 We find very stark results:
 Streams in chaotic regions look very different from those in regular regions.
 We find that simulated streams (simulated using test particle ensembles of nearby orbits) are sensitive to chaos on a much shorter time-scale than any standard prediction (from the Lyapunov or frequency-diffusion times).
-For example, on a mildly chaotic orbit with a chaotic timescale predicted to be $>$1000 orbital periods ($>$1000 Gyr), the resulting stellar stream is, after just 16 orbits, substantially more diffuse than any formed on a nearby but regular orbit.
-We find that the enhanced diffusion of the stream stars can be estimated by looking at the variance in orbital frequencies along the parent (progenitor) orbit.
+For example, on a mildly chaotic orbit with a chaotic timescale predicted to be $>$1000 orbital periods ($>$1000 Gyr), the resulting stellar stream is, after just 64 orbits, substantially more diffuse than any formed on a nearby but regular orbit.
+We find that the enhanced diffusion of the stream stars can be understood by looking at the variance in orbital frequencies of orbit ensembles centered around the parent (progenitor) orbit.
 Our results suggest that long, cold streams around our Galaxy must exist only on regular (or very nearly regular) orbits; they potentially provide a map of the regular regions of the Milky Way potential.
 This suggests a promising new direction for the use of tidal streams to constrain the distribution of dark matter around our Galaxy.
 
@@ -165,9 +165,9 @@ Arnold diffusion is not expected to be significant for most orbits over timescal
 
 \subsection{Mixing of orbit ensembles}\label{sec:chaotic-mixing}
 
-An ensemble of regular orbits (e.g., tidal debris) will phase-mix due to (small) differences in the fundamental frequencies of the orbits. The frequency distributions of thin streams are generally close to one-dimensional---that is, one eigenvalue of the distribution of frequencies for an orbit ensemble will be much larger than the others because of the local shape of the Hessian of the potential \citep{sanders13, bovy14}. Phase-mixing generically leads to power-law decay of the mean density of the ensembles: initially, the density decreases linearly in time because of the large, nearly one-dimensional spread in frequencies, then may proceed as $t^{-2}$ to $t^{-3}$ depending on the other eigenvalues of the frequency-space distribution.
+An ensemble of regular orbits (e.g., tidal debris) will phase-mix due to (small) differences in the fundamental frequencies of the orbits. The frequency distributions of thin streams are generally close to one-dimensional---that is, one eigenvalue of the distribution of frequencies for an orbit ensemble will be much larger than the others because of the local shape of the Hessian of the potential \citep{helmi99, sanders13a, bovy14}. Phase-mixing generically leads to power-law decay of the mean density of the ensembles: initially, the density decreases linearly in time because of the large, nearly one-dimensional spread in frequencies, then may proceed as $t^{-2}$ to $t^{-3}$ depending on the other eigenvalues of the frequency-space distribution \citep[e.g.,][]{helmi99}.
 
-Generically, a small ensemble of chaotic orbits will lose coherence much faster than for regular orbits \cite[see, e.g.,][]{kandrup94, merritt96, kandrup03}, however this depends on the details of the resonant structure around the ensemble and the chaotic evolution of the orbit and is thus difficult to predict. For example, ensembles of orbits `stuck' between resonances may quickly spread to fill the allowed volume via the short-time chaotic diffusion processes, but then the orbits must escape this confinement and diffuse through the Arnold web to reach a fully mixed state \citep{merritt96}. In this work, we investigate the consequences of this short-time but small-scale frequency evolution and hypothesize that this may explain the enhanced density evolution of tidal debris around weakly chaotic regions where chaotic timescales are predicted to be long \citep[e.g.,][]{pearson15}. We then discuss how this would affect our understanding of the coherence and density evolution of tidal streams.
+Generically, a small ensemble of chaotic orbits will lose coherence much faster than for regular orbits \cite[see, e.g.,][]{kandrup94, merritt96, kandrup03}, however this depends on the details of the resonant structure around the ensemble and the chaotic evolution of the individual orbits and is thus difficult to predict. For example, ensembles of orbits `stuck' between resonances may quickly spread to fill the allowed volume, but then the orbits must escape this confinement and diffuse through the Arnold web to reach a fully mixed state \citep{merritt96}. In this work, we investigate the consequences of short-time but small-scale frequency evolution and hypothesize that this may explain the enhanced density evolution of tidal debris around weakly chaotic regions where chaotic timescales are predicted to be long \citep[e.g.,][]{pearson15}. We then discuss how this would affect our understanding of the coherence and density evolution of tidal streams.
 
 \section{Numerical methods}\label{sec:methods}
 
@@ -227,15 +227,15 @@ Bounded, regular orbits in a triaxial potential have three fundamental frequenci
 
 If an orbit is chaotic, the motion can no longer be expanded in terms of a single set of fundamental frequencies. For a weakly chaotic orbit, the orbit may appear consistently periodic over long windows of time. \superfreq\ will pick out a set of frequencies for chaotic orbits that correspond to the largest peaks in the power spectrum of the orbits, however these peaks will change location and amplitude with time. For more strongly chaotic orbits, the power spectrum will be quite noisy and the peak frequencies may change erratically when comparing two consecutive sections of orbit. The frequencies picked out by \superfreq\ for such orbits will therefore represent the average periodic nature of the orbit over a given integration window. Following previous work, we define the fractional frequency diffusion rate, $\mathcal{R}$, in the $k$th fundamental frequency as
 \begin{equation}
-	\mathcal{R}_k = \frac{\Omega_{k}^{(2)} - \Omega_{k}^{(1)}}{\Omega_{k}^{(1)}} \label{eq:fdrate}
+	\mathcal{R}_k = \frac{\Omega_{k}^{(2)} - \Omega_{k}^{(1)}}{\Omega_{k}^{(1)} \, \Delta t} \label{eq:fdrate}
 \end{equation}
-where the upper index refers to the two consecutive sections of orbit \citep{laskar93, valluri98, valluri12}. By inverting this rate, we can compute the timescale over which we expect order-unity changes to the fundamental frequencies: the \emph{frequency diffusion time} is defined as
+where the upper index refers to the two consecutive sections of orbit and $\Delta t$ is the length of each integration window \citep{laskar93, valluri98, valluri12}. By inverting this rate, we can compute the timescale over which we expect order-unity changes to the fundamental frequencies: the \emph{frequency diffusion time} is defined as
 \begin{equation}
 	t_\Omega = \, (\max_{a_k} \, \mathcal{R}_k)^{-1} \label{eq:fdtime}
 \end{equation}
 where the maximum is taken with respect to the corresponding amplitudes, $a_k$, of the fundamental frequency components \citep[see][]{valluri12}.
 
-For a small ensemble of orbits (e.g., tidal debris), the relevant timescale is the time over which the change in frequencies for a single orbit is comparable to the spread of frequencies in the ensemble. We can estimate this timescale by multiplying the frequency diffusion time by a factor equal to the fractional spread in frequencies of the debris. For example, a globular cluster typically has $\approx$1\% spreads in fundamental frequencies, so by multiplying the frequency diffusion time by $f = 0.01$, we can estimate the time (in number of orbital periods) over which we expect the frequencies to evolve by this amount.
+For a small ensemble of orbits (e.g., tidal debris), the relevant timescale is the time over which the change in frequencies for a single orbit is comparable to the spread of frequencies in the ensemble. We can estimate this timescale by multiplying the frequency diffusion time by a factor equal to the fractional spread in frequencies of the debris. For example, a globular cluster typically has $\approx$0.1\% spreads in fundamental frequencies, so by multiplying the frequency diffusion time by $f = 10^{-3}$, we can estimate the time (in number of orbital periods) over which we expect the frequencies to evolve by this amount.
 
 % =====================================================================
 %	Results
@@ -246,11 +246,11 @@ In Section~\ref{sec:results1}, we generate grids of orbits in the potential desc
 
 \subsection{Part I: Lyapunov and frequency diffusion times}\label{sec:results1}
 
-We generate an isoenergy grid of initial conditions along the $xz$ ($y=0$) plane\footnote{$x$ is the major and $z$ the minor axis.} with energy (per unit mass), $E$, chosen to span a range of distances comparable to the scale radius of the potential ($E=-(397.2~{\rm km~s}^{-1})^2$ in physical units; see Table~\ref{tbl:potential}). We fix $v_x = v_z = 0$, and compute $v_y$ from the energy. The majority of the orbits generated on this grid are tube orbits, which preserve a sense of rotation about one of the principal axes of the potential and are generally centrophobic. Tube orbits are generally less stochastic than box orbits, which tend to plunge deep into the inner regions of the potential where the density profile is steep, however there are appreciable numbers of stochastic tube orbits. The major classes of stable tube orbits circulate about either the major or minor axis. This grid generates all of the major orbit classes (short-axis tubes, inner long-axis tubes, outer long-axis tubes, stochastic intermediate-axis, and box orbits), but the most numerous orbits in this grid are the short-axis and outer long-axis tubes. Thin tidal streams may preferentially form along tube orbits rather than box orbits because of the faster disruption and debris diffusion expected for stellar systems on radially plunging orbits. Figure~\ref{fig:apoper} shows the grid of initial conditions in the $xz$ plane---each pixel in this grid represents an orbit, and the pixels are colored by the median pericentric distance (left) and median apocentric distance (right) over an integration time of 64 orbital periods. 
+We generate an isoenergy grid of initial conditions along the $xz$ ($y=0$) plane\footnote{$x$ is the major and $z$ the minor axis.} with energy (per unit mass), $E$, chosen to span a range of distances comparable to the scale radius of the potential ($E=-(397.2~{\rm km~s}^{-1})^2$ in physical units; see Table~\ref{tbl:potential}). We fix $v_x = v_z = 0$, and compute $v_y$ from the energy. From here onwards, all lengths are given in units of scale radii, $r_s$, velocities in units of circular velocity, $v_c$, (see Table~\ref{tbl:potential}) and times in units of orbital periods, $\periods$. The majority of the orbits generated on this grid are tube orbits, which preserve a sense of rotation about one of the principal axes of the potential and are generally centrophobic. Tube orbits are generally less stochastic than box orbits, which tend to plunge deep into the inner regions of the potential where the density profile is steep, however there are appreciable numbers of stochastic tube orbits. The major classes of stable tube orbits circulate about either the major or minor axis. This grid generates all of the major orbit classes (short-axis tubes, inner long-axis tubes, outer long-axis tubes, stochastic intermediate-axis, and box orbits), but the most numerous orbits in this grid are the short-axis and outer long-axis tubes. Thin tidal streams may preferentially form along tube orbits rather than box orbits because of the faster disruption and debris diffusion expected for stellar systems on radially plunging orbits. Figure~\ref{fig:apoper} shows the grid of initial conditions in the $xz$ plane---each pixel in this grid represents an orbit, and the pixels are colored by the median pericentric distance (left) and median apocentric distance (right) over an integration time of 64 orbital periods. 
 
 We integrate all orbits in the grid for 10000 orbital periods and use the method described in Section~\ref{sec:lyap} to compute the Lyapunov exponents. Figure~\ref{fig:lyapmap} again shows the grid of initial conditions, but now the color corresponds to the logarithm of the Lyapunov time. The darker pixels have shorter Lyapunov times and are more chaotic. Because of the fixed the integration time, the MLE cannot detect weak chaos and the majority of orbits appear to be regular because they have exceedingly long Lyapunov times (all white points have $(t_\lambda/\periods) \gtrsim 1000$). 
 
-\todo{apw}{remove kpc units?}
+\todo{apw}{numbers here on (units)}
 For each orbit, we also separately integrate for $\approx$256 orbital periods and use \superfreq\ to compute the fundamental frequencies for the two consecutive sections of 128 orbital periods. We have chosen this window size so that we recover the frequencies for regular orbits with fractional error $\approx10^{-8}$. With this integration window we are able to successfully recover frequencies using for $>$99.9\% of the orbits \superfreq. Figure~\ref{fig:freqdiff} shows the same grid of initial conditions as in Figure~\ref{fig:lyapmap}, but now the greyscale intensity is set by the logarithm of the frequency diffusion time. The darker pixels have shorter frequency diffusion times and are more chaotic. This map reveals the intersection of this particular energy hypersurface with the rich structure of resonant surfaces present in this potential and highlights the accuracy of \superfreq\---weak chaos (grey) is detectable over just $\sim$100 orbital periods, compared to the many tens of thousands of orbits it would take to detect such features with the maximum Lyapunov exponent. The tube orbits in this potential are mostly regular or only mildly chaotic---the largest regular regions are associated with the short-axis and long-axis tube orbits---however islands of stronger chaos do appear, especially at the intersections of resonances where resonance overlap occurs. 
 
 The strongest chaotic regions (black) appear in both of the above grids (Figure~\ref{fig:lyapmap} and Figure~\ref{fig:freqdiff}). Some of the weakly chaotic unstable resonances do appear in the Lyapunov time map, especially where resonances overlap---for example, near $(x_0,z_0) \approx(13,7)~{\rm kpc}$ and $(x_0,z_0) \approx(31,13)~{\rm kpc}$ where there is a slight hint of weak chaos (grey) in Figure~\ref{fig:lyapmap}. The details of the resonant structure is revealed in the frequency diffusion map from integrations of just 256 orbital periods. 
@@ -274,20 +274,22 @@ We start by considering four particular orbits chosen from the orbit grid of Sec
 
 We verify that these orbit ensembles capture the nature of more realistic stream formation by running N-body simulations of globular-cluster-mass progenitor systems on these same three orbits. We use the Self-Consistent Field (SCF) basis function expansion code \citep{hernquist92} to run the simulations, which we set up to run from apocenter-to-apocenter (rather than pericenter-to-apocenter as in the ensembles), but finish with the progenitor in the same location as the parent orbit in the ensemble evolution described above. Figure~\ref{fig:nbodysims} shows the final particle distributions rotated so that the angular momentum of the progenitor orbit is aligned with the $z$-axis. From a comparison of Figures~\ref{fig:ensembles} and \ref{fig:nbodysims}, it is clear that the morphology of the ensembles is visually similar to the `oldest' (first stripped) debris in the N-body simulations.
 
+\todo{apw}{All lengths / distances in units of $r_s$, all velocities in units of $v_c$?}
+
 \begin{table*}[ht]
 \begin{center}
 	\begin{tabular}{c | c c c c c c | c c }
-		{\bf ID} & $\bs{x}$ & $\bs{y}$ & $\bs{z}$ & $\bs{v_x}$ & $\bs{v_y}$ & $\bs{v_z}$ & $\bs{t_\lambda/\periods}$ & $\bs{t_\Omega/\periods}$ \\\toprule
-A & 17 & 0 & 26.06 & 0 & 126.25 & 0 & $>$10^8 & XX\\
+		{\bf ID} & $\bs{x/r_s}$ & $\bs{y/r_s}$ & $\bs{z/r_s}$ & $\bs{v_x/v_c}$ & $\bs{v_y/v_c}$ & $\bs{v_z/v_c}$ & $\bs{t_\lambda/\periods}$ & $\bs{t_\Omega/\periods}$ \\\toprule
+A & 0.85 & 0 & 1.303 & 0 & 0.721 & 0 & $>700$ & $>10^7$\\
 \midrule
-B & 17 & 0 & 23.03 & 0 & 148.61 & 0 & XX & XX\\
+B & 0.85 & 0 & 1.152 & 0 & 0.849 & 0 & $>700$ & $>10^7$\\
 \midrule
-C & 17 & 0 & 25.35 & 0 & 131.68 & 0 & XX & XX\\
+C & 0.85 & 0 & 1.27 & 0 & 0.752 & 0 & $>700$ & $\approx 3\times10^5$\\
 \midrule
-D & 17 & 0 & 28.69 & 0 & 104.54 & 0 & XX & XX\\
+D & 0.85 & 0 & 1.434 & 0 & 0.597 & 0 & 8.14 & $\approx 2.5\times10^4$\\
 		\bottomrule
 		\end{tabular}
-	\caption{Orbits from the $xz$ grid with a range of chaotic timescales---A is a regular, near-resonant orbit, B a regular, non-resonant orbit, C a weakly chaotic orbit, and S a strongly chaotic orbit. Initial conditions are given in physical units: Positions ($x$, $y$, $z$) are given in kpc, velocities ($v_x$, $v_y$, $v_z$) in km~s$^{-1}$. Chaotic timescales are expressed ($t_\lambda$, $t_\Omega$) in number of orbital periods. Recall that the frequency diffusion time, $t_\Omega$, is the time over which we expect order-unity changes in the fundamental frequencies, hence why the timescales appear quite long. \label{tbl:orbit-info}}
+	\caption{Orbital initial conditions from the $xz$ grid for orbits with a range of chaotic timescales---A is a regular, near-resonant orbit, B a regular, non-resonant orbit, C a weakly chaotic orbit, and D a strongly chaotic orbit. Positions ($x$, $y$, $z$) are given in units of scale radii, $r_s$, and velocities ($v_x$, $v_y$, $v_z$) in units of scale velocity, $v_c$. Chaotic timescales are expressed ($t_\lambda$, $t_\Omega$) in number of orbital periods. Recall that the frequency diffusion time, $t_\Omega$, is the time over which we expect order-unity changes in the fundamental frequencies, hence why the timescales appear quite long. \label{tbl:orbit-info}}
 \end{center}
 \end{table*}
 
@@ -523,10 +525,10 @@ Following \cite{binneytremaine}, we generate a grid of orbits on the equipotenti
     \subfloat{
       \includegraphics[width=0.45\textwidth]{figures/pericenter-map.png}
     }
-    \subfloat[Next sub-figure\label{subfig-2:dummy}]{
+    \subfloat{
       \includegraphics[width=0.45\textwidth]{figures/apocenter-map.png}
     }
-\caption{ A grid of isoenergy orbits initialized on the $xz$ plane. Each pixel in these panels represents a single orbit, and the shading of each pixel corresponds to the median pericentric distance (left) or median apocentric distance (right) computed over 16 orbital periods. The central black band in the left panel and white band in the right panel are tube orbits with apocenter-to-pericenter ratios close to one. }
+\caption{ A grid of isoenergy orbits initialized on the $xz$ plane. All distances are normalized by the potential scale radius. Each pixel in these panels represents a single orbit, and the shading of each pixel corresponds to the median pericentric distance (left) or median apocentric distance (right) computed over 64 orbital periods. The central black band in the left panel and white band in the right panel are tube orbits with apocenter-to-pericenter ratios close to one. }
 \label{fig:apoper}
 \end{figure}
 
@@ -534,7 +536,7 @@ Following \cite{binneytremaine}, we generate a grid of orbits on the equipotenti
 \begin{figure}[p]
 \begin{center}
 \includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/lyap_map.png}
-\caption{ The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now each pixel is colored by the logarithm of the Lyapunov time (in units of orbital periods). Orbits are integrated for a total of 10000 orbital periods. Chaotic orbits with $t_\lambda \gtrsim 1000~\periods$ appear regular because the integration time for each orbit is insufficient to resolve weak chaos. Three orbits are highlighted with square markers---from top to bottom, these are the strongly chaotic (S; white), weakly chaotic (W; black), and regular (R; black) orbits of Table~\ref{tbl:three-orbits} (see Section~\ref{sec:results2}).} \label{fig:lyapmap} 
+\caption{ The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now each pixel is colored by the logarithm of the Lyapunov time (in units of orbital periods). Orbits are integrated for a total of 10000 orbital periods. Chaotic orbits with $t_\lambda/\periods \gtrsim 700$ appear regular because the integration time for each orbit is insufficient to resolve weak chaos. Four orbits are highlighted with square markers---from top to bottom, these are the strongly chaotic (D; white), near-resonant (A; black), weakly chaotic (C; black), and non-resonant (B; black) orbits of Table~\ref{tbl:orbit-info} (see Section~\ref{sec:results2}).} \label{fig:lyapmap} 
 \end{center}
 \end{figure}
 
@@ -542,7 +544,7 @@ Following \cite{binneytremaine}, we generate a grid of orbits on the equipotenti
 \begin{figure}[p]
 \begin{center}
 \includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/fdiff_map.png}
-\caption{The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now each pixel is colored by the logarithm of the frequency diffusion time (again in units of orbital periods). The frequencies are computed in two consecutive windows, each of which has length equal to 40 orbital periods. The frequencies are measured precisely so that small changes in the frequencies can be detected over just $\approx$10s of orbits. Three orbits are highlighted with square markers---from top to bottom, these are the strongly chaotic (S; white), weakly chaotic (W; black), and regular (R; black) orbits of Table~\ref{tbl:three-orbits} (see Section~\ref{sec:results2}).} \label{fig:freqdiff}
+\caption{The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now each pixel is colored by the logarithm of the frequency diffusion time (again in units of orbital periods). The frequencies are computed in two consecutive windows, each of which has length equal to 40 orbital periods. The frequencies are measured precisely so that small changes in the frequencies can be detected over just $\approx$10s of orbits. Three orbits are highlighted with square markers---from top to bottom, these are the strongly chaotic (S; white), weakly chaotic (W; black), and regular (R; black) orbits of Table~\ref{tbl:orbit-info} (see Section~\ref{sec:results2}).} \label{fig:freqdiff}
 \end{center}
 \end{figure}
 
