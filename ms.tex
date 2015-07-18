@@ -544,7 +544,7 @@ Following \cite{binneytremaine}, we generate a grid of orbits on the equipotenti
 \begin{figure}[p]
 \begin{center}
 \includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/fdiff_map.png}
-\caption{The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now each pixel is colored by the logarithm of the frequency diffusion time (again in units of orbital periods). The frequencies are computed in two consecutive windows, each of which has length equal to 40 orbital periods. The frequencies are measured precisely so that small changes in the frequencies can be detected over just $\approx$10s of orbits. Three orbits are highlighted with square markers---from top to bottom, these are the strongly chaotic (S; white), weakly chaotic (W; black), and regular (R; black) orbits of Table~\ref{tbl:orbit-info} (see Section~\ref{sec:results2}).} \label{fig:freqdiff}
+\caption{The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now each pixel is colored by the logarithm of the frequency diffusion time (again in units of orbital periods). The frequencies are computed in two consecutive windows, each of which has length equal to 40 orbital periods. The frequencies are measured precisely so that small changes in the frequencies can be detected over just $\approx$10s of orbits. Four orbits are highlighted with square markers---from top to bottom, these are the strongly chaotic (D; white), near-resonant (A; black), weakly chaotic (C; black), and non-resonant (B; black) orbits of Table~\ref{tbl:orbit-info} (see Section~\ref{sec:results2}).} \label{fig:freqdiff}
 \end{center}
 \end{figure}
 
@@ -598,8 +598,8 @@ Following \cite{binneytremaine}, we generate a grid of orbits on the equipotenti
 \clearpage
 \begin{figure}[p]
 \begin{center}
-\includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/ensemble-map.png}
-\caption{\todo{all}{Ignore this for now! Waiting for results from latest run on cluster...}The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now we consider the density evolution of small ensembles of orbits around each of the orbits in this grid. We generate globular-cluster-scale ensembles of orbits around each `parent' orbit in the grid (Section~\ref{sec:results2}) and follow the density of the ensemble as a function of time using kernel density estimation (KDE) with an adaptive Epanechnikov kernel. Three orbits are highlighted with square markers---from top to bottom, these are the strongly chaotic (S; white), weakly chaotic (W; black), and regular (R; black) orbits of Table~\ref{tbl:three-orbits} (see Section~\ref{sec:results2}).} 
+\includegraphics[width=0.9\textwidth, trim={0 0.2cm 0 0}]{figures/ensemble-map.png}
+\caption{The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now the greyscale intensity is set by the mean density of a of small ensembles of orbits after integration for 64 orbital periods. The orbit ensembles are generated around each parent orbit in the grid (Section~\ref{sec:results2}) and the mean density is computed kernel density estimation (KDE) with an adaptive Epanechnikov kernel. Given the extremely long chaotic timescales of the weakly chaotic orbits in the upper half of the grid, it is surprising that any of the high-order resonant structure is visible in this map. Four orbits are highlighted with square markers---from top to bottom, these are the strongly chaotic (D; white), near-resonant (A; black), weakly chaotic (C; black), and non-resonant (B; black) orbits of Table~\ref{tbl:orbit-info} (see Section~\ref{sec:results2}).} 
 \label{fig:ensemblemap-meandensity}
 \end{center}
 \end{figure}
@@ -608,8 +608,8 @@ Following \cite{binneytremaine}, we generate a grid of orbits on the equipotenti
 \clearpage
 \begin{figure}[p]
 \begin{center}
-\includegraphics[width=1.1\textwidth]{figures/fdiff_zooms.png}
-\caption{Zooms of the frequency diffusion time map of Figure~\ref{fig:freqdiff} around the three orbits highlighted in that figure and used in Figures~\ref{fig:nbodysims}--\ref{fig:ensemble-density}---as in Figure~\ref{fig:freqdiff}, each pixel represents an orbit, and the greyscale of the pixel is set by the frequency diffusion time. Around each orbit, we initialize a new grid of $\approx$40,000 orbits to resolve the small-scale resonant structure around each orbit. Each orbit in the sub-grid is integrated for 80 orbital periods and the frequency diffusion time is computed from the two consecutive sections of 40 orbital periods. The marker at the center indicates the scale (e.g., tidal radius) of a $M \approx 10^4~\msun$ globular cluster at the given position in the initial condition grid. The regular orbit (R) is near a resonance (white line), the weakly chaotic orbit (W) is surrounded by an intricate resonant structure and may be in a region of resonance overlap, and the strongly chaotic orbit (S) is embedded in a region of strong stochasticity. \todo{apw}{Move colorbar to bottom or top?}}
+\includegraphics[width=0.9\textwidth]{figures/fdiff_zooms.png}
+\caption{Zooms of the frequency diffusion time map of Figure~\ref{fig:freqdiff} around the four orbits highlighted in that figure and used in Figures~\ref{fig:orbits}--\ref{fig:densities}. As with Figure~\ref{fig:freqdiff}, each pixel represents an orbit, and the greyscale of the pixel is set by the frequency diffusion time. Around each orbit, we initialize a new grid of $\approx$16,000 orbits to resolve the small-scale resonant structure around each orbit. The marker at the center indicates the scale (tidal radius) of a $M \approx 10^4~\msun$ globular cluster at the given position in the initial condition grid. The near-resonant orbit (A) is coincident with a high order resonance (white line), the non-resonant orbit (B) is between resonances, the weakly chaotic orbit (C) is surrounded by intricate structures and may be in a region of resonance overlap, and the strongly chaotic orbit (D) is embedded in a region of strong stochasticity.}
 \label{fig:fdiff-zooms}
 \end{center}
 \end{figure}
@@ -655,13 +655,13 @@ Following \cite{binneytremaine}, we generate a grid of orbits on the equipotenti
 \end{figure}
 
 % Figure ??
-\clearpage
-\begin{figure}[p]
-\begin{center}
-\includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/freqvar-map.png}
-\caption{The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now each pixel is colored by the amplitude of short-time frequency variations, $A_\Omega$ (Equation~\ref{eq:frac-freq-amp}). The amplitude is a fractional measurement, so that a value of $10^{-2}$ corresponds to a 1\% change in frequencies. To compute the short-time frequency evolution, the frequencies are computed in a sliding window of width 40 orbital periods, and the window is shifted by half of an orbital period between each computation of the frequencies. The frequency evolution is computed for the equivalent of 16 orbital periods. The weakly chaotic orbit has $A_\Omega \approx 0.2\%$ over just 16 orbital periods---this explains the enhanced density evolution observed in the N-body simulations and ensemble integrations (Figures~\ref{fig:nbodysims}-\ref{fig:ensembles}). The three orbits, R, W, S, are highlighted with square markers (S is top, W is middle, R is bottom). } 
-\label{fig:freqvar_map}
-\end{center}
-\end{figure}
+%\clearpage
+%\begin{figure}[p]
+%\begin{center}
+%\includegraphics[width=0.9\textwidth, trim={0 1cm 0 0}]{figures/freqvar-map.png}
+%\caption{The same grid of orbits as shown in Figure~\ref{fig:apoper}, but now each pixel is colored by the amplitude of short-time frequency variations, $A_\Omega$ (Equation~\ref{eq:frac-freq-amp}). The amplitude is a fractional measurement, so that a value of $10^{-2}$ corresponds to a 1\% change in frequencies. To compute the short-time frequency evolution, the frequencies are computed in a sliding window of width 40 orbital periods, and the window is shifted by half of an orbital period between each computation of the frequencies. The frequency evolution is computed for the equivalent of 16 orbital periods. The weakly chaotic orbit has $A_\Omega \approx 0.2\%$ over just 16 orbital periods---this explains the enhanced density evolution observed in the N-body simulations and ensemble integrations (Figures~\ref{fig:nbodysims}-\ref{fig:ensembles}). The three orbits, R, W, S, are highlighted with square markers (S is top, W is middle, R is bottom). } 
+%\label{fig:freqvar_map}
+%\end{center}
+%\end{figure}
 
 \end{document}
