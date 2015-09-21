@@ -77,6 +77,8 @@ p7. The term "conditionally-periodic" is unclear and not explained.
 
 p8. A strong argument in favour of large regions of regular orbits in real galaxies is their very existence: non-spherical galaxies cannot be sustained by chaotic orbits. A population made from chaotic orbits tends to be as round as the underlying potential, but the density must be more flattened.
 
+>>> We agree but think that a more likely possibility is that a large fraction of orbits are chaotic but only weakly chaotic, so that over physically meaningful timescales their chaotic nature is irrelevant. 
+
 p8. The 1st paragraph of 2.3 contains a contradiction "choatic orbits have no orbital actions" vs "chaotic diffucion of an orbit in actions" originating from confusing the orbital actions of the unperturbed system in the context of section 2.2 (eq 7). It's not clear what a "resonant layer" is -- the same as the "resonance lines of Fig.1?
 
 p8. "chaotic motion across resonances" is again inconsistent: chaotic orbits cannot be resonant.
@@ -101,6 +103,8 @@ p11. "...contours of this potential in projection" --> "...contours of this pote
 >>> Fixed.
 
 p11. Instead of (or in addition to) the potential contours in Fig.2, the authors should plot the density contours, which are much more familiar to most readers.
+
+>>> We have included a plot of the density contours.
 
 p11. "twisting inertia tensors" -- do the authors mean radially changing orientations of the semi axes? Such a system cannot be in equilibrium and hence must be evolving on its dynamical time scale ...
 
