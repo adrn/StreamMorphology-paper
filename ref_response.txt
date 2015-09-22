@@ -7,15 +7,15 @@ main comments:
 
 One problematic and confusing issue is the implied meaning of the term "orbit" as used by the authors. AFAIK, an orbit is defined as the ensemble of all points on a trajectory as it is followed **ad infinitum**. Defined in this way, an orbit doesn't "evolve" (for a static potential). The author's usage of "orbit" is inconsistent with this common definition, yet they fail to provide an alternative. Perhaps they mean a "trajectory followed over many (but finite) dynamical times" or "over a Gyr" or "over a Hubble time"? For stellar dynamics, such objects are certainly useful and can definitely evolve ... but aren't orbits.
 
->>> We ...
-
 What is more, the stochastic trajectories are only restricted by the conservation of orbital energy and the existence of regular orbits. Thus, there is only one chaotic orbit for each energy (Arnold-web hypothesis).
+
+>>> We hope we have clarified much of the text in the introduction and Section 2 based on this confusion. Updates are highlighted in red.
 
 The usage of discrete frequencies to describe/proxy the frequency distrubition of an orbit/trajectory is perfectly okay for regular orbits, but dubious/inappropriate for stochastic orbits, which have a continuous frequency distribution. This is obvious, yet the authors only uncover it in section 4.3 as the origin of their alleged discrepancy between the rate of evolution of tidal debris and that of the "fundamental" frequencies of chaotic trajectories.
 
 Can the frequency diffusion time be defined for continuous frequency distributions (without reference to sincle dominant frequencies)? And if so, would this time scale overcome the problem and obtain a correct indicator of the importance of chaos for the dispersion of tidal debris?
 
->>> 
+>>> It's true that the frequencies evolve continuously for chaotic orbits, however over a given window of time the frequency-finding method will pick out the most significant, "effective" fundamental frequencies for that section of orbit. Because of this, the frequency diffusion rate measured is only local (in time) for a given sub-section or set of sub-sections of the chaotic orbit. The reason this is only "uncovered" in section 4.3 is a choice for the layout of the paper: we first use established methods from previous work, then explain why these are insufficient for tidal debris. If the frequency diffusion time could be defined for continuously (and stochastically) changing frequencies, this would indeed be a strong indicator of the importance of chaos. We believe this could be an exciting project and something to follow up on.
 
 Furthermore, the author's should explain/stress why the frequency distribution is relevant for the evolution of tidal debris. I think in the case of regular orbits this is essentially covered by Sanders & Binney (2013), but their analysis does not apply to chaotic orbits ...
 
@@ -128,7 +128,7 @@ p13. It's not clear how the max is taken in eq (12). Is it R_k for which a_k is 
 
 "where the maximum is taken with respect to the corresponding amplitudes, $a_k$..."
 
-If the referee thinks this needs further clarification please let us know.
+>>> If the referee thinks this needs further clarification please let us know.
 
 p13. Is the "relevant time scale" really the that "over which the change in frequencies of a single orbit is comparable to the spread of frequencies in the ensemble"? What is so special about the frequency? Doesn't chaotic mixing/diffusion work even if the frequency diffusion is low? I'm also concerned about the definition of the latter in terms of only the dominant frequencies, rather than the full distribution.
 
@@ -144,9 +144,13 @@ Chaotic orbits that trace tube orbits are generally less stochastic than chaotic
 
 p14. Perhaps in the context of section 4.1 and Fig.3, "trajectory" rather than "orbit" is the correct term. 10000 periods is long compared to the age of a stellar system, but (very) short compared to the Arnold web diffusion time.
 
+>>> In this context, we think the distinction is not necessary -- the grids are over orbits (not trajectories), and we always specify the length of time that we integrate for (which makes it clear that we are not considering the full history of the orbit but rather a sub-section with specified length).
+
 Figs.4,5,10 The real structure of these figures may be fractal (at least in some places), which cannot, of course, be adequately represented with finite pixels. Perhaps, the authors could zoom in on a region where dark and white pixels are closely mixed?
 
 I would be useful to also have the classible surface-of-section figures to describe the orbits A,B,C,D -- the sos plot should clearly separate regular from chaotic and show the degree of stochasticity.
+
+>>> We have these figures and originally included them in the manuscript, but given the length of the text we decided to exclude them. We have included them with this response for the referee to see. If the referee strongly things they should be included in the paper, we are happy add them.
 
 p16. "all ensembles should start with the same initial spread in fundamental frequencies" -- this makes no sense for chaotic orbits, which have no fundamental frequencies (rather a continuous frequency distribution).
 
@@ -180,17 +184,24 @@ p21. "Non-resonant orbits ... have thicker frequency distributions ..." is slopp
 
 Figs.12&13 suffer again from the unsuitablity of single fundamental frequencies to discribe a continuous spectrum.
 
+>>> See response above. It's true that the single frequency doesn't describe the full spectrum however the frequency-finder does find the most relevant "effective" fundamental frequencies for sections of the chaotic orbits. Does the referee disagree with the use of this indicator in previous studies? e.g., Laskar 1990, 1992; Papaphilippou & Laskar 1996, 1998; Merrit & Valluri 1996, Valluri & Merritt 1998, 1999; Valluri et al. 2012, 2013
+
 Fig.14 is missing: the grey-scale map of the spread of frequencies for an ensemble of orbits around each orbit in Fig.4 ... If the author's argumentation is correct, it should closely match Fig.10, doesn't it? In fact, a plot of the frequency spread against the mean-density of debris ensembles may be worthwhile too.
 
-TODO:
->>> There is no Figure 14?
+>>> We are confused by this question -- in an original (not submitted) version of the manuscript we had this figure, but have left this out upon submission in anticipation of follow-up work developing a better indicator for the relevance of chaos in tidal streams. We can't find any reference to a Figure 14 in the text -- could the referee please clarify.
 
 p21. "fast chaotic diffusion of orbits" is sloppy/wrong: 1) chaos is a property of orbits, not an inter-orbit property; 2) diffusion does not apply to orbits, but (at best) to particles following orbits.
 
 p23. In the list in section 5.2, the authors may want to add the wake(s) in the DM halo caused by satellites (LMC/SMC).
+
+>>> We have added a sentence:
+
+The presence of and response to the Large and Small Magellanic Clouds may also introduce significant (time-dependent) perturbations to the global potential of the Milky Way (Besla et al. 2010, Gomez et al. 2015).
 
 p24. "also possible also" ...
 
 >>> Fixed.
 
 p25. Who/what is the "Streeam Team"?
+
+>>> The Stream Team is a collaboration between groups at Columbia (led by Johnston), NYU (Hogg), and Yale (Geha).
