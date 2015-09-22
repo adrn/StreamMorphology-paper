@@ -158,7 +158,7 @@ p16. "all ensembles should start with the same initial spread in fundamental fre
 
 p17. How does Fig.7 change if the ensemble of points is restricted to the same energy surface? I suspect it makes little difference, but is this so?
 
->>> Tidal debris will not be restricted to an energy surface so we feel that our test is more relevant for the question at hand. We have remade Figure 4...
+>>> We have included a set of figures that illustrate this: we take the distribution of energies for all stars in the ensembles, compute the standard deviation, then make cuts and only show stars within X% of the standard deviation away from the mean energy. However, tidal debris will not be restricted to an energy surface so we feel that our test is more relevant for the question at hand. We have not included these figures in the manuscript.
 
 p17. 1024 periods is not long for chaotic orbits ...
 
@@ -171,6 +171,8 @@ Fig.6 trajectory D is not strongly, but only mildly chaotic, since it has sharpi
 >>> We have added the word "more" before "strongly chaotic" to clarify in Section 4.2 and the caption for Figure 6.
 
 Fig.9 The claims in the caption are unconvincing. What is clear is that orbits A and B decay like a power law, while orbits C and D decay faster.
+
+>>> We wonder if the referee missed the third line for the t^-2 e^-at curve -- we have made the linestyle for this curve more prominent. The decay of the density in panel C is clearly well-modeled by a power law multiplied by a decaying exponential. For panel D, we agree that the decay is clearly faster than a power law but is not necessarily purely exponential, but the figure caption reflects this: "(D) is roughly exponential with fairly erratic density evolution."
 
 p20. "The effect is especially significant ... of the Hamiltonian." -- Why is this so? Is this the Sanders & Binney (2013) argument?
 
@@ -191,6 +193,10 @@ Fig.14 is missing: the grey-scale map of the spread of frequencies for an ensemb
 >>> We are confused by this question -- in an original (not submitted) version of the manuscript we had this figure, but have left this out upon submission in anticipation of follow-up work developing a better indicator for the relevance of chaos in tidal streams. We can't find any reference to a Figure 14 in the text -- could the referee please clarify.
 
 p21. "fast chaotic diffusion of orbits" is sloppy/wrong: 1) chaos is a property of orbits, not an inter-orbit property; 2) diffusion does not apply to orbits, but (at best) to particles following orbits.
+
+>>> We agree this is incorrect -- this now reads:
+
+...fast chaotic diffusion of frequencies...
 
 p23. In the list in section 5.2, the authors may want to add the wake(s) in the DM halo caused by satellites (LMC/SMC).
 
