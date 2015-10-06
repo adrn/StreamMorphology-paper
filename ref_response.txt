@@ -1,7 +1,10 @@
+Responses to the referee's comments are below, preceded by ">>>".
+
 Summary. This is a thorough investigation of the effect (and its origins) of orbital chaos in a static triaxial potential on the morphology of debris distributions originating from tidal disruption of satellites. The manuscript is quite long (and hence tiring to read) and suffers from some amount of inconsistent/unfortunate/sloppy terminology and methodology. I anticipate that it will be ready for publication after revision.
 
 To speed-up reviewing a revised version, I suggest the authors colour code any alterations made at revision and place the figures with the associated text.
 
+>>> We have colored the revised text red, and have tried to place the figures closer to the referencing text.
 
 main comments:
 
