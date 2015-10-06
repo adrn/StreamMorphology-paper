@@ -150,7 +150,7 @@ Figs.4,5,10 The real structure of these figures may be fractal (at least in some
 
 I would be useful to also have the classible surface-of-section figures to describe the orbits A,B,C,D -- the sos plot should clearly separate regular from chaotic and show the degree of stochasticity.
 
->>> We have these figures and originally included them in the manuscript, but given the length of the text we decided to exclude them. We have included them with this response for the referee to see. If the referee strongly things they should be included in the paper, we are happy add them.
+>>> We have these figures and originally included them in the manuscript, but given the length of the text we decided to exclude them. We have included them with this response for the referee to see. If the referee strongly thinks they should be included in the paper, we are happy to add them.
 
 p16. "all ensembles should start with the same initial spread in fundamental frequencies" -- this makes no sense for chaotic orbits, which have no fundamental frequencies (rather a continuous frequency distribution).
 
