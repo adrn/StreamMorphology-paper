@@ -19,7 +19,9 @@ Can the frequency diffusion time be defined for continuous frequency distributio
 
 Furthermore, the author's should explain/stress why the frequency distribution is relevant for the evolution of tidal debris. I think in the case of regular orbits this is essentially covered by Sanders & Binney (2013), but their analysis does not apply to chaotic orbits ...
 
->>> We are somewhat confused by this comment -- we agree that the relevance of the frequency distribution to the evolution of tidal debris is covered in Sanders & Binney (2013). This is also thoroughly covered in Helmi & White (1999) and is an intuitive way to understand the growth and evolution of tidal debris. These concepts are introduced in the beginning of Section 2.4, but in the text the reader is deferred to the above references for more details. 
+>>> We are somewhat confused by this comment -- we agree that the relevance of the frequency distribution to the evolution of tidal debris is covered in Sanders & Binney (2013) and we explain this in Section 2.4 (e.g., spreads in frequency-space determine the dimensionality of spreading in configuration space). We have added a sentence specifically about how chaos can increase the variance of the frequency distribution and thus increase the rate of spreading in configuration space:
+
+"That is, while the orbit is struck, the small-scale variations effectively cause an increase in the variance of the frequency distribution, which would enhance mixing of the debris in configuration-space."
 
 minor comments:
 
@@ -94,9 +96,9 @@ Note that during this diffusion, the frequencies never exactly hit those of a KA
 p8. I think what the authors should have said at the end of 2.3 is something like this: "If a stochastic trajectory is surrounded by regular orbits, it tends to stay close to ('trace') one of these orbits for many periods (and may appear near-regular), before switching to trace another regular ('lead') orbit, a process by which it may eventually sample the whole Arnold web. However, two initialy nearby stochastic trajectories may switch to different lead orbits at different times. This process is clearly important for the evolution of tidal debris."
 Of course, this description of stochastic orbits applies only to weak chaos, when there are still plenty regular orbits working as 'obstacles' and 'leads'.
 
->>> This is cleaner terminology and we have adopted these terms in the revised paragraph:
+>>> We have modified this paragraph to capture the above comment, but using terminology from previous work (lead orbit = parent orbit, also such orbits are commonly referred to as 'sticky'):
 
-If a stochastic trajectory is surrounded by regular orbits, it may appear similar to a nearby regular orbit (the `lead` orbit) over long periods of time before escaping to another such semi-bounded region where it will change in appearance to `trace' a new lead orbit (a process by which it may eventually explore the whole Arnold web). However, two initially nearby trajectories may switch to  different lead orbits at different times, a process which is clearly important for the evolution of tidal debris. Additionally, if the volume of the surrounded region (e.g., in frequency space) is comparable to the characteristic spread of frequencies in the tidal debris, this small-scale evolution will be important for tidal debris.
+If a stochastic trajectory is surrounded by regular orbits, it may be trapped around a regular parent orbit for long periods of time before escaping to another such semi-bounded region where it can become trapped around another parent orbit (a process by which it may eventually explore the whole Arnold web)---such orbits are commonly referred to as `sticky orbits.' Additionally, if the volume of the surrounded region in frequency space is comparable to the characteristic spread of frequencies in the tidal debris, this small-scale evolution will be important for tidal debris.
 
 p11. "...contours of this potential in projection" --> "...contours of this potential"
 
@@ -132,15 +134,13 @@ p13. It's not clear how the max is taken in eq (12). Is it R_k for which a_k is 
 
 p13. Is the "relevant time scale" really the that "over which the change in frequencies of a single orbit is comparable to the spread of frequencies in the ensemble"? What is so special about the frequency? Doesn't chaotic mixing/diffusion work even if the frequency diffusion is low? I'm also concerned about the definition of the latter in terms of only the dominant frequencies, rather than the full distribution.
 
->>> The point we are making is just that when the variation of the frequencies is on the same scale as the spread in frequencies of a set of orbits, then there should be an observable effect. We have clarified this statement by changing "the" to "a" as:
+>>> The point we are making is just that when the variation of the frequencies is on the same scale as the spread in frequencies of a set of orbits, then there should be an observable effect. We have clarified this statement by changing "the" to "a more" as:
 
-...a relevant timescale is the time...
+...a more relevant timescale is the time...
 
 p14. "Tube orbits are generally less stochastic than box orbits" and "there are appreciable numbers of stochastic tube orbits" -- this again are confusing/nonsensical statements. Tube and box orbits are regular, not stochastic. I think what the authors meant was that "when tracing tube orbits (appearing like a tube orbit) a chaotic orbits is locally less stochastic than when tracing box orbits (appearing like a box orbit)".
 
->>> We agree this was a misuse of these common terms. We have clarified this to read:
-
-Chaotic orbits that trace tube orbits are generally less stochastic than chaotic orbits that trace box orbits, which tend to plunge deep into the inner regions of the potential where the density profile is steep.
+>>> We agree this was a misuse of these common terms. We have restructured and shortened this paragraph and have removed the above sentence.
 
 p14. Perhaps in the context of section 4.1 and Fig.3, "trajectory" rather than "orbit" is the correct term. 10000 periods is long compared to the age of a stellar system, but (very) short compared to the Arnold web diffusion time.
 
